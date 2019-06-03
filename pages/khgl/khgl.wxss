@@ -1,0 +1,130 @@
+.head{
+  position: relative;
+  background-image: '/images/icon/background.png';
+}
+.headicon{
+  background: #32bfd0;
+  height: 100rpx;
+}
+.headicon>image{
+  width: 40rpx;
+  height: 40rpx;
+}
+.headicon>image:nth-child(1){
+  float: left;
+  margin-left: 50rpx;
+}
+.headicon>image:nth-child(2),.headicon>image:nth-child(3){
+  float: right;
+  margin-right: 40rpx;
+  height: 35rpx;
+}
+.headicon>image:nth-child(4){
+  width: 110rpx;
+  height: 110rpx;
+  position: absolute;
+  left: 320rpx;
+  top: 30rpx;
+}
+.content{
+  margin-top: 80rpx;
+}
+
+.conHead{
+  margin: 30rpx 0; 
+}
+.conHead>view{
+  margin: 15rpx;
+  border: 1px solid black;
+  font-size: 30rpx;
+  padding: 7rpx 10rpx;
+  width: 130rpx;
+  float: left;
+  text-align: center;
+  border-radius: 30rpx;
+}
+.conHead>view:nth-child(1){
+  margin-left: 30rpx;
+}
+.active{
+  background: #32bfd0;
+  color: white;
+}
+.none{
+  display: none;
+}
+.yuyue{
+  padding: 30rpx;
+  font-size: 30rpx;
+}
+.dailuCon{
+  font-size: 30rpx;
+  padding: 30rpx;
+  line-height: 2;
+  border-bottom: 1rpx solid gainsboro;
+}
+.dailuCon>view:nth-child(2)>view{
+  float: left;
+  width: 33.33%;
+}
+.dailuCon>view:nth-child(2)>view:nth-child(3){
+  float: right;
+  width: 100rpx;
+  text-align: center;
+  color: white;
+  background: #43bcd9;
+  padding: 0 10rpx;
+  border-radius: 10rpx;
+}
+.yuyueCon{
+  line-height: 2;
+  margin: 20rpx 0;
+}
+.yuyueCon>view{
+  float: left;
+  font-size: 30rpx;
+  width: 33.33%;
+}
+.yuyueCon>view:nth-child(3){
+  float: right;
+  font-size: 25rpx;
+  background: #43bcd9;
+  padding: 0 10rpx;
+  color: white;
+  width: 100rpx;
+  text-align: center;
+  border-radius: 10rpx;
+}
+.bodaCon{
+  font-size: 30rpx;
+  line-height: 2;
+  padding: 30rpx;
+  border-bottom: 1rpx solid gainsboro;
+}
+.bodaCon>view:nth-child(2)>view{
+  float: left;
+  width: 33.33%;
+}
+.bodaCon>view:nth-child(2)>view:nth-child(3){
+  float: right;
+  text-align: center;
+  color: white;
+  background: #32bfd0;
+  padding: 0 10rpx;
+  font-size: 25rpx;
+  width: 100rpx;
+  border-radius: 20rpx;
+}
+.zhijieCon{
+  padding: 30rpx;
+  border-bottom: 1rpx solid gainsboro;
+  font-size: 30rpx;
+  line-height: 2;
+}
+.zhijieCon>view:nth-child(2)>view{
+  width: 33.33%;
+  float: left;
+}
+.zhijieCon>view:nth-child(2)>view:nth-child(3){
+  text-align: right;
+}

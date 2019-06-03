@@ -1,0 +1,59 @@
+page{
+  background: #f8f8f8;
+}
+.con{
+  margin: 20rpx 50rpx;
+}
+.con>view{
+  font-size: 35rpx;
+  margin-bottom: 15rpx;
+}
+.content{
+  background: white;
+  padding: 20rpx;
+  border-radius: 15rpx;
+}
+.content>image{
+  width: 60rpx;
+  height: 60rpx;
+  float: left;
+}
+.contentCon{
+  width: 550rpx;
+  float: left;
+}
+.contentCon>view>view{
+  margin: 10rpx;
+}
+.contentCon>view>view:nth-child(1){
+  font-size: 25rpx;
+  font-family: "PingFang";
+  color: rgb(153, 153, 153);
+  line-height: 1.2;
+  float: left;
+}
+.contentCon>view>view:nth-child(2){
+  font-size: 25rpx;
+  font-family: "PingFang";
+  color: rgb(219, 106, 232);
+  line-height: 1.2;
+  float: left;
+}
+.contentCon>view>view:nth-child(3){
+  font-size: 25rpx;
+  font-family: "PingFang";
+  color: rgb(219, 106, 232);
+  line-height: 1.2;
+  float: right;
+}
+.contentCon>image{
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 190rpx;
+  margin-top: 30rpx;
+}
+.contentCon>text{
+  font-size: 30rpx;
+  color: rgb(219, 106, 232);
+  text-align: center;
+}

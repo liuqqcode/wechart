@@ -1,0 +1,97 @@
+<view>
+  <view class='commentList'>
+    <view class='comLeft'>
+      <image src='/images/image/header.png'></image>
+    </view>
+    <view class='comRight'>
+      <view class='name'>我的小宝贝</view>
+      <view class='time'>2019年4月23日</view>
+      <view class='clear'></view>
+      <view class='fen'>
+        <view>打分</view>
+        <image src='/images/icon/stargreen.png'></image>
+        <image src='/images/icon/stargreen.png'></image>
+        <image src='/images/icon/stargreen.png'></image>
+        <image src='/images/icon/stargreen.png'></image>
+        <image src='/images/icon/stargreen.png'></image>
+
+      </view>
+      <view class='clear'></view>
+      <view class='commentText'>老师授课的方式非常适合我们，他根据本课程知识结 构的特点，重点突出，层次分明。理论和实际相结合， 通过例题使知识更条理化。但授</view>
+      <view class='commentImg'>
+        <image src='/images/image/school.png'></image>
+        <image src='/images/image/school.png'></image>
+        <image src='/images/image/school.png'></image>
+      </view>
+      <view class='clear'></view>
+    </view>
+    <view class='clear'></view>
+  </view>
+
+
+
+
+
+  <view class='commentList'>
+    <view class='comLeft'>
+      <image src='/images/image/header.png'></image>
+    </view>
+    <view class='comRight'>
+      <view class='name'>我的小宝贝</view>
+      <view class='time'>2019年4月23日</view>
+      <view class='clear'></view>
+      <view class='fen'>
+        <view>打分</view>
+        <image src='/images/icon/stargreen.png'></image>
+        <image src='/images/icon/stargreen.png'></image>
+        <image src='/images/icon/stargreen.png'></image>
+        <image src='/images/icon/stargreen.png'></image>
+        <image src='/images/icon/stargreen.png'></image>
+
+      </view>
+      <view class='clear'></view>
+      <view class='commentText'>老师授课的方式非常适合我们，他根据本课程知识结 构的特点，重点突出，层次分明。理论和实际相结合， 通过例题使知识更条理化。但授</view>
+      <view class='commentImg'>
+        <image src='/images/image/school.png'></image>
+        <image src='/images/image/school.png'></image>
+        <image src='/images/image/school.png'></image>
+      </view>
+      <view class='clear'></view>
+    </view>
+    <view class='clear'></view>
+  </view>
+
+
+
+
+
+  <view class='commentList'>
+    <view class='comLeft'>
+      <image src='/images/image/header.png'></image>
+    </view>
+    <view class='comRight'>
+      <view class='name'>我的小宝贝</view>
+      <view class='time'>2019年4月23日</view>
+      <view class='clear'></view>
+      <view class='fen'>
+        <view>打分</view>
+        <image src='/images/icon/stargreen.png'></image>
+        <image src='/images/icon/stargreen.png'></image>
+        <image src='/images/icon/stargreen.png'></image>
+        <image src='/images/icon/stargreen.png'></image>
+        <image src='/images/icon/stargreen.png'></image>
+
+      </view>
+      <view class='clear'></view>
+      <view class='commentText'>老师授课的方式非常适合我们，他根据本课程知识结 构的特点，重点突出，层次分明。理论和实际相结合， 通过例题使知识更条理化。但授</view>
+      <view class='commentImg'>
+        <image src='/images/image/school.png'></image>
+        <image src='/images/image/school.png'></image>
+        <image src='/images/image/school.png'></image>
+      </view>
+      <view class='clear'></view>
+    </view>
+    <view class='clear'></view>
+  </view>
+       
+</view>

@@ -1,0 +1,57 @@
+<view>
+  <view class='head'> 
+    <view class='headicon'>
+      <image></image>
+      <image></image>
+      <image></image>
+      <image src='/images/image/header.png'></image>
+    </view>
+    <view class='clear'></view>
+    <view class='headBot'>
+
+    </view>
+  </view>
+  <view class='clear'></view>
+  <view class='conList'>
+    <view class='conLeft'>
+      <view class='name'>张三</view>
+      <view class='phoneNum'>13215604160</view>
+      <view class='clear'></view>
+      <view class='laiyuan'>来源：代理录入</view>
+      <view class='time'>剩余24小时不点拒绝，默认同意</view>
+    </view>
+    <view class='conRight'>
+      <view class='yes'>同意</view>
+      <view class='no'>拒绝</view>
+    </view>
+    <view class='clear'></view>
+  </view>
+  <view class='conList'>
+    <view class='conLeft'>
+      <view class='name'>张三</view>
+      <view class='phoneNum'>13215604160</view>
+      <view class='clear'></view>
+      <view class='laiyuan'>来源：代理录入</view>
+      <view class='time'>剩余24小时不点拒绝，默认同意</view>
+    </view>
+    <view class='conRight'>
+      <view class='yes'>同意</view>
+      <view class='no'>拒绝</view>
+    </view>
+    <view class='clear'></view>
+  </view>
+  <view class='conList'>
+    <view class='conLeft'>
+      <view class='name'>张三</view>
+      <view class='phoneNum'>13215604160</view>
+      <view class='clear'></view>
+      <view class='laiyuan'>来源：代理录入</view>
+      <view class='time'>剩余24小时不点拒绝，默认同意</view>
+    </view>
+    <view class='conRight'>
+      <view class='yes'>同意</view>
+      <view class='no'>拒绝</view>
+    </view>
+    <view class='clear'></view>
+  </view>    
+</view>

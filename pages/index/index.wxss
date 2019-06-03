@@ -1,0 +1,263 @@
+
+
+.frist{
+  position: relative;
+
+}
+.head{
+  float: left;
+  border-radius: 50%;
+  margin-top: 30rpx;
+  margin-left: 30rpx;
+  width: 100rpx;
+  height: 100rpx;
+}
+.dizi{
+  float: left;
+}
+.adresse{
+  margin-left: 10rpx;
+  margin-top: 30rpx;
+  font-size: 30rpx;
+}
+.down{
+  width: 25rpx;
+  height: 15rpx;
+}
+.tianqi{
+  margin-top: 20rpx;
+  margin-left: 10rpx;
+  font-size: 25rpx;
+}
+.search{
+  
+  float: right;
+  margin-top: 50rpx;
+  /* margin-left: 20rpx; */
+  font-size: 25rpx;
+  padding-left: 40rpx;
+  width: 350rpx;
+  height: 60rpx;
+  border: 1px solid gainsboro;
+  border-radius:50rpx;
+}
+.searchVi{
+  margin-right: 30rpx;
+  float: right;
+  position: relative;
+}
+.add{
+  float: left;
+  width: 50rpx;
+  height: 50rpx;
+  margin-top: 55rpx;
+  margin-left: 20rpx;
+}
+.searchIcon{
+  position: absolute;
+  width: 25rpx;
+  height: 25rpx;
+  top: 70rpx;
+  right: 33rpx;
+}
+.clear{
+  clear: both;
+}
+swiper{
+  height: 350rpx;
+}
+.swiper{
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.li{
+  width: 100%;
+  height: 350rpx;
+}
+.li1{
+  width: 635rpx;
+  margin: 0 auto;
+  border-radius: 50rpx;
+  height: 350rpx;
+  margin-left: 10rpx;
+  /* transform: scale(0.9); */
+}
+.selected{
+  transform: scale(1)
+}
+.red{
+  background: red;
+}
+.blue{
+  background: blue;
+}
+.green{
+  background: green;
+}
+.orange{
+  background: orange;
+}
+
+.slide-image{
+  margin: 0 auto;
+  margin-left: 75rpx;
+  width: 86%;
+  height: 100%;
+}
+.page-section-spacing{
+  box-sizing: border-box;
+  padding: 0 80rpx;
+}
+.fuwu{
+  margin-left: 30rpx;
+}
+.fuwuFenlei{
+  float: left;
+
+}
+.fuwuitem{
+  float: left;
+  padding: 5rpx 15rpx;
+  border-radius: 10rpx;
+  font-size: 30rpx;
+  color: #666666;
+  background: #f6f6f6;
+  margin: 20rpx 0;
+  text-align: center;
+}
+.swiperItem{
+  height: 100rpx;
+}
+
+.schoolList{
+  margin: 10rpx 30rpx 40rpx 30rpx;
+
+}
+.schoolLeft{
+  float: left;
+  width: 57%;
+  padding-right: 3%;
+  position: relative;
+}
+.schoolLeft>view{
+  word-break:keep-all;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.schoolLeft>view:nth-child(1){
+  font-size: 35rpx;
+  font-family: "PingFang";
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  line-height: 1.2;
+}
+.schoolLeft>view:nth-child(2){
+  font-size: 25rpx;
+  margin: 20rpx 0;
+  font-weight: 400;
+  color: #666666;
+}
+.schoolRight{
+  float: left;
+  width: 40%;
+}
+.schoolRight>image{
+  width: 100%;
+  height: 220rpx;
+}
+.group3{
+  float: left;
+}
+.group3>image{
+  float: left;
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 5rpx;
+}
+.group3>view:nth-child(2){
+  float: left;
+  font-size: 25rpx;
+  padding: 0 10rpx;
+  color: rgb(153, 153, 153);
+  margin-top: 3rpx;
+}
+.group3>view:nth-child(3){
+  font-size: 20rpx;
+  float: left;
+  color: rgb(153, 153, 153);
+  font-family: "PingFang";
+  margin-top: 7rpx;
+}
+.star{
+  position: absolute;
+  right: 30rpx;
+  float: right;
+}
+.star>image{
+  float: left;
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 5rpx;
+}
+.star>view:nth-child(2){
+  padding-left: 10rpx;
+  font-size: 28rpx;
+  margin-top: 5rpx;
+  float: left;
+  font-family: "PingFang";
+  color: rgb(153, 153, 153);
+  line-height: 1.2;
+}
+.group4{
+  margin: 30rpx 0;
+}
+.group4>view:nth-child(1){
+  float: left;
+  font-size: 30rpx;
+  font-family: "PingFang";
+  color: rgb(42, 185, 211);
+  line-height: 1.2;
+}
+.group4>view:nth-child(2){
+  /* margin-top: 5rpx; */
+  float: left;
+  font-size: 25rpx;
+  font-family: "PingFang";
+  color: rgb(153, 153, 153);
+  line-height: 1.4;
+  padding-left: 10rpx;
+  text-decoration:line-through;
+}
+.group4>view:nth-child(3){
+  float: left;
+  margin-left: 10rpx;
+  margin-top: 5rpx;
+  height: 0;
+  width: 0;
+  border-top:13rpx solid transparent;
+  border-bottom:13rpx solid transparent;
+  border-right:15rpx solid #f19e38;
+}
+
+.group4>view:nth-child(4){
+  float: left;
+  font-size: 18rpx;
+  margin-top: 5rpx;
+  font-family: "PingFang";
+  color: rgb(255, 255, 255);
+  background: #f19e38;
+  padding: 5rpx;
+  line-height: 1;
+}
+.group4>view:nth-child(5){
+  float: right;
+  font-size: 28rpx;
+  font-family: "PingFang";
+  color: rgb(153, 153, 153);
+  line-height: 1.5;
+}
+.fu3,.fu4{
+  padding: 5rpx 45rpx;
+}

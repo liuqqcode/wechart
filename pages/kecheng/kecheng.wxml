@@ -1,0 +1,71 @@
+<view>
+  <view class='header'>
+    <view class='headLeft'>
+      <image src='/images/image/header2.png'></image>
+    </view>
+    <view class='headRight'>
+      <view>英语能力测试</view>
+      <view>仅售180元,价值360元英语能力测试</view>
+      <view>￥180</view>
+    </view>
+  </view>
+  <view class='clear'></view>
+  <view class='heng'></view>
+  <view class='sjCon'>
+    <view class='sjHead'>商家信息</view>
+    <view class='sjLocation'>
+      <image src='/images/icon/store.png'></image>
+      <view>成都新东方烹饪培训学校（九江校区）</view>
+      <image src='/images/icon/phone.png'></image>
+    </view>
+    <view class='clear'></view>
+    <view class='myLocation'>
+      <image src='/images/icon/location.png'></image>
+      <view>成都市双流区蛟龙工业港高新大道109号</view>
+      <view>离我最近</view>
+    </view>
+    <view class='clear'></view>
+  </view>
+  <view class='heng'></view>
+  <view class='ddCon'>
+    <view class='ddHead'>订单信息</view>
+    <view class='ddContent'>
+      <view>
+        <view>订单号：</view>
+        <view>2131654646</view>
+      </view>
+      <view class='clear'></view>
+      <view>
+        <view>手机号：</view>
+        <view>1354646841</view>
+      </view>
+      <view class='clear'></view>
+
+      <view>
+        <view>付款时间：</view>
+        <view>2019-1-12 14:20:30</view>
+      </view>
+      <view class='clear'></view>
+
+      <view>
+        <view>数量：</view>
+        <view>1</view>
+      </view>
+      <view class='clear'></view>
+
+      <view>
+        <view>订单总价：</view>
+        <view>￥180</view>
+      </view>
+      <view class='clear'></view>
+
+      <view>
+        <view>实际付款：</view>
+        <view>￥180</view>
+      </view>
+      <view class='clear'></view>
+
+    </view>
+   
+  </view>
+</view>

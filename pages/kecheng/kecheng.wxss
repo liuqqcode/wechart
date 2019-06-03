@@ -1,0 +1,111 @@
+.heng{
+  background: #eeeeee;
+  width: 100%;
+  height: 10rpx;
+}
+.header{
+  margin: 30rpx;
+}
+.header>view{
+  float: left;
+}
+.headLeft{
+  width: 200rpx;
+  padding: 30rpx;
+}
+.headLeft>image{
+  width: 100%;
+  height: 130rpx;
+}
+.headRight{
+  width: 430rpx;
+  margin-top: 25rpx;
+}
+.headRight>view{
+  margin: 10rpx 0;
+}
+.headRight>view:nth-child(1){
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.headRight>view:nth-child(2){
+  font-size: 25rpx;
+  color: #999999;
+}
+.headRight>view:nth-child(3){
+  font-size: 25rpx;
+  color: #999999;
+}
+.sjHead{
+  text-align: center;
+  font-size: 35rpx;
+  font-weight: 600;
+  line-height: 3;
+}
+.sjCon{
+  padding: 30rpx;
+}
+.sjLocation{
+  margin: 20rpx 0;
+}
+.sjLocation>view{
+  float: left;
+}
+.sjLocation>image:nth-child(1){
+  width: 40rpx;
+  height: 40rpx;
+  float: left;
+}
+.sjLocation>view{
+  font-size: 25rpx;
+  color: #999999;
+  line-height: 2;
+  padding-left: 20rpx; 
+}
+.sjLocation>image:nth-child(3){
+  width: 40rpx;
+  height: 40rpx;
+  float: right;
+}
+.myLocation{
+  padding: 30rpx 0;
+}
+.myLocation>view{
+  line-height: 2;
+}
+.myLocation>image{
+  float: left;
+  width: 40rpx;
+  height: 50rpx;
+}
+.myLocation>view:nth-child(2){
+  font-size: 25rpx;
+  color: #999999;
+  padding-left: 20rpx;
+  float: left;
+}
+.myLocation>view:nth-child(3){
+  font-size: 25rpx;
+  float: right;
+  color: #f2c720;
+}
+.ddCon{
+  padding: 30rpx 150rpx;
+}
+.ddHead{
+  text-align: center;
+  line-height: 2;
+  font-size: 35rpx;
+  font-weight: 600;
+}
+.ddContent>view{
+  font-size: 20rpx;
+  color: #999999;
+  line-height: 2;
+}
+.ddContent>view>view:nth-child(1){
+  float: left;
+}
+.ddContent>view>view:nth-child(2){
+  float: right;
+}

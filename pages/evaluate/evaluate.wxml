@@ -1,0 +1,47 @@
+<view>
+  <view class='evaluateHead'>
+    <image src='/images/image/kecheng.png'></image>
+    <view class='evaluateContent'>
+      <view>零基础英语学习大礼包</view>
+      <view>￥88.00</view>
+      <view>X1</view>
+    </view>
+    <view class='clear'></view>
+  </view>
+  <view class='heng'></view>
+  <view class='evaluateInput'>
+    <textarea class='pinglun' placeholder='宝贝满足你的需求吗？说说它的优点和美中不足吧..'></textarea>
+    <view class='ui_uploader_cell'>
+        <!-- 根据已选择的图片临时路径数组展示图片-->
+        <view class='ui_uploader_item' wx:for="{{uploaderList}}" wx:key="{{index}}">
+            <!-- 删除-->
+            <icon class='ui_uploader_item_icon' bindtap='clearImg' data-index="{{index}}" type="clear" size="20" color="red"/>
+            <!-- 图片-->
+            <image bindtap='showImg' data-index="{{index}}" src='{{item}}'></image>
+        </view>
+        <!-- 上传按钮+框 -->
+        <view class='clear'></view>
+        <view class='ui_uploader' bindtap='upload' wx:if="{{showUpload}}">
+          <image src='/images/icon/addImage.png'></image>
+          <view>添加图片</view>
+        </view>
+    </view>
+  </view>
+  <view class='heng'></view>
+  <view class='evaluateStar'>
+    <view class='zhPJ'>综合评价</view>
+    <view class='evaluateStarImage'>
+      <image bindtap='star' data-idx="0" src='{{ starNum >= 0 ? yellowStar : noneStar}}'></image>
+      <image bindtap='star' data-idx="1" src='{{ starNum >= 1 ? yellowStar : noneStar}}'></image>
+      <image bindtap='star' data-idx="2" src='{{ starNum >= 2 ? yellowStar : noneStar}}'></image>
+      <image bindtap='star' data-idx="3" src='{{ starNum >= 3 ? yellowStar : noneStar}}'></image>
+      <image bindtap='star' data-idx="4" src='{{ starNum >= 4 ? yellowStar : noneStar}}'></image>
+    </view>
+    <view class='clear'></view>
+
+  </view>
+  <view class='clear'></view>
+  <view class='submit'>
+    <view class='submitBtn'>提交评价</view>
+  </view>
+</view>

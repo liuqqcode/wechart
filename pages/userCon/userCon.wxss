@@ -1,0 +1,68 @@
+.head{
+  position: relative;
+  background-image: '/images/icon/background.png';
+}
+.headicon{
+  background: #32bfd0;
+  height: 100rpx;
+  margin-bottom: 120rpx;
+}
+.headicon>image{
+  width: 40rpx;
+  height: 40rpx;
+}
+.headicon>image:nth-child(1){
+  float: left;
+  margin-left: 50rpx;
+}
+.headicon>image:nth-child(2),.headicon>image:nth-child(3){
+  float: right;
+  margin-right: 40rpx;
+  height: 35rpx;
+}
+.headicon>image:nth-child(4){
+  width: 110rpx;
+  height: 110rpx;
+  position: absolute;
+  left: 320rpx;
+  top: 30rpx;
+}
+.conList{
+  margin-top: 30rpx;
+  padding: 30rpx;
+  border-bottom: 1px solid gray;
+  font-size: 30rpx;
+  line-height: 2
+}
+.conLeft{
+  float: left;
+  width: 413rpx;
+}
+.conRight{
+  float: right;
+  width: 230rpx;
+}
+.name{
+  float: left;
+}
+.phoneNum{
+  float: right;
+}
+.conRight{
+  margin-top: 50rpx;
+}
+.yes{
+  float: left;
+  color: white;
+  background: #aac627;
+  padding: 1rpx 20rpx;
+  border-radius: 15rpx;
+}
+.no{
+  float: left;
+  color: white;
+  background: #333333;
+  padding: 1rpx 20rpx;
+  margin-left: 20rpx;
+  border-radius: 15rpx;
+}

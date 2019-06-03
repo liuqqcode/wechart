@@ -1,0 +1,13 @@
+<view>
+  <view class='moCon'>
+    <image class='moeny' src='/images/icon/money.png'></image>
+    <view class='myMoney'>我的零钱</view>
+    <view class='moneyNum'>￥1000</view>
+    <button type="primary" class='tijianBtn'>提现</button>
+  </view>
+  <view class='moBtn'>
+    <view>常见问题</view>
+    <view>本服务由财务通提供</view>
+  </view>
+
+</view>

@@ -1,0 +1,113 @@
+.head{
+  position: relative;
+  background-image: '/images/icon/background.png';
+}
+.headicon{
+  background: #32bfd0;
+  height: 100rpx;
+}
+.headicon>image{
+  width: 40rpx;
+  height: 40rpx;
+}
+.headicon>image:nth-child(1){
+  float: left;
+  margin-left: 50rpx;
+}
+.headicon>image:nth-child(2),.headicon>image:nth-child(3){
+  float: right;
+  margin-right: 40rpx;
+  height: 35rpx;
+}
+.headicon>image:nth-child(4){
+  width: 110rpx;
+  height: 110rpx;
+  position: absolute;
+  left: 320rpx;
+  top: 30rpx;
+}
+.tuikeHead{
+  margin: 80rpx auto;
+}
+.tuikeHead>view{
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+.tuikeHead>view>view{
+  border-radius: 20rpx;
+  padding: 10rpx 30rpx;
+  width: 150rpx;
+  font-size: 30rpx;
+  text-align: center;
+  margin-left: 84.5rpx;
+  background: #f1f1f1;
+  color: #666666;
+}
+.tkActive{
+  background: #f2c720 !important;
+  color: white !important;
+}
+.redbag{
+  margin-top: 50rpx;
+  border-top: 1px solid #f1f1f1;
+}
+.redbagList{
+  border-bottom: 1px solid #f1f1f1;
+}
+.userImg,.userCon,.userMoney{
+  float: left;
+}
+.userImg{
+  width: 100rpx;
+}
+.userImg>image{
+  width: 80rpx;
+  height: 80rpx;
+  margin: 20rpx;
+}
+.userCon{
+  width: 500rpx;
+  margin: 20rpx;
+}
+.userCon>view:nth-child(1){
+  font-size: 30rpx;
+}
+.userCon>view:nth-child(2){
+  font-size: 25rpx;
+  color: #999999;
+  margin-top: 10rpx;
+}
+.userMoney{
+  width: 100rpx;
+}
+.userMoney>view{
+  font-size: 30rpx;
+  line-height: 4;
+}
+.redbagHide{
+  display: none;
+}
+.tkReturn{
+  margin: 30rpx;
+}
+.tkReturnList{
+  margin: 30rpx auto;
+  background: #f5f5f5;
+  border-radius: 30rpx;
+}
+.tkReturnList>view{
+  font-size: 30rpx;
+  line-height: 2;
+  padding: 10rpx 20rpx;
+}
+.tkReturnList>view:nth-child(2){
+  border-top: 3px solid white;
+  border-bottom: 3px solid white;
+}
+.tkReturnList>view:nth-child(3){
+  border-bottom: 3px solid white;
+}
+.tkReturnHide{
+  display: none;
+}

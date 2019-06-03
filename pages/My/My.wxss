@@ -1,0 +1,199 @@
+.head{
+  position: relative;
+  background-image: '/images/icon/background.png';
+}
+.headicon{
+  background: #32bfd0;
+  height: 100rpx;
+}
+.headicon>image{
+  width: 40rpx;
+  height: 40rpx;
+}
+.headBot{
+  position: absolute;
+  /* height: 300rpx; */
+  width: 100%；
+}
+.page-body-info>image{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 100%;
+  border: 5rpx solid white;
+  margin: 0 auto;
+  margin-left:320rpx;
+  margin-top: -55rpx;
+  z-index: 10;
+}
+.page-body-info>text{
+  font-size: 30rpx;
+  text-align: center;
+  width: 750rpx;
+  display: block;
+}
+.headicon>image:nth-child(1){
+  float: left;
+  margin-left: 50rpx;
+}
+.userBut{
+  width: 750rpx;
+  background: white;
+  border: none;
+}
+button::after{
+  border: none;
+}
+.headicon>image:nth-child(2),.headicon>image:nth-child(3){
+  float: right;
+  margin-right: 40rpx;
+  height: 35rpx;
+}
+.headicon>image:nth-child(4){
+  width: 110rpx;
+  height: 110rpx;
+  position: absolute;
+  left: 320rpx;
+  top: 30rpx;
+}
+.iconTen{
+  margin-top: 180rpx;
+}
+.iconTen>view{
+  float: left;
+  width: 250rpx;
+}
+.iconTen>view>image{
+  width: 47rpx;
+  height: 47rpx;
+  margin-left: 102rpx;
+}
+.iconTen>view>view{
+  text-align: center;
+  font-size: 25rpx;
+  font-family: "PingFang";
+  color: rgb(153, 153, 153);
+  line-height: 1.2;
+  margin-bottom: 60rpx;
+}
+.team>view:nth-child(1){
+  margin-left: 70rpx;
+  font-weight: 600;
+  font-size: 30rpx;
+  font-family: "PingFang";
+  color: rgb(51, 51, 51);
+  line-height: 1.2;
+}
+.teamContent{
+  margin: 30rpx 60rpx;
+  text-align: center;
+}
+.teamContent>view{
+  float: left;
+}
+.teamIcon>image{
+  width: 70rpx;
+  height: 55rpx;
+}
+.teamIcon>view:nth-child(2),.teamIcon>view:nth-child(3){
+  font-size: 25rpx;
+  color: rgb(51, 51, 51);
+  line-height: 1.2;
+  margin: 15rpx 0;
+}
+.teamMoney,.teamVi{
+  margin: 0 40rpx;
+  float: left;
+}
+.teamMoney>view{
+  font-size: 25rpx;
+  margin: 13rpx 0;
+  font-family: "PingFang";
+  color: rgb(51, 51, 51);
+  line-height: 1.2;
+}
+.teamMoney>view:nth-child(1){
+  margin-top: 0;
+}
+.teamVi>view:nth-child(1),.teamVi>view:nth-child(2) {
+  float: left;
+  margin: 0 20rpx;
+  padding: 5rpx 10rpx;
+  border: 1px solid rgb(202, 165, 24);
+  border-radius: 5rpx;
+  font-size: 25rpx;
+  font-family: "PingFang";
+  color: rgb(202, 165, 24);
+  line-height: 1.2;
+}
+.teamVi>view:nth-child(2){
+  border: 1px solid rgb(47, 191, 207);
+  color: rgb(47, 191, 207);
+} 
+.teamVi>view:nth-child(4),.teamVi>view:nth-child(5){
+  font-size: 27rpx;
+  font-family: "PingFang";
+  color: rgb(51, 51, 51);
+  line-height: 1.2;
+  margin-top: 40rpx;
+}
+.teamVi>view:nth-child(5){
+  margin-top: 5rpx;
+}
+
+.content{
+  margin: 30rpx 50rpx;
+}
+.contentList{
+  margin: 30rpx auto;
+}
+.contentList>view{
+  float: left;
+}
+.contentList>view:nth-child(1)>image{
+  width: 100rpx;
+  height: 100rpx;
+}
+.contentList>view:nth-child(2)>image{
+  width: 30rpx;
+  height: 26rpx;
+  float: left;
+  margin: 0 10rpx;
+  margin-top: 5rpx;
+}
+.contentList>view:nth-child(2){
+  margin: 10rpx 20rpx;
+}
+.contentList>view:nth-child(2)>view:nth-child(1){
+  font-size: 30rpx;
+  font-weight: 600;
+  font-family: "PingFang";
+  color: rgb(51, 51, 51);
+  line-height: 1.2;
+  float: left
+}
+
+.contentList>view:nth-child(2)>view:nth-child(3){
+  font-size: 25rpx;
+  font-family: "PingFang";
+  color: #b4b4b4;
+  float: left;
+}
+.contentList>view:nth-child(2)>view:nth-child(5){
+  font-size: 25rpx;
+  margin-top: 25rpx;
+  font-family: "PingFang";
+  color: rgb(102, 102, 102);
+  line-height: 1.2;
+}
+.contentList>view:nth-child(3){
+
+  font-size: 30rpx;
+  padding: 5rpx 20rpx;
+  border-radius: 10rpx; 
+  border: 1px solid rgb(47, 191, 207);
+  font-family: "PingFang";
+  color: rgb(47, 191, 207);
+  line-height: 1.2;
+  margin-left: 100rpx;
+  margin-top: 30rpx;
+}

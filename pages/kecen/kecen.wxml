@@ -1,0 +1,87 @@
+<view>
+  <view class='groop1'>
+    <image src='/images/image/school.png'></image>
+    <view class='group1Content'>
+      <view class='group1Left'>
+        <view>零基础英语学习干货大礼包</view>
+        <view>仅售19.9元，价值59.9元新东方烹饪培训学校2节课，节假日通用</view>
+      </view>
+      <view class='group1Right'>
+        <image class='' src='/images/icon/star.png'></image>
+        <view>收藏</view>
+      </view>
+      <view class='clear'></view>
+    </view>
+  </view>
+  <view class='heng'></view>
+  <view class='sysj'>
+    <view class='sjHead'>适用商家</view>
+    <view class='sjCon'>
+      <view class='sjContent'>
+        <view>成都新东方烹饪培训学校（九江校区）</view>
+        <view>双流区蛟龙工业港高新大道109号</view> 
+      </view>
+      <view class='sjIcon'>
+        <image src='/images/icon/phone.png'></image>    
+      </view>
+    </view>
+    <view class='clear'></view>
+    <view class='sjFoot'>查看全部64家分店</view>
+  </view>
+  <view class='heng'></view>
+  <view class='taocan'>
+    <view class='tcHead'>套餐</view>
+    <view class='tcContent'>
+      <view>
+        <view>10-18岁课程</view>
+        <view>1份</view>
+        <view>360元</view>
+      </view>
+      <view class='clear'></view>
+      <view>
+        <view>1-18岁课程</view>
+        <view>1份</view>
+        <view>360元</view>        
+      </view>
+      <view class='clear'></view>
+
+      <view>
+        <view>10-18岁课程</view>
+        <view>1份</view>
+        <view>360元</view>
+      </view>      
+      <view class='clear'></view>
+
+      <view>
+        <view>10-18岁课程</view>
+        <view>1份</view>
+        <view>360元</view>
+      </view>
+      <view class='clear'></view>
+
+      <view>
+        <view>10-18岁课程</view>
+        <view>1份</view>
+        <view>360元</view>
+      </view>
+      <view class='clear'></view>  
+
+    </view>
+    <view class='tcFoot'>
+      <view>
+        <view>总价</view>
+        <view>1440元</view>
+      </view>        
+      <view class='clear'></view>
+      <view>
+        <view>团购价</view>
+        <view>19.90元</view>
+      </view>  
+    </view>
+  </view>
+  <view class='qiangou'>
+    <view class='jiage'>￥19.90</view>
+    <view class='menshi'>门市价：￥1440</view>
+    <view class='qiangBtn'>立即抢购</view>
+  </view>
+</view>

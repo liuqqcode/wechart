@@ -1,0 +1,60 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/Order/Order",
+    "pages/My/My",
+    "pages/daili/daili",
+    "pages/khgl/khgl",
+    "pages/khgz/khgz",
+    "pages/school/school",
+    "pages/kecheng/kecheng",
+    "pages/kecen/kecen",
+    "pages/details/details",
+    "pages/yuyueSuccess/yuyueSuccess",
+    "pages/tixian/tixian",
+    "pages/Collection/Collection",
+    "pages/comment/comment",
+    "pages/browse/browse",
+    "pages/userCon/userCon",
+    "pages/cooperation/cooperation",
+    "pages/search/search",
+    "pages/evaluate/evaluate",
+    "pages/Customer/Customer",
+    "pages/HistoryMoney/HistoryMoney"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "口碑团学",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "borderStyle": "black",
+    "list": [
+      {
+        "selectedIconPath": "images/icon/homeA.png",
+        "iconPath": "images/icon/home.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "images/icon/orderA.png",
+        "iconPath": "images/icon/order.png",
+        "pagePath": "pages/Order/Order",
+        "text": "订单"
+      },
+      {
+        "selectedIconPath": "images/icon/myA.png",
+        "iconPath": "images/icon/my.png",
+        "pagePath": "pages/My/My",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "确定"
+    }
+  }
+}

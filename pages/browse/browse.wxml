@@ -1,0 +1,32 @@
+<view>
+  <view class='borwseList'>
+    <view class='borwseLeft'>
+      <image src='/images/image/school.png'></image>
+    </view>
+    <view class='borwseRight'>
+      <view>成都新东方烹饪培训学校学校学校</view>
+      <view>仅售99元，价值299元新东方烹饪培训学校</view>
+    </view>
+    <view class='clear'></view>
+  </view>
+  <view class='borwseList'>
+    <view class='borwseLeft'>
+      <image src='/images/image/school.png'></image>
+    </view>
+    <view class='borwseRight'>
+      <view>成都新东方烹饪培训学校学校学校</view>
+      <view>仅售99元，价值299元新东方烹饪培训学校</view>
+    </view>
+    <view class='clear'></view>
+  </view>
+  <view class='borwseList'>
+    <view class='borwseLeft'>
+      <image src='/images/image/school.png'></image>
+    </view>
+    <view class='borwseRight'>
+      <view>成都新东方烹饪培训学校学校学校</view>
+      <view>仅售99元，价值299元新东方烹饪培训学校</view>
+    </view>
+    <view class='clear'></view>
+  </view>    
+</view>

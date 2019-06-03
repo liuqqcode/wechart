@@ -1,0 +1,45 @@
+.searchHead{
+  margin: 30rpx;
+  position: relative;
+}
+.searchHead>image{
+  position: absolute;
+  top: 15rpx;
+  left: 15rpx;
+  width: 30rpx;
+  height: 30rpx;
+
+}
+.searchInput{
+  background: #eee;
+  border-radius: 50rpx;
+  padding: 5rpx;
+  font-size: 25rpx;
+  padding-left: 60rpx;
+  width: 530rpx;
+  float: left;
+}
+.no{
+  width: 70rpx;
+  float: left;
+  font-size: 30rpx;
+  color: #999999;
+  line-height: 2;
+  padding-left: 20rpx;
+}
+.History{
+  margin: 30rpx;
+
+}
+.History>image{
+  float: right;
+  width: 22rpx;
+  height: 30rpx;
+  margin-right: 15rpx;
+  margin-top: 15rpx;
+}
+.HistoryHead{
+  float: left;
+  color: #999999;
+  font-size: 30rpx;
+}

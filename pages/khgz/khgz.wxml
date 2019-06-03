@@ -1,0 +1,32 @@
+<view>
+  <view class='con'>
+    <view>刚刚</view>
+    <view class='content'>
+      <image src='/images/image/header.png'></image>
+      <view class='contentCon'>
+        <view>
+          <view>七月的妹妹查看了</view>
+          <view>新东方烹饪培训学校</view>
+          <view>5次</view>
+        </view>
+        <view class='clear'></view>
+        <view>
+          <view>七月的妹妹查看了</view>
+          <view>新东方烹饪培训学校</view>
+          <view>5次</view>
+        </view>
+        <view class='clear'></view>
+        <view>
+          <view>七月的妹妹查看了</view>
+          <view>新东方烹饪培训学校</view>
+          <view>5次</view>
+        </view>
+        <view class='clear'></view>
+
+        <image src='/images/icon/purMess.png'></image>
+        <text>发消息</text>
+      </view>
+      <view class='clear'></view>
+    </view>
+  </view>
+</view>

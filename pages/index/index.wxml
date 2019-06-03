@@ -1,0 +1,118 @@
+<!--index.wxml-->
+<view class="container">
+  <view class='line'></view>
+  <view class='frist'>
+    <image class='head' src='/images/image/header.png'></image>
+    <view class='dizi'>
+        <view class='adresse'>{{city}}
+          <image class='down'></image>  
+        </view>
+        <view class='tianqi'>{{weatherDesc}} {{dateC}}℃</view>
+    </view>
+    <view class='searchVi' bindtap='search'>
+      <input class='search' placeholder='英语培训'></input>
+      <image class='searchIcon' src='/images/icon/search.png'></image>
+    </view>
+
+    <!-- <image class='add' src='/images/icon/add.png'></image> -->
+  </view>
+  <view class='clear'></view>
+  <view class='swiper'>
+      <!-- <swiper
+           next-margin="140rpx" current-item-id="{{currentItemId}}" previous-margin="140rpx" bindchange="swiperChange"
+        >
+          <block wx:for="{{imgUrls}}" wx:key="item">
+            <swiper-item>
+              <image src="{{item}}" class="slide-image" width="355" height="150" />
+            </swiper-item>
+          </block>
+        </swiper> -->
+
+        <swiper 
+          class="swiper" 
+          circular="true"
+          next-margin="50rpx" 
+          current-item-id="{{currentItemId}}" 
+          previous-margin="50rpx"  
+          bindchange="swiperChange"
+        >  
+          <block wx:for="{{backClass}}" wx:key="index">
+            <swiper-item item-id="{{index}}" data-item-id="{{index}}" bindtap='clickChange'>  
+              <view class='li'>
+                <!-- <view class='li1 {{item}} {{currentItemId == index ? "selected" : ""}}' ></view> -->
+                <image class='li1 {{item}} {{currentItemId == index ? "selected" : ""}}'  src='{{item}}'></image>
+              </view> 
+            </swiper-item>  
+          </block>
+        </swiper> 
+
+  </view> 
+  <view class='clear'></view>
+  <view class='fuwu'>
+      <swiper
+        class='swiperItem'
+        display-multiple-items="4.5"
+      >
+          <block wx:for="{{fuwuFenlei}}" wx:key="item">
+            <swiper-item>
+              <view class='fuwuitem fu{{index}}'>{{item}}</view>
+            </swiper-item>
+          </block>
+        </swiper>
+  </view>
+  <view class='clear'></view>
+  <view class='schoolList' bindtap='school'>
+    <view class='schoolLeft'>
+      <view>成都新东方烹饪培训学校(九江校区）</view>
+      <view>仅售39元，价值299元新东方成都新东方烹饪培训学校</view>
+      <view class='group3'>
+        <image src='/images/icon/redbag.png'></image>
+        <view>3000</view>
+        <view>仅5km内有效</view>
+        <view class='star'>
+          <image src='/images/icon/star.png'></image>
+          <view>1659</view>
+        </view>
+      </view>
+      <view class='clear'></view>
+      <view class='group4'>
+        <view>￥99</view>
+        <view>￥199</view>
+        <view></view>
+        <view>5.9折</view>
+        <view>5.1km</view>
+      </view>
+    </view>
+    <view class='schoolRight'>
+      <image src='/images/image/school.png'></image>
+    </view>
+    <view class='clear'></view>
+  </view>
+  <view class='schoolList' bindtap='school'>
+    <view class='schoolLeft'>
+      <view>成都新东方烹饪培训学校(九江校区）</view>
+      <view>仅售39元，价值299元新东方成都新东方烹饪培训学校</view>
+      <view class='group3'>
+        <image src='/images/icon/redbag.png'></image>
+        <view>3000</view>
+        <view>仅5km内有效</view>
+        <view class='star'>
+          <image src='/images/icon/star.png'></image>
+          <view>1659</view>
+        </view>
+      </view>
+      <view class='clear'></view>
+      <view class='group4'>
+        <view>￥99</view>
+        <view>￥199</view>
+        <view></view>
+        <view>5.9折</view>
+        <view>5.1km</view>
+      </view>
+    </view>
+    <view class='schoolRight'>
+      <image src='/images/image/school.png'></image>
+    </view>
+    <view class='clear'></view>
+  </view>  
+</view>

@@ -1,0 +1,293 @@
+<view class='{{page}}'>
+  <view class='group1'>
+    <image src='/images/image/schoolban.png'></image>
+    <view class='group1Con'>
+      <view class='group1Left'>
+        <view>成都新东方烹饪培训学校</view>
+        <view>(九江校区）</view>
+        <image src='/images/icon/stargreen.png'></image>
+        <image src='/images/icon/stargreen.png'></image>
+        <image src='/images/icon/stargreen.png'></image>
+        <image src='/images/icon/stargreen.png'></image>
+        <image src='/images/icon/stargreen.png'></image>
+
+        <view class='fen'>5分</view>
+      </view>
+      <view class='group1Right'>
+        <view bindtap='shareBtn'>
+          <image src='/images/icon/share.png'></image>
+          <view>分享</view>
+        </view>
+        <view>
+          <image src='/images/icon/star.png'></image>
+          <view>收藏</view>
+        </view>
+        <view class='clear'></view>
+      </view>
+    </view>
+    <view class='clear'></view>
+  </view>
+  <view class='vedio'>
+    <view>看视频长姿势</view>
+    <view>全部视频6个</view>
+    <view class='swiper'>
+      <swiper
+        class='vedioSwiper'
+        display-multiple-items="3"
+      >
+        <block>
+          <swiper-item>
+            <image src="/images/image/shipin.png"></image>
+          </swiper-item>
+          <swiper-item>
+            <image src="/images/image/shipin.png"></image>
+          </swiper-item>
+          <swiper-item>
+            <image src="/images/image/shipin.png"></image>
+          </swiper-item>
+          <swiper-item>
+            <image src="/images/image/shipin.png"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+  <view class='location'>
+    <image src='/images/icon/location.png'></image>
+    <view>成都市双流区蛟龙工业港高新大道109号</view>
+    <image bindtap='callPhone' src="/images/icon/phone.png"></image>
+  </view>
+  <view class='clear'></view>
+  <view class='botique'>
+    <view class='botiqueIcon'>
+      <image src='/images/icon/botique.png'></image>
+      <view>精品课程</view>
+    </view>
+    <view class='clear'></view>
+    <view bindtap='botiqueCon' class='botiqueCon'>
+      <view class='botiqueConLeft'>
+        <image src='/images/image/kecheng.png'></image>
+      </view>
+      <view class='botiqueConRight'>
+        <view>零基础英语学习干货大礼包</view>
+        <view>￥19.9</view>
+        <view>￥59.9</view>
+        <view>
+          <image src='/images/icon/star.png'></image>
+          <view>1634</view>
+        </view>
+        <view class='clear'></view>
+        <view class='botiqueConRightBot'>
+          <view>0.5小时</view>
+          <view>1对1辅导</view>
+          <view>私人定制</view>
+          <view>私人订制</view>
+        </view>
+      </view>
+    </view>
+    <view class='clear'></view>
+  </view>
+  <view class='clear'></view>
+  <view class='groupBuy'>
+    <view>
+      <image src='/images/icon/groupbuy.png'></image>
+      <view>团购（4）</view>
+    </view>
+    <view class='clear'></view>
+    <view class='groupBuyCon'>
+      <view class='groupBuyConLeft'>
+        <image src='/images/image/kecheng.png'></image>
+      </view>
+      <view class='groupBuyConRight'>
+        <view>零基础英语学习干货大礼包</view>
+        <view>￥19.9</view>
+        <view>减5</view>
+        <view class='clear'></view>
+        <view>
+          <image src='/images/icon/star.png'></image>
+          <view>1635</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='clear'></view>
+  <view class='teach'>
+    <view class='teachHead'>
+      <view>名师风采</view>
+      <view>全部老师32位</view>
+    </view>
+    <view class='clear'></view>
+    <view class='teachSwiper'>
+      <swiper
+        display-multiple-items="4"
+      >
+        <block class="teachBlock">
+          <swiper-item>
+            <image src='/images/image/teach.png'></image>
+            <view class='teachName'>刘老师</view>
+            <view class='teachAge'>8年教龄</view>
+            <view class='teachZY'>英语翻译</view>
+          </swiper-item>
+          <swiper-item>
+            <image src='/images/image/teach.png'></image>
+            <view class='teachName'>刘老师</view>
+            <view class='teachAge'>8年教龄</view>
+            <view class='teachZY'>英语翻译</view>
+          </swiper-item>
+          <swiper-item>
+            <image src='/images/image/teach.png'></image>
+            <view class='teachName'>刘老师</view>
+            <view class='teachAge'>8年教龄</view>
+            <view class='teachZY'>英语翻译</view>
+          </swiper-item>
+          <swiper-item>
+            <image src='/images/image/teach.png'></image>
+            <view class='teachName'>刘老师</view>
+            <view class='teachAge'>8年教龄</view>
+            <view class='teachZY'>英语翻译</view>
+          </swiper-item>
+          <swiper-item>
+            <image src='/images/image/teach.png'></image>
+            <view class='teachName'>刘老师</view>
+            <view class='teachAge'>8年教龄</view>
+            <view class='teachZY'>英语翻译</view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+  <view class='pingjia'>
+    <view class='pingjiahead'>用户评价（91）</view>
+    <view class='pingjiaCon'>
+      <view class='pjLeft'>
+        <image src='/images/image/header.png'></image>
+      </view>
+      <view class='pjRight'>
+        <view class='pjname'>我的小宝贝</view>
+        <view class='pjdate'>2019年4月23日</view>
+        <view class='clear'></view>
+        <view class='pjfen'>
+          <view>打分</view>
+          <image src='/images/icon/stargreen.png'></image>
+          <image src='/images/icon/stargreen.png'></image>
+          <image src='/images/icon/stargreen.png'></image>
+          <image src='/images/icon/stargreen.png'></image>
+          <image src='/images/icon/stargreen.png'></image>
+        </view>
+        <view class='clear'></view>
+        <view class='pjtext {{webkit}}'>老师授课的方式非常适合我们，他根据本课程知识结构的特点，重点突出，层次分明。理论和实际相结合，通过例题使知识更条理化。但授课速度有点快</view>
+        <view bindtap='pjqw' class='{{pjqw}}'>全文</view>
+        <view class='pjImg'>
+          <image src='/images/image/school.png'></image>
+          <image src='/images/image/school.png'></image>
+          <image src='/images/image/school.png'></image>
+
+        </view>
+      </view>
+    </view>
+    <view class='clear'></view>
+    <view class='pjBot'>
+      <view>查看全部用户评价</view>
+      <view>共91条</view>
+    </view>
+    <view class='clear'></view>
+  </view>
+  <view class='yuyue'>
+    <view  bindtap='callPhone'>
+      <image src='/images/icon/phone2.png'></image>
+      <view>电话</view>
+    </view>
+    <view>
+      <button open-type="contact" bindcontact="handleContact">
+        <image src='/images/icon/message2.png'></image>
+        <view>咨询</view>
+      </button>
+    </view>
+    <view bindtap='phoneUseH' class='yyst'>预约试听</view>
+  </view>
+
+  <view class='share'>
+    <view bindtap='quxiao' class='{{shareBG}}'></view>
+    <view class='{{shareCon}}'>
+      <view class='shareIcon'>
+        <view bindtap='onShareAppMessage'>
+          <button open-type="share">
+            <image src='/images/icon/wechart.png'></image>
+            <view>分享给好友</view>        
+          </button>
+        </view>
+        <view bindtap='share'>
+          <image src='/images/icon/wcshare.png'></image>
+          <view>生成海报</view>        
+        </view>
+      </view>
+      <view class='clear'></view>
+      <view bindtap='quxiao' class='quxiao'>取消</view>
+    </view>
+  </view>
+
+  <!-- <view class='{{phoneUse}}'>
+    <view bindtap='PhoneHide' class='phoneBG'></view>
+    <view class='phoneUseCon'>
+      <view class='phoneOne'>
+        <view>口碑团学 申请使用</view>
+        <view>你的手机号码</view>
+      </view>
+      <view class='phoneInput'>
+        <input></input>
+      </view>
+      <view class='otherPhone'>使用其他手账号</view>
+      <view class='phoneBut'>
+        <view>
+          <view>拒绝</view>
+        </view>
+        <view>
+          <view>允许</view>
+        </view>
+      </view>
+      <view class='clear'></view>
+    </view>
+  </view> -->
+  <view class='{{phoneUse}}'>
+    <view bindtap='PhoneHide' class='phoneBG'></view>
+    <view class='phoneUseCon'>
+      <view>口碑团学，预约即可优惠</view>
+      <view class='lineCen'></view>
+      <view class='yuyueXx'>
+        <view>
+          <view></view>
+          <view>学术水平测试一次</view>
+        </view>
+        <view>
+          <view></view>
+          <view>精美礼品一份</view>
+        </view>
+      </view>
+      <view class='BGGray'>
+        留下你的联系方式以便商家联系您
+      </view>
+      <view>
+        <input placeholder='输入电话号码' class='PhoneNum'></input>
+      </view>
+      <view class='BGGray shield'>
+        <image src='/images/icon/shield.png'></image>
+        <view>无强行推销</view>
+        <image src='/images/icon/shield.png'></image>
+        <view>号码仅商家可见</view>
+        <view class='clearFl'></view>
+      </view>
+      <view class='clear'></view>
+      <button bindtap='yuyueSuccess' class='yuyueBtn'>预约试听</button>
+    </view>
+
+  </view>
+  <canvas  canvas-id="shareImg" style="width:545px;height:771px"></canvas>
+
+  <view hidden='{{hidden}}' class='canvasImg'>
+    <view class='hbTitle'>生成海报</view>
+    <image  src='{{prurl}}'></image>
+    <view bindtap='saveImg' class='saveBtn'>保存图片</view>
+  </view>
+  <text class='kehuBtn' bindtap='kehuBtn'>客户\n录入</text>
+  
+</view>

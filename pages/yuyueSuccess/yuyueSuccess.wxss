@@ -1,0 +1,21 @@
+.yuyuechenggong{
+  text-align: center;
+}
+.SuccessYes{
+  font-size: 28rpx;
+  color: #666666;
+}
+.yuyueSuccess>image{
+  width: 50rpx;
+  height: 50rpx;
+}
+.Successschoole{
+  font-size: 30rpx;
+  font-weight: 600;
+  line-height: 3;
+}
+.SuccessPh{
+  font-size: 25rpx;
+  color: #666666;
+
+}

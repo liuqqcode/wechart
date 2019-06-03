@@ -1,0 +1,59 @@
+.commentList{
+  border-top: 1rpx solid gray;
+  padding-bottom: 30rpx;
+}
+.comLeft{
+  float: left;
+  width: 150rpx;
+}
+.comLeft>image{
+  width: 100rpx;
+  height: 100rpx;
+  margin: 30rpx;
+}
+.comRight{
+  float: left;
+  width: 570rpx;
+  margin-top: 30rpx;
+}
+.name{
+  font-size: 30rpx;
+  float: left;
+}
+.fen{
+  margin: 10rpx 0;
+}
+.fen>view{
+  float:left;
+  font-size:20rpx;
+  color:#999999;
+}
+.fen>image{
+  float:left;
+  width:25rpx;
+  height:25rpx;
+  margin:5rpx;
+
+}
+.time{
+  float: right;
+  font-size: 20rpx;
+  color: #999999;
+}
+.commentText{
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  text-overflow:ellipsis;
+  text-overflow:-o-ellipsis-lastline;
+  font-size:30rpx;
+  line-height:2;
+  overflow:hidden;
+  -webkit-line-clamp:3;
+  line-clamp:3;
+}
+.commentImg>image{
+  float: left;
+  width: 170rpx;
+  height: 150rpx;
+  margin: 10rpx;
+}

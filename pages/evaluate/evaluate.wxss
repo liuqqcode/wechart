@@ -1,0 +1,101 @@
+.evaluateHead{
+  margin: 30rpx;
+}
+.evaluateHead>image{
+  width: 150rpx;
+  height: 150rpx;
+  float: left;
+}
+.evaluateContent{
+  float: left;
+  margin: 0 30rpx;
+}
+.evaluateContent>view:nth-child(1){
+  font-size: 30rpx;
+  line-height: 3;
+}
+.evaluateContent>view:nth-child(2){
+  font-size: 30rpx;
+  color: #dc4c4c;
+  float: left;
+  line-height: 2;
+}
+.evaluateContent>view:nth-child(3){
+  color: #999;
+  font-size: 30rpx;
+  float: left;
+  line-height: 2;
+  margin-left: 30rpx;
+}
+.heng{
+  background: #efeff4;
+  height: 20rpx;
+  width: 100%;
+  margin: 20rpx 0;
+}
+.pinglun{
+  padding: 30rpx;
+  font-size: 30rpx;
+  width: 92.5%;
+  height: 150rpx;
+}
+.ui_uploader{
+  border: 1rpx solid gainsboro;
+  text-align: center;
+  width: 160rpx;
+  height: 160rpx;
+  margin-left: 30rpx;
+}
+.ui_uploader>image{
+  width: 60rpx;
+  height: 50rpx;
+  margin: 20rpx;
+  text-align: center;
+}
+.ui_uploader>view{
+  font-size: 30rpx;
+  color: #999;
+}
+.ui_uploader_item>image{
+  width: 150rpx;
+  height: 150rpx;
+}
+.ui_uploader_item{
+  float: left;
+}
+.evaluateStar{
+  margin: 0 30rpx;
+  height: 60rpx;
+}
+.zhPJ{
+  float: left;
+  font-size: 30rpx;
+}
+.evaluateStarImage{
+  float: right;
+
+}
+.evaluateStarImage>image{
+  width: 30rpx;
+  float: left;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+.submit{
+  background: #efeff4;
+  height: 500rpx;
+  position: relative;
+  margin-top: 0;
+}
+.submitBtn{
+  position: absolute;
+  font-size: 30rpx;
+  color: white;
+  text-align: center;
+  width: 400rpx;
+  padding: 20rpx 0;
+  background: #32bfd0;
+  border-radius: 50rpx;
+  margin-top: 100rpx;
+  margin-left: 175rpx;
+}

@@ -1,0 +1,100 @@
+<view>
+  <view class='head'> 
+    <view class='headicon'>
+      <image></image>
+      <image src='/images/icon/message.png'></image>
+      <image></image>
+      <image src='/images/image/header.png'></image>
+    </view>
+    <view class='clear'></view>
+    <view class='headBot'>
+
+    </view>
+  </view>
+  <view class='clear'></view>
+  <view class='content'>
+    <view class='conHead'>
+      <view bindtap='active' data-idx='0' class='{{activeBac == 0 ? "active" : ""}}'>代理录入</view>
+      <view bindtap='active' data-idx='1' class='{{activeBac == 1 ? "active" : ""}}'>预约试听</view>
+      <view bindtap='active' data-idx='2' class='{{activeBac == 2 ? "active" : ""}}'>拨打电话</view>
+      <view bindtap='active' data-idx='3' class='{{activeBac == 3 ? "active" : ""}}'>直接付费</view>
+    </view>
+    <view class='clear'></view>
+  </view>
+
+  <view class='{{activeBac == 0 ? "dailu" : "none"}}'>
+    <view class='dailuCon'>
+      <view>新东方培训学校</view>
+      <view>
+        <view>张三</view>
+        <view>13512345678</view>
+        <view>已缴费</view>
+      </view>
+      <view class='clear'></view>
+      <view>情况说明:2019年2月咨询 3月报名</view>
+    </view>
+    <view class='dailuCon'>
+      <view>新东方培训学校</view>
+      <view>
+        <view>张三</view>
+        <view>13512345678</view>
+        <view>已缴费</view>
+      </view>
+      <view class='clear'></view>
+      <view>情况说明:2019年2月咨询 3月报名</view>
+    </view>    
+  </view>
+  <view class='{{activeBac == 1 ? "yuyue" : "none"}}'>
+    <view class='yuyueCon'>
+      <view>张三</view>
+      <view>12345678910</view>
+      <view>已缴费</view>
+    </view>
+    <view class='clear'></view>
+    <view class='yuyueCon'>
+      <view>张三</view>
+      <view>12345678910</view>
+      <view>已缴费</view>
+    </view>    
+  </view>
+  <view class='{{activeBac == 2 ? "boda" : "none"}}'>
+    <view class='bodaCon'>
+      <view>新东方培训学校</view>
+      <view>
+        <view>张三</view>
+        <view>12345678910</view>
+        <view>已缴费</view>
+      </view>
+      <view class='clear'></view>
+    </view>
+    <view class='bodaCon'>
+      <view>新东方培训学校</view>
+      <view>
+        <view>张三</view>
+        <view>12345678910</view>
+        <view>已缴费</view>
+      </view>
+      <view class='clear'></view>
+    </view>    
+  </view>
+  <view class='{{activeBac == 3 ? "zhijie" : "none"}}'>
+    <view class='zhijieCon'>
+      <view>新东方培训学校</view>
+      <view>
+        <view>张三</view>
+        <view>12345678910</view>
+        <view>500元</view>
+      </view>
+      <view class='clear'></view>
+    </view>
+    <view class='zhijieCon'>
+      <view>新东方培训学校</view>
+      <view>
+        <view>张三</view>
+        <view>12345678910</view>
+        <view>500元</view>
+      </view>
+      <view class='clear'></view>
+    </view>    
+  </view>
+</view>

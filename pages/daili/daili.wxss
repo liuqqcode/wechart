@@ -1,0 +1,47 @@
+page{
+  background: #f2f2f2; 
+}
+.info{
+  margin: 20rpx 30rpx;
+}
+.inputCon{
+  width: 100%;
+  border-radius: 20rpx;
+  background: #ffffff;
+  margin-bottom: 60rpx;
+}
+.inputCon>view{
+  line-height: 2;
+}
+.inputCon>view:nth-child(1),.inputCon>view:nth-child(4){
+  font-size: 30rpx;
+  font-family: "PingFang";
+  color: rgb(0, 0, 0);
+  padding: 10rpx 30rpx;
+  float: left;
+}
+.inputCon>input:nth-child(2),.inputCon>input:nth-child(5){
+  float: left;
+  padding: 10rpx 0;
+  width: 480rpx;
+  font-size: 30rpx;
+  line-height: 2;
+}
+.clear{
+  height: 5rpx;
+  width: 100%;
+  background: #f2f2f2;
+}
+textarea{
+  font-size: 30rpx;
+  padding: 10rpx 30rpx;
+  width: 635rpx;
+}
+.textareaBla{
+  color: black;
+}
+.submit{
+  background: #f2c720;
+  color: white;
+  font-weight: 600;
+}

@@ -1,0 +1,28 @@
+.CollectionList{
+  border-bottom: 1rpx solid gray;
+  margin: 30rpx;
+}
+
+.CollectionImg{
+  width: 150rpx;
+  float: left;
+
+}
+.CollectionImg>image{
+  width: 100rpx;
+  height: 100rpx;
+  margin: 30rpx;
+}
+.CollectionRight{
+  width: 500rpx;
+  float: left;
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+}
+.CollectionRight>view:nth-child(1){
+  font-size: 30rpx;
+}
+.CollectionRight>view{
+  font-size: 28rpx;
+  color: #999999;
+}

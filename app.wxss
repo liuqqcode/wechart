@@ -1,0 +1,13 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+
+} 
+.line{
+  width: 100%;
+  height: 1px;
+  background: gainsboro;
+}
+.clear{
+  clear: both;
+}

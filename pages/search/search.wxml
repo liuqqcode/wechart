@@ -1,0 +1,13 @@
+<view>
+  <view class='line'></view>
+  <view class='searchHead'>
+    <input class='searchInput' placeholder='英语培训'></input>
+    <image src='/images/icon/search.png'></image>
+    <view class='no' bindtap='no'>取消</view>
+  </view>
+  <view class='clear'></view>
+  <view class='History'>
+    <view class='HistoryHead'>历史搜素</view>
+    <image src='/images/icon/del.png'></image>
+  </view>
+</view>
