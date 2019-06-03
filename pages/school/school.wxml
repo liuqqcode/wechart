@@ -1,9 +1,9 @@
 <view class='{{page}}'>
   <view class='group1'>
-    <image src='/images/image/schoolban.png'></image>
+    <image src='{{schoolPictureAPI}}{{schoolBanner}}'></image>
     <view class='group1Con'>
       <view class='group1Left'>
-        <view>成都新东方烹饪培训学校</view>
+        <view>{{schoolName}}</view>
         <view>(九江校区）</view>
         <image src='/images/icon/stargreen.png'></image>
         <image src='/images/icon/stargreen.png'></image>
@@ -18,7 +18,7 @@
           <image src='/images/icon/share.png'></image>
           <view>分享</view>
         </view>
-        <view>
+        <view bindtap='Collection'>
           <image src='/images/icon/star.png'></image>
           <view>收藏</view>
         </view>
@@ -54,7 +54,7 @@
   </view>
   <view class='location'>
     <image src='/images/icon/location.png'></image>
-    <view>成都市双流区蛟龙工业港高新大道109号</view>
+    <view>{{location}}</view>
     <image bindtap='callPhone' src="/images/icon/phone.png"></image>
   </view>
   <view class='clear'></view>

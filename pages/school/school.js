@@ -1,10 +1,13 @@
 // pages/school/school.js
+var util = require('../../utils/util.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    schoolId:'',
     shipin:[
       '/images/image/shipin.png',
       '/images/image/shipin.png',
@@ -23,6 +26,11 @@ Page({
     canvasImaSrc:'',
     hidden:true,
 
+    schoolBanner: '',
+    schoolPictureAPI: util.schoolPicture,
+    schoolName:'',
+    location:'',
+    telephone:''
   },
   //打开客服
   handleContact(e) {
@@ -31,8 +39,9 @@ Page({
   },
   //拨打电话
   callPhone:function(){
+    let that = this;
     wx.makePhoneCall({
-      phoneNumber: '123456789',
+      phoneNumber: that.data.telephone,
     })
   },
   //查看全文
@@ -72,13 +81,18 @@ Page({
   //分享给好友
   onShareAppMessage:function(){
     return{
-      title:'转发测试',
-      path:'pages/school/school'
+      title: this.data.schoolName,
+      path: 'pages/school/school?id=' + this.data.schoolId
     }
   },
   //生存海报
   builder:function(){
     this.setData({ canvasImg: 'canvasImg'})
+  },
+  //收藏
+  Collection:function(){
+    let that = this
+    console.log(that.data.telephone)
   },
   //客户录入
   kehuBtn:function(){
@@ -120,9 +134,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
-    //需要注意的是：我们展示图片的域名需要在后台downfile进行配置，并且画到canvas里面前需要先下载存储到data里面
+
     let that = this;
+
+    //获取学校id
+    that.setData({ schoolId : options.id})
+
+    wx.request({
+      url: 'https://yikeyingshi.com/api/v1/schools/' + options.id,
+      success(data){
+        that.setData({ schoolBanner: data.data.data.cover, schoolName: data.data.data.name, location: data.data.data.location, telephone: data.data.data.telephone})
+      }
+    })
+
+    //需要注意的是：我们展示图片的域名需要在后台downfile进行配置，并且画到canvas里面前需要先下载存储到data里面
     //先下载下来，比如我们的logo
     wx.downloadFile({
       url: that.data.img,
