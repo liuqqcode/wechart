@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    schoolId:'',
     shipin:[
       '/images/image/shipin.png',
       '/images/image/shipin.png',
@@ -120,9 +121,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
-    //需要注意的是：我们展示图片的域名需要在后台downfile进行配置，并且画到canvas里面前需要先下载存储到data里面
+
     let that = this;
+
+    //获取学校id
+    that.setData({ schoolId : options.id})
+
+    //需要注意的是：我们展示图片的域名需要在后台downfile进行配置，并且画到canvas里面前需要先下载存储到data里面
     //先下载下来，比如我们的logo
     wx.downloadFile({
       url: that.data.img,

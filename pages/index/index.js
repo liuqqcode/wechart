@@ -10,6 +10,9 @@ Page({
     city:'成都',
     weatherDesc:'多云',
     dateC:'24',
+    schoolList:[],
+    schoolPicture: baiduak.schoolPicture,
+    schoolListApi: baiduak.schoolListApi,
     imgUrls:[
       '/images/image/banner.png',
       '/images/image/banner.png',
@@ -40,9 +43,10 @@ Page({
     })
   },
   //学校
-  school:function(){
+  school:function(e){
+    // console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
-      url: '../school/school',
+      url: '../school/school?id=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -56,16 +60,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
     var that = this;
+
+    //获取天气以及位置信息
     var BMap = new bmap.BMapWX({
       ak: baiduak.ak
     });
-
     var success = function (data) {
-      // console.log(data.currentWeather[0]);
       var weatherData = data.currentWeather[0];
-      // weatherData = '城市：' + weatherData.currentCity + '\n' + 'PM2.5：' + weatherData.pm25 + '\n' + '日期：' + weatherData.date + '\n' + '温度：' + weatherData.temperature + '\n' + '天气：' + weatherData.weatherDesc + '\n' + '风力：' + weatherData.wind + '\n';
       var regex1 = /.*\([^\)\(\d]*(\d+)[^\)\(\d]*\).*/;
       that.setData({
         city: weatherData.currentCity,
@@ -80,13 +83,23 @@ Page({
       fail: fail,
       success: success
     });
+
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    //获取学校列表
+    var that = this;
+    wx.request({
+      url: 'https://yikeyingshi.com/api/v1/schools',
+      success(data) {
+        // console.log(data.data.data)
+        that.setData({ schoolList: data.data.data})
+      }
+    })
   },
 
   /**
