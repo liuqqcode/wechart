@@ -1,4 +1,8 @@
 // pages/My/My.js
+
+var app = getApp();
+
+
 Page({
 
   /**
@@ -8,10 +12,11 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     userInfo:{},
     headerImg:'',
-    daili:false,
+    daili:true,
     shangjia:false,
     geren:false,
-    quyu:true
+    quyu:false,
+    UserType:1,
   },
   //收藏
   Collection:function(){
@@ -88,49 +93,60 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this
+    this.loginWechat();
     wx.getSetting({
       success(res) {
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
 
-          wx.login({
-            success(data) {
-              if (data.code) {
-                wx.getUserInfo({
-                  withCredentials: true,
-                  success(res) {
-                    that.setData({ userInfo: res.userInfo, canIUse: false })
-                    console.log(res)
-                    console.log(data)
-                    wx.request({
-                      url: 'https://yikeyingshi.com/api/auth/login/',
-                      method: 'POST',
-                      header: { 'content-type': 'application/json' },
-                      data: {
-                        encryptedData: encodeURI(res.encryptedData),
-                        iv: encodeURI(res.iv),
-                        code: encodeURI(data.code)
-                      },
-                      success(loginRes) {
-                        console.log(loginRes.data.token_type + " " + loginRes.data.access_token)
-                        wx.setStorageSync("jwtToken", loginRes.data.token_type + " " + loginRes.data.access_token)
-                      }
-                    })
-                  }
-                })
-              } else {
-                console.log('登录失败！' + res.errMsg)  
-              }
-            }
-          })
         }
       }
     })
 
   },
+
+  loginWechat:function(){
+    var that = this
+    wx.login({
+      success(data) {
+        wx.getUserInfo({
+          withCredentials: true,
+          success(res) {
+            that.setData({ userInfo: res.userInfo, canIUse: false })
+            console.log(that.data.userInfo)
+            console.log(res)
+            console.log(data)
+            wx.request({
+              url: 'https://yikeyingshi.com/api/auth/login/',
+              method: 'POST',
+              header: { 'content-type': 'application/json' },
+              data: {
+                encryptedData: encodeURI(res.encryptedData),
+                iv: encodeURI(res.iv),
+                code: encodeURI(data.code)
+              },
+              success(loginRes) {
+
+                wx.setStorageSync("jwtToken", loginRes.data.token_type + " " + loginRes.data.access_token)
+                app.globalData.token = loginRes.data.token_type + " " + loginRes.data.access_token
+                
+                console.log(loginRes)
+                that.setData({ UserType: loginRes.data.customer_type})
+                console.log(that.data.UserType)
+              }
+            })
+          }
+        })
+
+      }
+    })
+  },
+
+  //点击授权登录按钮
   bindGetUserInfo(e) {
-    console.log(e.detail.userInfo)
+    this.loginWechat();
+    // console.log(e.detail.userInfo)
+    // this.setData({ userInfo: e.detail.userInfo, canIUse:false})
   },
 
   /**

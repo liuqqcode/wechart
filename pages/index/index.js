@@ -1,6 +1,10 @@
 // pages/Order/Order.js
 var bmap = require('../../libs/bmap-wx.min.js');
 var baiduak = require('../../utils/util.js')
+const api = require('../../utils/api.js')
+var app = getApp();
+
+
 Page({
 
   /**
@@ -62,7 +66,7 @@ Page({
   onLoad: function (options) {
     
     var that = this;
-
+    
     //获取天气以及位置信息
     var BMap = new bmap.BMapWX({
       ak: baiduak.ak
@@ -93,12 +97,11 @@ Page({
   onReady: function () {
     //获取学校列表
     var that = this;
-    wx.request({
-      url: 'https://yikeyingshi.com/api/v1/schools',
-      success(data) {
-        // console.log(data.data.data)
-        that.setData({ schoolList: data.data.data})
-      }
+    api._get('/api/v1/schools').then(data => {
+      that.setData({ schoolList: data.data})
+      // console.log(data.data)
+    }).catch(e => {
+      console.log(e)
     })
   },
 

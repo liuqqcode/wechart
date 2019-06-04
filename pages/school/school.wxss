@@ -48,7 +48,12 @@
   line-height: 1.2;
 }
 .vedioSwiper{
-  height: 280rpx;
+  /* height: 280rpx; */
+}
+video{
+  height: 100%;
+  width: 100%;
+  margin: 20rpx 0;
 }
 swiper-item>image{
   width: 100%;
@@ -140,7 +145,7 @@ swiper-item:nth-child(1)>image{
   text-decoration:line-through; 
 }
 .botiqueConRight>view:nth-child(4){
-  float: left;
+  float: right;
 }
 .botiqueConRight>view:nth-child(4)>image{
   float: left;

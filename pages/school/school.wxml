@@ -1,24 +1,22 @@
 <view class='{{page}}'>
   <view class='group1'>
-    <image src='/images/image/schoolban.png'></image>
+    <image src='{{schoolPictureAPI}}{{schoolBanner}}'></image>
     <view class='group1Con'>
       <view class='group1Left'>
-        <view>成都新东方烹饪培训学校</view>
+        <view>{{schoolName}}</view>
         <view>(九江校区）</view>
-        <image src='/images/icon/stargreen.png'></image>
-        <image src='/images/icon/stargreen.png'></image>
-        <image src='/images/icon/stargreen.png'></image>
-        <image src='/images/icon/stargreen.png'></image>
-        <image src='/images/icon/stargreen.png'></image>
+        <block wx:for="{{rate}}" wx:key="index" >
+          <image  src='{{greenStar}}'></image>
+        </block>
 
-        <view class='fen'>5分</view>
+        <view class='fen'>{{rate}}分</view>
       </view>
       <view class='group1Right'>
         <view bindtap='shareBtn'>
           <image src='/images/icon/share.png'></image>
           <view>分享</view>
         </view>
-        <view>
+        <view bindtap='Collection'>
           <image src='/images/icon/star.png'></image>
           <view>收藏</view>
         </view>
@@ -29,32 +27,26 @@
   </view>
   <view class='vedio'>
     <view>看视频长姿势</view>
-    <view>全部视频6个</view>
+    <view>全部视频{{videosNum}}个</view>
     <view class='swiper'>
       <swiper
         class='vedioSwiper'
-        display-multiple-items="3"
+        display-multiple-items="2"
       >
-        <block>
+        <block wx:for="{{videos}}" wx:key="index">
           <swiper-item>
-            <image src="/images/image/shipin.png"></image>
-          </swiper-item>
-          <swiper-item>
-            <image src="/images/image/shipin.png"></image>
-          </swiper-item>
-          <swiper-item>
-            <image src="/images/image/shipin.png"></image>
-          </swiper-item>
-          <swiper-item>
-            <image src="/images/image/shipin.png"></image>
+            <video show-fullscreen-btn='true' src='{{schoolPictureAPI}}{{item}}'></video>
           </swiper-item>
         </block>
+        <swiper-item>
+        </swiper-item>
+
       </swiper>
     </view>
   </view>
   <view class='location'>
     <image src='/images/icon/location.png'></image>
-    <view>成都市双流区蛟龙工业港高新大道109号</view>
+    <view>{{location}}</view>
     <image bindtap='callPhone' src="/images/icon/phone.png"></image>
   </view>
   <view class='clear'></view>
@@ -64,14 +56,14 @@
       <view>精品课程</view>
     </view>
     <view class='clear'></view>
-    <view bindtap='botiqueCon' class='botiqueCon'>
+    <view bindtap='botiqueCon' class='botiqueCon' wx:for="{{lessons}}" wx:key="index">
       <view class='botiqueConLeft'>
-        <image src='/images/image/kecheng.png'></image>
+        <image src='{{schoolPictureAPI}}{{item.cover}}'></image>
       </view>
       <view class='botiqueConRight'>
-        <view>零基础英语学习干货大礼包</view>
-        <view>￥19.9</view>
-        <view>￥59.9</view>
+        <view>{{item.name}}</view>
+        <view>￥{{item.price}}</view>
+        <view>￥{{item.price_tag}}</view>
         <view>
           <image src='/images/icon/star.png'></image>
           <view>1634</view>
@@ -84,6 +76,7 @@
           <view>私人订制</view>
         </view>
       </view>
+      <view class='clear'></view>
     </view>
     <view class='clear'></view>
   </view>
@@ -114,45 +107,34 @@
   <view class='teach'>
     <view class='teachHead'>
       <view>名师风采</view>
-      <view>全部老师32位</view>
+      <view>全部老师{{teachNum}}位</view>
     </view>
     <view class='clear'></view>
     <view class='teachSwiper'>
       <swiper
-        display-multiple-items="4"
+        display-multiple-items="{{teachNum>4?4:4}}"
       >
-        <block class="teachBlock">
+        <block class="teachBlock" wx:for="{{teachers}}" wx:key="index">
           <swiper-item>
-            <image src='/images/image/teach.png'></image>
-            <view class='teachName'>刘老师</view>
-            <view class='teachAge'>8年教龄</view>
-            <view class='teachZY'>英语翻译</view>
+            <image src='{{schoolPictureAPI}}{{item.image}}'></image>
+            <view class='teachName'>{{item.name}}</view>
+            <view class='teachAge'>{{item.years}}年教龄</view>
+            <view class='teachZY'>{{item.title}}</view>
           </swiper-item>
-          <swiper-item>
-            <image src='/images/image/teach.png'></image>
-            <view class='teachName'>刘老师</view>
-            <view class='teachAge'>8年教龄</view>
-            <view class='teachZY'>英语翻译</view>
-          </swiper-item>
-          <swiper-item>
-            <image src='/images/image/teach.png'></image>
-            <view class='teachName'>刘老师</view>
-            <view class='teachAge'>8年教龄</view>
-            <view class='teachZY'>英语翻译</view>
-          </swiper-item>
-          <swiper-item>
-            <image src='/images/image/teach.png'></image>
-            <view class='teachName'>刘老师</view>
-            <view class='teachAge'>8年教龄</view>
-            <view class='teachZY'>英语翻译</view>
-          </swiper-item>
-          <swiper-item>
-            <image src='/images/image/teach.png'></image>
-            <view class='teachName'>刘老师</view>
-            <view class='teachAge'>8年教龄</view>
-            <view class='teachZY'>英语翻译</view>
-          </swiper-item>
+
         </block>
+        <swiper-item>
+            <image src=''></image>
+            <view class='teachName'></view>
+            <view class='teachAge'></view>
+            <view class='teachZY'></view>
+          </swiper-item>
+          <swiper-item>
+            <image src=''></image>
+            <view class='teachName'></view>
+            <view class='teachAge'></view>
+            <view class='teachZY'></view>
+          </swiper-item>
       </swiper>
     </view>
   </view>
@@ -267,7 +249,7 @@
         留下你的联系方式以便商家联系您
       </view>
       <view>
-        <input placeholder='输入电话号码' class='PhoneNum'></input>
+        <input value='' bindinput ="mobileInput" type='number' placeholder='输入电话号码' class='PhoneNum' maxlength='11'></input>
       </view>
       <view class='BGGray shield'>
         <image src='/images/icon/shield.png'></image>
