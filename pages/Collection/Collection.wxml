@@ -1,38 +1,14 @@
 <view>
-  <view class='CollectionList'>
+  <view class='CollectionList' wx:for="{{collections}}" wx:key="index" bindtap='CollectionList' data-inx="{{item}}">
     <view class='CollectionImg'>
-      <image src='/images/image/header2.png'></image>
+      <image src='{{ImgHead}}{{item.product_image}}'></image>
     </view>
     <view class='CollectionRight'>
-      <view>英语能力测试</view>
-      <view>截止时间：2019-4-24</view>
+      <view>{{item.product_name}}</view>
+      <view>截止时间：{{item.end_time}}</view>
       <view>数量：1</view>
-      <view>总价：180.00</view>
+      <view>总价：{{item.product_price}}</view>
     </view>
     <view class='clear'></view>
   </view>
-    <view class='CollectionList'>
-    <view class='CollectionImg'>
-      <image src='/images/image/header2.png'></image>
-    </view>
-    <view class='CollectionRight'>
-      <view>英语能力测试</view>
-      <view>截止时间：2019-4-24</view>
-      <view>数量：1</view>
-      <view>总价：180.00</view>
-    </view>
-    <view class='clear'></view>
-  </view>
-  <view class='CollectionList'>
-    <view class='CollectionImg'>
-      <image src='/images/image/header2.png'></image>
-    </view>
-    <view class='CollectionRight'>
-      <view>英语能力测试</view>
-      <view>截止时间：2019-4-24</view>
-      <view>数量：1</view>
-      <view>总价：180.00</view>
-    </view>
-    <view class='clear'></view>
-  </view>  
 </view>

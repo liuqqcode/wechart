@@ -30,7 +30,10 @@ Page({
       '升学'
     ],
     backClass: ["/images/image/schoolban.png", "/images/image/schoolban.png", "/images/image/schoolban.png", "/images/image/schoolban.png"],
-    currentItemId: 2
+    currentItemId: 2,
+
+    //红包
+    group3: "none"
   },
 
   swiperChange: function (e) {
@@ -48,9 +51,23 @@ Page({
   },
   //学校
   school:function(e){
-    // console.log(e.currentTarget.dataset.id)
+    let that = this;
+    console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
-      url: '../school/school?id=' + e.currentTarget.dataset.id,
+      url: '../school/school?id=' + e.currentTarget.dataset.id.id,
+      success(data){
+        api._post("/api/v1/views",{
+          school: e.currentTarget.dataset.id.id,
+          merchant: e.currentTarget.dataset.id.merchant_id,
+          product_type:3,
+          product_id: e.currentTarget.dataset.id.id,
+          product_name: e.currentTarget.dataset.id.name,
+          product_desc: e.currentTarget.dataset.id.desc,
+          product_image: e.currentTarget.dataset.id.cover
+        }).then( res => {
+          console.log(res)
+        })
+      }
     })
   },
 
@@ -66,6 +83,8 @@ Page({
   onLoad: function (options) {
     
     var that = this;
+
+
     
     //获取天气以及位置信息
     var BMap = new bmap.BMapWX({
@@ -99,7 +118,7 @@ Page({
     var that = this;
     api._get('/api/v1/schools').then(data => {
       that.setData({ schoolList: data.data})
-      // console.log(data.data)
+      console.log(data.data)
     }).catch(e => {
       console.log(e)
     })
@@ -109,7 +128,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this;
+    //获取全局变量，如果是推客则显示客户录入按钮
+    if (app.globalData.UserType == 3) {
+      that.setData({ group3: 'group3' })
+    } else {
+      that.setData({ group3: 'none' })
+    }
   },
 
   /**

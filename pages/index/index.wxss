@@ -261,3 +261,6 @@ swiper{
 .fu3,.fu4{
   padding: 5rpx 45rpx;
 }
+.none{
+  display: none;
+}

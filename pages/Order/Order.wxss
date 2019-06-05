@@ -9,6 +9,12 @@
   border-bottom: 1px solid #eee;
   /* padding: 15rpx 0; */
   box-sizing: border-box;
+  position: fixed;
+  background: white;
+  height: 70rpx;
+  width: 100%;
+  top: 0;
+  z-index: 9999
 }
 
 .tab {
@@ -17,8 +23,9 @@
 }
 
 .seiperTab {
+  margin-top: 70rpx;
   width: 100%;
-  height: calc(100vh - 190rpx);
+  height: calc(270vh - 190rpx);
 }
 
 /*我的关注  */
@@ -27,7 +34,9 @@
   width: 100%;
   height: 100%;
 }
-
+swiper{
+  height: auto;
+}
 swiper-item {
   box-sizing: border-box;
 }

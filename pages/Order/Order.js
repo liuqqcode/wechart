@@ -1,4 +1,8 @@
 // pages/follow/follow.js
+var util = require('../../utils/util.js')
+const api = require('../../utils/api.js')
+var app = getApp();
+
 Page({
 
   /**
@@ -9,11 +13,18 @@ Page({
     currentIndex: 0,
     isShow: false,
     isFans: false,
-    classIndex: 0
+    classIndex: 0,
+    orders:'',
+    //待支付
+    wait:'',
+    //已支付
+    Payment:'',
+    ImageHead: '',
+
   },
-  kechengContent: function () {
+  kechengContent: function (e) {
     wx.navigateTo({
-      url: '../kecheng/kecheng',
+      url: '../kecheng/kecheng?id=' + e.currentTarget.dataset.inx,
     })
   },
   //评价
@@ -26,7 +37,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let that = this
+    api._get("/api/v1/orders").then(data => {
+      that.setData({ orders: data.data, ImageHead: util.schoolPicture})
+      
+    })
   },
 
   /**
@@ -41,7 +56,7 @@ Page({
     let that = this;
     let { index } = event.currentTarget.dataset;
     that.setData({ deskIndex: index, currentIndex: index });
-    console.log(index);
+    // console.log(index);
   },
 
   //swiper切换
@@ -49,14 +64,10 @@ Page({
     let that = this;
     let current = event.detail.current;
     that.setData({ deskIndex: current });
-    console.log(current);
+    // console.log(current);
   },
 
-  //取消关注
-  care: function () {
-    let that = this;
-    that.setData({ isShow: true });
-  },
+
 
   //关闭modal
   close: function () {
@@ -64,11 +75,6 @@ Page({
     that.setData({ isShow: false, isFans: false });
   },
 
-  //关注
-  fans: function () {
-    let that = this;
-    that.setData({ isFans: true });
-  },
 
   changeYue: function (event) {
     let that = this;
@@ -76,35 +82,15 @@ Page({
     that.setData({ classIndex: index });
   },
 
-  //我的约茶查看详情
-  tomyTea: function () {
-    let that = this;
-    wx.navigateTo({
-      url: `/pages/A-follow/myTea/myTea`,
-    })
-  },
-
-  //我的邀约查看详情
-  toMyInvite: function () {
-    let that = this;
-    wx.navigateTo({
-      url: `/pages/A-follow/myInvite/myInvite`,
-    })
-  },
-
-  //评价
-  toEvaluate: function () {
-    let that = this;
-    wx.navigateTo({
-      url: `/pages/A-follow/evaluate/evaluate`,
-    })
-  },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this
+    api._get("/api/v1/orders").then(data => {
+      that.setData({ orders: data.data, ImageHead: util.schoolPicture})
+    })
   },
 
   // tab切换

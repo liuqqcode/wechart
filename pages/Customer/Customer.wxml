@@ -14,30 +14,26 @@
   <view class='clear'></view>
 
   <view class='form'>
-    <view class='SchoolName'>
-      <view>学校名称：</view>
-      <input placeholder='请输入学校'></input>
-      <view class='clear'></view>
-    </view>
+
     <view class='name'>
       <view>姓名：</view>
-      <input placeholder='请输入姓名'></input>
+      <input value='' bindinput ="nameInput"  placeholder='请输入姓名'></input>
       <view class='clear'></view>
     </view>
     <view class='tel'>
       <view>电话：</view>
-      <input placeholder='请输入手机号'></input>
+      <input value='' bindinput ="mobileInput" placeholder='请输入手机号'></input>
       <view class='clear'></view>
     </view>
     <view class='money'>
       <view>缴费金额：</view>
-      <input placeholder='请输入金额'></input>
+      <input value='' bindinput ="moneyInput"  placeholder='请输入金额'></input>
       <view class='clear'></view>
     </view>
     <view class='qkCon'>
       <view>情况说明：</view>
-      <textarea class='qktext'></textarea>
+      <textarea value='' bindinput ="qkInput"  class='qktext'></textarea>
     </view>
-    <view class='submit'>确定</view>
+    <view class='submit' bindtap='submit'>确定</view>
   </view>
 </view>

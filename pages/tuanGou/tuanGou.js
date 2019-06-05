@@ -21,10 +21,13 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
-    api._get('/api/v1/lessons/' + options.lessonsId).then( data => {
+    api._get('/api/v1/packages/' + options.packagesId).then( data => {
       that.setData({ lessons: data.data, ImageHead: util.schoolPicture })
+      
+      console.log(data)
+
       api._post("/api/v1/collections/verify", {
-        product_type: 1,
+        product_type: 2,
         product_id: this.data.lessons.id
       }).then(res => {
         if (res.data.is_collected == true) {
@@ -45,39 +48,23 @@ Page({
     })
   },
   //立即抢购
-  qiangBtn:function(){
+  qiangBtn: function () {
     let that = this
     wx.showModal({
-      title:'是否支付',
-      content:'是否支付',
-      success(data){
-        if (data.confirm){
-          api._post("/api/v1/orders", {
-            school: that.data.lessons.school_id,
-            merchant: that.data.lessons.merchant.id,
-            product_type: 1,
-            product_id: that.data.lessons.id,
-          }).then(res => {
-            api._post("/api/v1/order-paid-notify", {
-              order_id: res.order_id
-            }).then(data => {
-              console.log(data)
-            })
-          })
-        }else if(data.cancel){
-          api._post("/api/v1/orders", {
-            school: that.data.lessons.school_id,
-            merchant: that.data.lessons.merchant.id,
-            product_type: 1,
-            product_id: that.data.lessons.id,
-          }).then(res => {
-            console.log(res)
-          })
-        }
+      title: '是否支付',
+      content: '是否支付',
+      success(data) {
 
       },
-      fail(data){
-
+      fail(data) {
+        api._post("/api/v1/orders", {
+          school: that.data.lessons.school_id,
+          merchant: that.data.lessons.merchant.id,
+          product_type: 2,
+          product_id: that.data.lessons.id,
+        }).then(res => {
+          console.log(res)
+        })
       }
     })
   },
@@ -89,7 +76,7 @@ Page({
     api._post("/api/v1/collections", {
       school: this.data.lessons.school_id,
       merchant: this.data.lessons.merchant.id,
-      product_type: 1,
+      product_type: 2,
       product_id: this.data.lessons.id,
       product_name: this.data.lessons.name,
       product_desc: this.data.lessons.desc,

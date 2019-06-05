@@ -17,7 +17,7 @@
           <view>分享</view>
         </view>
         <view bindtap='Collection'>
-          <image src='/images/icon/star.png'></image>
+          <image src='{{CollectionImg}}'></image>
           <view>收藏</view>
         </view>
         <view class='clear'></view>
@@ -56,7 +56,7 @@
       <view>精品课程</view>
     </view>
     <view class='clear'></view>
-    <view bindtap='botiqueCon' class='botiqueCon' wx:for="{{lessons}}" wx:key="index">
+    <view class='botiqueCon' wx:for="{{lessons}}" wx:key="index" bindtap='botiqueCon' data-id='{{item.id}}'>
       <view class='botiqueConLeft'>
         <image src='{{schoolPictureAPI}}{{item.cover}}'></image>
       </view>
@@ -66,14 +66,11 @@
         <view>￥{{item.price_tag}}</view>
         <view>
           <image src='/images/icon/star.png'></image>
-          <view>1634</view>
+          <view>{{item.stars}}</view>
         </view>
         <view class='clear'></view>
         <view class='botiqueConRightBot'>
-          <view>0.5小时</view>
-          <view>1对1辅导</view>
-          <view>私人定制</view>
-          <view>私人订制</view>
+          <view>{{item.tags == null ? '' : item.tags}}</view>
         </view>
       </view>
       <view class='clear'></view>
@@ -84,23 +81,24 @@
   <view class='groupBuy'>
     <view>
       <image src='/images/icon/groupbuy.png'></image>
-      <view>团购（4）</view>
+      <view>团购（{{school.packages.length}}）</view>
     </view>
     <view class='clear'></view>
-    <view class='groupBuyCon'>
+    <view class='groupBuyCon' wx:for="{{packages}}" wx:key="index" data-id='{{item.id}}'  bindtap='tuanGou'>
       <view class='groupBuyConLeft'>
-        <image src='/images/image/kecheng.png'></image>
+        <image src='{{schoolPictureAPI}}{{item.cover}}'></image>
       </view>
       <view class='groupBuyConRight'>
-        <view>零基础英语学习干货大礼包</view>
-        <view>￥19.9</view>
-        <view>减5</view>
+        <view>{{item.name}}</view>
+        <view>￥{{item.price}}</view>
+        <view>减{{item.discount}}</view>
         <view class='clear'></view>
         <view>
           <image src='/images/icon/star.png'></image>
-          <view>1635</view>
+          <view>{{item.stars}}</view>
         </view>
       </view>
+      <view class='clear'></view>
     </view>
   </view>
   <view class='clear'></view>
@@ -270,6 +268,6 @@
     <image  src='{{prurl}}'></image>
     <view bindtap='saveImg' class='saveBtn'>保存图片</view>
   </view>
-  <text class='kehuBtn' bindtap='kehuBtn'>客户\n录入</text>
+  <text wx:if="{{kehuBtn}}" class='kehuBtn' bindtap='kehuBtn'>客户\n录入</text>
   
 </view>

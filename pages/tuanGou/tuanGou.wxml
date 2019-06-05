@@ -21,44 +21,39 @@
         <view>{{lessons.school_name}}</view>
         <view>{{lessons.school_location}}</view> 
       </view>
-      <view bindtap='callPhone' class='sjIcon'>
+      <view class='sjIcon' bindtap='callPhone'>
         <image src='/images/icon/phone.png'></image>    
       </view>
     </view>
     <view class='clear'></view>
-    <view class='sjFoot'>查看全部{{lessons.school_department_count}}家分店</view>
+    <view class='sjFoot'>查看全部64家分店</view>
   </view>
   <view class='heng'></view>
   <view class='taocan'>
-    <view class='tcHead'>精品课程</view>
-    <view class='tcContent'>
+    <view class='tcHead'>套餐</view>
+    <view class='tcContent' wx:for="{{lessons.lessons}}" wx:key="index">
       <view>
-        <view>{{lessons.name}}</view>
+        <view>{{item.name}}</view>
         <view>1份</view>
-        <view>{{lessons.price}}元</view>
+        <view>{{item.price}}元</view>
       </view>
       <view class='clear'></view>
-
     </view>
     <view class='tcFoot'>
       <view>
-        <view></view>
-        <view></view>
-      </view>  
-      <view>
         <view>总价</view>
-        <view>{{lessons.price}}元</view>
+        <view>{{lessons.total_lesson_price}}元</view>
       </view>        
       <view class='clear'></view>
-      <!-- <view>
+      <view>
         <view>团购价</view>
-        <view>19.90元</view>
-      </view>   -->
+        <view>{{lessons.price}}元</view>
+      </view>  
     </view>
   </view>
   <view class='qiangou'>
     <view class='jiage'>￥{{lessons.price}}</view>
-    <!-- <view class='menshi'>门市价：￥1440</view> -->
+    <view class='menshi'>门市价：￥{{lessons.total_lesson_price}}</view>
     <view class='qiangBtn' bindtap='qiangBtn'>立即抢购</view>
   </view>
 </view>

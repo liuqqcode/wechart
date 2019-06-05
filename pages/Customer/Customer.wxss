@@ -35,7 +35,7 @@ page{
   line-height: 3;
   margin-top: 100rpx;
 }
-.SchoolName{
+.name{
   font-size: 30rpx;
   border-top-left-radius: 30rpx;
   border-top-right-radius: 30rpx;

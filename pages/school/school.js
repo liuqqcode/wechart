@@ -9,24 +9,21 @@ Page({
    * 页面的初始数据
    */
   data: {
+    school:'',
     schoolId:'',
     //用户输入手机号
     mobile:'',
     //商户ID
     merchant:'',
-    shipin:[
-      '/images/image/shipin.png',
-      '/images/image/shipin.png',
-      '/images/image/shipin.png',
-      '/images/image/shipin.png',
-      '/images/image/shipin.png'
-    ],
+
     shareBG:'',
     shareCon:'shareConHide',
     page:'',
     phoneUse:'phoneUseHide',
     canvasImg:'canvasImgHide',
     webkit:'webkit',
+    
+    //评价全文
     pjqw:'pjqw',
     canvasImaSrc:'',
     hidden:true,
@@ -47,15 +44,28 @@ Page({
 
 
     //课程
-    lessons:'',
+    lessons:[],
+    lessonsId:'',
+
+    //团购
+    packages:'',
+    packagesId:'',
     //老师
     teachers:{},
     //老师数量
     teachNum:'',
     //视频
     videos:'',
-    videosNum:''
+    videosNum:'',
 
+    //客户录入按钮
+    kehuBtn:false,
+
+    CollectionImg:'/images/icon/star.png',
+    CollectionImgNo:'/images/icon/star.png',
+    CollectionImgYes:'/images/icon/yellowStar.png',
+    //是否收藏
+    is_collected:false,
 
   },
   //打开客服
@@ -92,12 +102,13 @@ Page({
     this.setData({ phoneUse:'phoneUse'})
   },
   yuyueSuccess:function(){
+
     var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
     if (myreg.test(this.data.mobile)){
       api._post("/api/v1/appointments", {
-        school: this.data.schoolId,
-        merchant: this.data.merchant,
-        phone: this.data.mobile
+        school: parseInt(this.data.schoolId),
+        merchant: parseInt(this.data.merchant),
+        phone: parseInt(this.data.mobile)
       }).then(res => {
         wx.navigateTo({
           url: '../yuyueSuccess/yuyueSuccess',
@@ -126,12 +137,17 @@ Page({
   },
 
   //跳转课程
-  botiqueCon:function(){
+  botiqueCon:function(e){
     wx.navigateTo({
-      url: '../kecen/kecen',
+      url: '../kecen/kecen?lessonsId=' + e.currentTarget.dataset.id,
     })
   },
-
+  //跳转团购
+  tuanGou:function(e){
+    wx.navigateTo({
+      url: '../tuanGou/tuanGou?packagesId=' + e.currentTarget.dataset.id,
+    })
+  },
   //分享给好友
   onShareAppMessage:function(){
     return{
@@ -148,13 +164,29 @@ Page({
   //收藏
   Collection:function(){
     let that = this
-    console.log(that.data.telephone)
+    
+    api._post("/api/v1/collections", {
+      school: this.data.schoolId,
+      merchant: this.data.school.merchant.id,
+      product_type: 3,
+      product_id: this.data.schoolId,
+      product_name: this.data.school.name,
+      product_desc: this.data.school.desc,
+      product_image: this.data.school.cover
+    }).then(res => {
+      console.log(res)
+      if (this.data.CollectionImg == this.data.CollectionImgNo) {
+        that.setData({ CollectionImg: this.data.CollectionImgYes })
+      } else {
+        that.setData({ CollectionImg: this.data.CollectionImgNo })
+      }
+    })
   },
 
   //客户录入
   kehuBtn:function(){
     wx.navigateTo({
-      url: '../Customer/Customer',
+      url: '../Customer/Customer?id=' + this.data.schoolId + '&schoolName=' + this.data.schoolName + '&merchant=' + this.data.merchant,
     })
   },
 
@@ -194,15 +226,52 @@ Page({
   onLoad: function (options) {
 
     let that = this;
+    // console.log(app.globalData.UserType)
+    
+    //获取全局变量，如果是推客则显示客户录入按钮
+    if (app.globalData.UserType == 3){
+      that.setData({ kehuBtn:true})
+    }else{
+      that.setData({ kehuBtn:false})
+    }
 
     //获取学校id
     that.setData({ schoolId : options.id})
 
     //获取学校详情信息
     api._get('/api/v1/schools/' + options.id).then( data => {
-      that.setData({ merchant: data.data.merchant.id,schoolPictureAPI: util.schoolPicture, schoolBanner: data.data.cover, schoolName: data.data.name, location: data.data.location, telephone: data.data.telephone, rate: data.data.rate, lessons: data.data.lessons, teachers: data.data.teachers, teachNum: data.data.teachers.length, videos: data.data.videos, videosNum:data.data.videos.length})
-      // console.log(data)
+      that.setData({ 
+        school:data.data,
+        merchant: data.data.merchant.id, 
+        schoolPictureAPI: util.schoolPicture, 
+        schoolBanner: data.data.cover, 
+        schoolName: data.data.name, 
+        location: data.data.location, 
+        telephone: data.data.telephone,
+        rate: data.data.rate, 
+        lessons: data.data.lessons, 
+        packages: data.data.packages,
+        teachers: data.data.teachers, 
+        teachNum: data.data.teachers.length, 
+        videos: data.data.videos, 
+        videosNum: data.data.videos.length,
+      })
+      
+      console.log(data)
+      
+      //学校是否收藏
+      api._post("/api/v1/collections/verify",{
+        product_type:3,
+        product_id: this.data.schoolId
+      }).then(res => {
+        if (res.data.is_collected == true){
+          that.setData({ CollectionImg: this.data.CollectionImgYes })
+        }else{
+          that.setData({ CollectionImg: this.data.CollectionImgNo })
+        }
+      })
 
+      //保存分享海报
       wx.downloadFile({
         url: this.data.schoolPictureAPI + this.data.schoolBanner,
         success(res) {

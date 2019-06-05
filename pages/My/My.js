@@ -12,11 +12,11 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     userInfo:{},
     headerImg:'',
-    daili:true,
+    daili:false,
     shangjia:false,
-    geren:false,
+    geren:true,
     quyu:false,
-    UserType:1,
+    // UserType:1,
   },
   //收藏
   Collection:function(){
@@ -128,11 +128,28 @@ Page({
               success(loginRes) {
 
                 wx.setStorageSync("jwtToken", loginRes.data.token_type + " " + loginRes.data.access_token)
-                app.globalData.token = loginRes.data.token_type + " " + loginRes.data.access_token
+                //设施全局变量token
+                app.globalData.token = loginRes.data.token_type + " " + loginRes.data.access_token;
+                //设置全局变量用户类型[1:普通用户; 2:商户; 3:推客; 4:区域代理]
+                app.globalData.UserType = loginRes.data.customer_type
                 
                 console.log(loginRes)
-                that.setData({ UserType: loginRes.data.customer_type})
-                console.log(that.data.UserType)
+                // that.setData({ UserType: loginRes.data.customer_type})
+                console.log(loginRes.data.customer_type)
+                switch (loginRes.data.customer_type){
+                  case 1:
+                    that.setData({ geren: true, shangjia: false, daili: false, quyu: false });
+                    break;
+                  case 2:
+                    that.setData({ geren: false, shangjia: true, daili: false, quyu: false });
+                    break;
+                  case 3:
+                    that.setData({ geren: false, shangjia: false, daili: true, quyu: false });
+                    break;
+                  case 4:
+                    that.setData({ geren: false, shangjia: false, daili: false, quyu: true });
+                    break;
+                }
               }
             })
           }

@@ -20,7 +20,8 @@
     "pages/search/search",
     "pages/evaluate/evaluate",
     "pages/Customer/Customer",
-    "pages/HistoryMoney/HistoryMoney"
+    "pages/HistoryMoney/HistoryMoney",
+    "pages/tuanGou/tuanGou"
   ],
   "window": {
     "backgroundTextStyle": "light",

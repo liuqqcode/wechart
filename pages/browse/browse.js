@@ -1,17 +1,26 @@
+var util = require('../../utils/util.js')
+const api = require('../../utils/api.js')
+var app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    
+    borwseList:[],
+    ImgHead:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    let that = this;
+    api._get("/api/v1/views?product_types=3").then(res => {
+      console.log(res.data)
+      that.setData({ borwseList: res.data, ImgHead: util.schoolPicture})
+    })
   },
 
   /**

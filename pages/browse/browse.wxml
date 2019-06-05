@@ -1,32 +1,12 @@
 <view>
-  <view class='borwseList'>
+  <view class='borwseList' wx:for="{{borwseList}}" wx:key="index">
     <view class='borwseLeft'>
-      <image src='/images/image/school.png'></image>
+      <image src='{{ImgHead}}{{item.product_image}}'></image>
     </view>
     <view class='borwseRight'>
-      <view>成都新东方烹饪培训学校学校学校</view>
-      <view>仅售99元，价值299元新东方烹饪培训学校</view>
+      <view>{{item.product_name}}</view>
+      <view>{{item.product_desc}}</view>
     </view>
     <view class='clear'></view>
-  </view>
-  <view class='borwseList'>
-    <view class='borwseLeft'>
-      <image src='/images/image/school.png'></image>
-    </view>
-    <view class='borwseRight'>
-      <view>成都新东方烹饪培训学校学校学校</view>
-      <view>仅售99元，价值299元新东方烹饪培训学校</view>
-    </view>
-    <view class='clear'></view>
-  </view>
-  <view class='borwseList'>
-    <view class='borwseLeft'>
-      <image src='/images/image/school.png'></image>
-    </view>
-    <view class='borwseRight'>
-      <view>成都新东方烹饪培训学校学校学校</view>
-      <view>仅售99元，价值299元新东方烹饪培训学校</view>
-    </view>
-    <view class='clear'></view>
-  </view>    
+  </view> 
 </view>
