@@ -56,7 +56,7 @@
       <view>精品课程</view>
     </view>
     <view class='clear'></view>
-    <view class='botiqueCon' wx:for="{{lessons}}" wx:key="index" bindtap='botiqueCon' data-id='{{item.id}}'>
+    <view class='botiqueCon' wx:for="{{lessons}}" wx:key="index" bindtap='botiqueCon' data-id='{{item}}'>
       <view class='botiqueConLeft'>
         <image src='{{schoolPictureAPI}}{{item.cover}}'></image>
       </view>
@@ -84,7 +84,7 @@
       <view>团购（{{school.packages.length}}）</view>
     </view>
     <view class='clear'></view>
-    <view class='groupBuyCon' wx:for="{{packages}}" wx:key="index" data-id='{{item.id}}'  bindtap='tuanGou'>
+    <view class='groupBuyCon' wx:for="{{packages}}" wx:key="index" data-id='{{item}}'  bindtap='tuanGou'>
       <view class='groupBuyConLeft'>
         <image src='{{schoolPictureAPI}}{{item.cover}}'></image>
       </view>
@@ -138,30 +138,24 @@
   </view>
   <view class='pingjia'>
     <view class='pingjiahead'>用户评价（91）</view>
-    <view class='pingjiaCon'>
+    <view class='pingjiaCon' wx:for="{{schoolping}}" wx:key="index" data-inx="{{index}}">
       <view class='pjLeft'>
-        <image src='/images/image/header.png'></image>
+        <image src='{{item.customer_avatar_url}}'></image>
       </view>
       <view class='pjRight'>
-        <view class='pjname'>我的小宝贝</view>
-        <view class='pjdate'>2019年4月23日</view>
+        <view class='pjname'>{{item.customer_nickname}}</view>
+        <view class='pjdate'>{{item.created_at}}</view>
         <view class='clear'></view>
         <view class='pjfen'>
           <view>打分</view>
-          <image src='/images/icon/stargreen.png'></image>
-          <image src='/images/icon/stargreen.png'></image>
-          <image src='/images/icon/stargreen.png'></image>
-          <image src='/images/icon/stargreen.png'></image>
-          <image src='/images/icon/stargreen.png'></image>
+          <image wx:for="{{item.rate}}" wx:key="index" src='/images/icon/stargreen.png'></image>
+
         </view>
         <view class='clear'></view>
-        <view class='pjtext {{webkit}}'>老师授课的方式非常适合我们，他根据本课程知识结构的特点，重点突出，层次分明。理论和实际相结合，通过例题使知识更条理化。但授课速度有点快</view>
+        <view class='pjtext {{webkit}}'>{{item.content}}</view>
         <view bindtap='pjqw' class='{{pjqw}}'>全文</view>
         <view class='pjImg'>
-          <image src='/images/image/school.png'></image>
-          <image src='/images/image/school.png'></image>
-          <image src='/images/image/school.png'></image>
-
+          <image src='{{item.images}}'></image>
         </view>
       </view>
     </view>

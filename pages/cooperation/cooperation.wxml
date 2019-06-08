@@ -1,14 +1,14 @@
 <view class='info'>
   <view class='inputCon'>
     <view>机构名称：</view>
-    <input placeholder='请输入机构名称'></input>
+    <input value='' bindinput='merchant_name' placeholder='请输入机构名称'></input>
     <view class='clear'></view>
     <view>联系方式：</view>
-    <input placeholder='请输入联系方式'></input>
+    <input value='' bindinput='contact' placeholder='请输入联系方式'></input>
     <view class='clear'></view>
     <view>联系人：</view>
-    <input placeholder='请输入联系人'></input>
+    <input value='' bindinput='name' placeholder='请输入联系人'></input>
     <view class='clear'></view>
   </view>
-  <button class='submit'>确定</button>
+  <button class='submit' bindtap='submit'>确定</button>
 </view>

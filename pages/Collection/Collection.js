@@ -33,6 +33,9 @@ Page({
         })
         break;
       case 2:
+        wx.navigateTo({
+          url: '../tuanGou/tuanGou?packagesId=' + e.currentTarget.dataset.inx.product_id,
+        })
         break;
       case 3:
         wx.navigateTo({

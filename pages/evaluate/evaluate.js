@@ -1,3 +1,7 @@
+var util = require('../../utils/util.js')
+const api = require('../../utils/api.js')
+var app = getApp();
+
 Page({
 
   /**
@@ -9,7 +13,10 @@ Page({
     showUpload: true,
     yellowStar:"/images/icon/yellowStar.png",
     noneStar:"/images/icon/noneYS.png",
-    starNum: 4
+    starNum: 4,
+    details:'',
+    ImgHead:'',
+    pinglun:''
   },
   //点赞星星
   star:function(e){
@@ -47,7 +54,7 @@ Page({
     var that = this;
     
     wx.chooseImage({
-      count: 3 - that.data.uploaderNum, // 默认9
+      count: 3 - that.data.uploaderNum, // 默认3
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
@@ -71,7 +78,54 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
+    console.log(options)
+    let that = this;
+    api._get("/api/v1/orders/" + options.id).then(data => {
+      console.log(data)
+      that.setData({ details: data.data, ImgHead: util.schoolPicture })
+
+    })
+  },
+  //提交
+  submitBtn:function(){
+    let that = this;
+    console.log(this.data.pinglun)
+    console.log(this.data.uploaderList)
+    console.log(this.data.starNum)
+    if (that.data.pinglun == ''){
+      wx.showToast({
+        title: '请输入评论',
+        icon: 'none',
+        duration: 1000,
+        mask: true,
+      })
+    }else{
+      let mun = 1;
+      that.setData({
+        starNum : that.data.starNum + mun
+      })
+      that.data.starNum = that.data.starNum + 1;
+      api._post("/api/v1/comments",{
+        merchant_id: that.data.details.merchant_id,
+        school_id: that.data.details.school_id,
+        product_type: that.data.details.product_type,
+        product_id: that.data.details.product_id,
+        rate: that.data.starNum,
+        content: that.data.pinglun,
+        images: that.data.uploaderList,
+        order_id: that.data.details.id
+      }).then( res => {
+        console.log(res)
+      })
+    }
+  },
+  //输入评论
+  pinglun:function(e){
+    let that = this;
+    that.setData({
+      pinglun:e.detail.value
+    })
   },
 
   /**

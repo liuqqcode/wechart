@@ -1,6 +1,6 @@
 <view>
   <view class='head'> 
-    <view class='headicon'>
+    <view class='headicon'  style='background-image: url("https://yikeyingshi.com/admin_uploads/images/back.png")'>
       <image></image>
       <image src='/images/icon/message.png'></image>
       <image></image>

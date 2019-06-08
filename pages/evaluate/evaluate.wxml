@@ -1,16 +1,16 @@
 <view>
   <view class='evaluateHead'>
-    <image src='/images/image/kecheng.png'></image>
+    <image src='{{ImgHead}}{{details.product_cover}}'></image>
     <view class='evaluateContent'>
-      <view>零基础英语学习大礼包</view>
-      <view>￥88.00</view>
-      <view>X1</view>
+      <view>{{details.product_name}}</view>
+      <view>￥{{details.total_amount}}</view>
+      <view>X{{details.count}}</view>
     </view>
     <view class='clear'></view>
   </view>
   <view class='heng'></view>
   <view class='evaluateInput'>
-    <textarea class='pinglun' placeholder='宝贝满足你的需求吗？说说它的优点和美中不足吧..'></textarea>
+    <textarea class='pinglun' value='' bindinput='pinglun' placeholder='宝贝满足你的需求吗？说说它的优点和美中不足吧..'></textarea>
     <view class='ui_uploader_cell'>
         <!-- 根据已选择的图片临时路径数组展示图片-->
         <view class='ui_uploader_item' wx:for="{{uploaderList}}" wx:key="{{index}}">
@@ -42,6 +42,6 @@
   </view>
   <view class='clear'></view>
   <view class='submit'>
-    <view class='submitBtn'>提交评价</view>
+    <view class='submitBtn' bindtap='submitBtn'>提交评价</view>
   </view>
 </view>

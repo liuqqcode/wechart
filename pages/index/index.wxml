@@ -30,7 +30,7 @@
             <swiper-item item-id="{{index}}" data-item-id="{{index}}" bindtap='clickChange'>  
               <view class='li'>
                 <!-- <view class='li1 {{item}} {{currentItemId == index ? "selected" : ""}}' ></view> -->
-                <image class='li1 {{item}} {{currentItemId == index ? "selected" : ""}}'  src='{{item}}'></image>
+                <image class='li1 {{item}} {{currentItemId == index ? "selected" : ""}}'  src='{{schoolPicture}}{{item}}'></image>
               </view> 
             </swiper-item>  
           </block>

@@ -20,17 +20,28 @@ Page({
     //已支付
     Payment:'',
     ImageHead: '',
+    footprint:''
 
   },
+  //跳转订单详情
   kechengContent: function (e) {
     wx.navigateTo({
       url: '../kecheng/kecheng?id=' + e.currentTarget.dataset.inx,
     })
   },
-  //评价
-  evaluate:function(){
+  //足迹跳转课程详情
+  kechengCon:function(e){
+    console.log(e.currentTarget.dataset.inx.product_id)
     wx.navigateTo({
-      url: '../evaluate/evaluate',
+      url: '../kecen/kecen?lessonsId=' + e.currentTarget.dataset.inx.product_id,
+    })
+    
+  },
+  //评价
+  evaluate:function(e){
+    console.log(e.currentTarget.dataset.inx)
+    wx.navigateTo({
+      url: '../evaluate/evaluate?id=' + e.currentTarget.dataset.inx,
     })
   },
   /**
@@ -41,6 +52,10 @@ Page({
     api._get("/api/v1/orders").then(data => {
       that.setData({ orders: data.data, ImageHead: util.schoolPicture})
       
+    })
+    api._get("/api/v1/views?product_types=1,2").then(data => {
+      console.log(data.data)
+      that.setData({ footprint: data.data})
     })
   },
 
@@ -90,6 +105,10 @@ Page({
     let that = this
     api._get("/api/v1/orders").then(data => {
       that.setData({ orders: data.data, ImageHead: util.schoolPicture})
+    })
+    api._get("/api/v1/views?product_types=1,2").then(data => {
+      console.log(data.data)
+      that.setData({ footprint: data.data })
     })
   },
 

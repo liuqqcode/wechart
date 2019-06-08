@@ -1,7 +1,7 @@
 <view>
   <view class='header'>
     <view class='headLeft'>
-      <image src='/images/image/header2.png'></image>
+      <image src='{{ImgHead}}{{ordersCon.product_cover}}'></image>
     </view>
     <view class='headRight'>
       <view>{{ordersCon.product_name}}</view>

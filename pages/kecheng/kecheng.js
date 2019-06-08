@@ -9,7 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    ordersCon:''
+    ordersCon:'',
+    ImgHead:''
   },
 
   /**
@@ -20,7 +21,7 @@ Page({
     let that = this;
     api._get("/api/v1/orders/" + options.id).then(data => {
       console.log(data)
-      that.setData({ ordersCon:data.data})
+      that.setData({ ordersCon: data.data, ImgHead: util.schoolPicture})
 
     })
   },

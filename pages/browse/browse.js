@@ -30,6 +30,14 @@ Page({
     
   },
 
+  school:function(e){
+    wx.navigateTo({
+      url: '../school/school?id=' + e.currentTarget.dataset.id.school_id,
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */

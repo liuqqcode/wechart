@@ -1,5 +1,5 @@
 <view>
-  <view class='borwseList' wx:for="{{borwseList}}" wx:key="index">
+  <view class='borwseList' wx:for="{{borwseList}}" wx:key="index" bindtap='school' data-id='{{item}}'>
     <view class='borwseLeft'>
       <image src='{{ImgHead}}{{item.product_image}}'></image>
     </view>

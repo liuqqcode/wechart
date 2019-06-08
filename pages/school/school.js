@@ -66,6 +66,8 @@ Page({
     CollectionImgYes:'/images/icon/yellowStar.png',
     //是否收藏
     is_collected:false,
+    //学校评论
+    schoolping:''
 
   },
   //打开客服
@@ -138,14 +140,44 @@ Page({
 
   //跳转课程
   botiqueCon:function(e){
+    let that = this;
+    console.log(e)
     wx.navigateTo({
-      url: '../kecen/kecen?lessonsId=' + e.currentTarget.dataset.id,
+      url: '../kecen/kecen?lessonsId=' + e.currentTarget.dataset.id.id,
+      success(){
+        api._post("/api/v1/views", {
+          school: e.currentTarget.dataset.id.id,
+          merchant: that.data.merchant,
+          product_type: 1,
+          product_id: e.currentTarget.dataset.id.id,
+          product_name: e.currentTarget.dataset.id.name,
+          product_desc: e.currentTarget.dataset.id.desc,
+          product_image: e.currentTarget.dataset.id.cover
+        }).then(res => {
+          console.log(res)
+        })
+      }
     })
   },
   //跳转团购
   tuanGou:function(e){
+    let that = this;
+    console.log(e)
     wx.navigateTo({
-      url: '../tuanGou/tuanGou?packagesId=' + e.currentTarget.dataset.id,
+      url: '../tuanGou/tuanGou?packagesId=' + e.currentTarget.dataset.id.id,
+      success() {
+        api._post("/api/v1/views", {
+          school: e.currentTarget.dataset.id.id,
+          merchant: that.data.merchant,
+          product_type: 2,
+          product_id: e.currentTarget.dataset.id.id,
+          product_name: e.currentTarget.dataset.id.name,
+          product_desc: e.currentTarget.dataset.id.desc,
+          product_image: e.currentTarget.dataset.id.cover
+        }).then(res => {
+          console.log(res)
+        })
+      }
     })
   },
   //分享给好友
@@ -252,12 +284,20 @@ Page({
         lessons: data.data.lessons, 
         packages: data.data.packages,
         teachers: data.data.teachers, 
-        teachNum: data.data.teachers.length, 
         videos: data.data.videos, 
-        videosNum: data.data.videos.length,
       })
       
       console.log(data)
+    if (data.data.teachers != ''){
+      that.setData({
+        teachNum: data.data.teachers.length, 
+      })
+    }else
+      if (data.data.videos != ''){
+        that.setData({
+          videosNum: data.data.videos.length,
+        })
+      }
       
       //学校是否收藏
       api._post("/api/v1/collections/verify",{
@@ -327,7 +367,11 @@ Page({
       })
     })
 
-    //需要注意的是：我们展示图片的域名需要在后台downfile进行配置，并且画到canvas里面前需要先下载存储到data里面
+    //获取学校的评论
+    api._get("/api/v1/comments/school/" + options.id).then(res => {
+      console.log(res)
+      that.setData({ schoolping:res.data})
+    })
 
   },
   share: function () {

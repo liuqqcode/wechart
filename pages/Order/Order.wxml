@@ -24,7 +24,7 @@
         </view>
         <view class='ddzt'>
           <view>待评价</view>
-          <view bindtap='evaluate'>评价</view>
+          <view bindtap='evaluate' data-inx="{{item.id}}">评价</view>
         </view>
       </view>
     </swiper-item>
@@ -34,7 +34,7 @@
     <swiper-item>
       <view class='ddlist' wx:for="{{orders}}" wx:key="index" wx:if="{{item.statement == 1}}">
         <view class='ddimg' bindtap='kechengContent' data-inx="{{item.id}}">
-          <image src='/images/image/header2.png'></image>
+          <image src='{{ImageHead}}{{item.product_cover}}'></image>
         </view>
         <view class='ddtext' bindtap='kechengContent' data-inx="{{item.id}}">
           <view>{{item.product_name}}</view>
@@ -51,31 +51,17 @@
 
     <!--我的足迹-->
     <swiper-item>
-      <view class='wdzj'>
-        <view class='zidata'>4月29日</view>
+      <view class='wdzj' wx:for="{{footprint}}" wx:key="index">
+        <view class='zidata'>{{item.updated_at}}</view>
         <view class='zjcon'>
-          <view class='zjimg' bindtap='kechengContent' data-inx="{{item.id}}">
-            <image src='/images/image/header2.png'></image>
+          <view class='zjimg' bindtap='kechengCon' data-inx="{{item}}">
+            <image src='{{ImageHead}}{{item.product_image}}'></image>
           </view>
-          <view class='zjcontent ddtext' bindtap='kechengContent' data-inx="{{item.id}}">
-            <view>英语能力测试</view>
-            <view>截止时间：2019-4-24</view>
-            <view>数量：2</view>
-            <view>总价：180.00</view>
-          </view>
-          <view class='zjzt'> 
-            <view>付款</view>
-          </view>
-        </view>
-        <view class='zjcon'>
-          <view class='zjimg' bindtap='kechengContent' data-inx="{{item.id}}">
-            <image src='/images/image/header2.png'></image>
-          </view>
-          <view class='zjcontent ddtext' bindtap='kechengContent' data-inx="{{item.id}}">
-            <view>英语能力测试</view>
-            <view>截止时间：2019-4-24</view>
-            <view>数量：2</view>
-            <view>总价：180.00</view>
+          <view class='zjcontent ddtext' bindtap='kechengCon' data-inx="{{item}}">
+            <view>{{item.product_name}}</view>
+            <view>截止时间：{{item.product_end_time}}</view>
+            <view>数量：{{item.product_count}}</view>
+            <view>总价：{{item.product_total_price}}</view>
           </view>
           <view class='zjzt'> 
             <view>付款</view>
@@ -89,7 +75,7 @@
     <swiper-item>
       <view class='ddlist' wx:for="{{orders}}" wx:key="index" wx:if="{{item.statement == 2}}">
         <view class='ddimg' bindtap='kechengContent' data-inx="{{item.id}}">
-          <image src='/images/image/header2.png'></image>
+          <image src='{{ImageHead}}{{item.product_cover}}'></image>
         </view>
         <view class='ddtext' bindtap='kechengContent' data-inx="{{item.id}}">
           <view>{{item.product_name}}</view>
@@ -97,7 +83,7 @@
           <view>数量：{{item.count}}</view>
           <view>总价：{{item.total_amount}}</view>
         </view>
-        <view class='dpj' bindtap='evaluate'>
+        <view class='dpj' bindtap='evaluate' data-inx="{{item.id}}">
           <view>评价</view>
         </view>
       </view>

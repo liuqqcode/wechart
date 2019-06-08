@@ -29,7 +29,7 @@ Page({
       '留学',
       '升学'
     ],
-    backClass: ["/images/image/schoolban.png", "/images/image/schoolban.png", "/images/image/schoolban.png", "/images/image/schoolban.png"],
+    backClass: '',
     currentItemId: 2,
 
     //红包
@@ -85,7 +85,11 @@ Page({
     var that = this;
 
 
-    
+    //获取首页轮播图
+
+    api._get("/api/v1/platform/banners").then(res => {
+      that.setData({backClass:res.data.banners.images})
+    })
     //获取天气以及位置信息
     var BMap = new bmap.BMapWX({
       ak: baiduak.ak
@@ -129,6 +133,7 @@ Page({
    */
   onShow: function () {
     let that = this;
+    console.log(app.globalData.UserType)
     //获取全局变量，如果是推客则显示客户录入按钮
     if (app.globalData.UserType == 3) {
       that.setData({ group3: 'group3' })
