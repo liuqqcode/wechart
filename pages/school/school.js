@@ -68,7 +68,9 @@ Page({
     is_collected:false,
     //学校评论
     schoolping:[],
-    schoolpingNum:''
+    schoolpingNum:'',
+    //查看全部评价
+    Reviews:true
 
   },
   //打开客服
@@ -409,6 +411,7 @@ Page({
       that.setData({
         schoolping: res.data,
         schoolpingNum: res.meta.total,
+        Reviews:false
       })
     })
   },

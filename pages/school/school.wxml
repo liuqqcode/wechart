@@ -161,7 +161,7 @@
     </view>
     <view class='clear'></view>
     <view class='pjBot'>
-      <view bindtap='LookAll'>查看全部用户评价</view>
+      <view wx:if="{{Reviews}}" bindtap='LookAll'>查看全部用户评价</view>
       <view>共{{schoolpingNum}}条</view>
     </view>
     <view class='clear'></view>
@@ -200,28 +200,7 @@
     </view>
   </view>
 
-  <!-- <view class='{{phoneUse}}'>
-    <view bindtap='PhoneHide' class='phoneBG'></view>
-    <view class='phoneUseCon'>
-      <view class='phoneOne'>
-        <view>口碑团学 申请使用</view>
-        <view>你的手机号码</view>
-      </view>
-      <view class='phoneInput'>
-        <input></input>
-      </view>
-      <view class='otherPhone'>使用其他手账号</view>
-      <view class='phoneBut'>
-        <view>
-          <view>拒绝</view>
-        </view>
-        <view>
-          <view>允许</view>
-        </view>
-      </view>
-      <view class='clear'></view>
-    </view>
-  </view> -->
+
   <view class='{{phoneUse}}'>
     <view bindtap='PhoneHide' class='phoneBG'></view>
     <view class='phoneUseCon'>
