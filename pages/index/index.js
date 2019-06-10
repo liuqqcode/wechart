@@ -33,7 +33,11 @@ Page({
     currentItemId: 2,
 
     //红包
-    group3: "none"
+    group3: "none",
+    //更多学校
+    next:'',
+    page:'',
+    noMore:'none'
   },
 
   swiperChange: function (e) {
@@ -121,8 +125,11 @@ Page({
     //获取学校列表
     var that = this;
     api._get('/api/v1/schools').then(data => {
-      that.setData({ schoolList: data.data})
-      console.log(data.data)
+      that.setData({ schoolList: data.data, next: data.links.next})
+      console.log(data.links.next)
+      if(data.links.next == null){
+        that.setData({ noMore: "noMore"})
+      }
     }).catch(e => {
       console.log(e)
     })
@@ -133,9 +140,10 @@ Page({
    */
   onShow: function () {
     let that = this;
-    console.log(app.globalData.UserType)
+    var userType = wx.getStorageSync("userType")
+    console.log(userType)
     //获取全局变量，如果是推客则显示客户录入按钮
-    if (app.globalData.UserType == 3) {
+    if (userType == 3) {
       that.setData({ group3: 'group3' })
     } else {
       that.setData({ group3: 'none' })
@@ -167,7 +175,24 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    var that = this;
+    if(that.data.next != null){
+      // 显示加载图标
+      wx.showLoading({
+        title: '玩命加载中',
+      })
+      wx.request({
+        url: that.data.next,
+        success(data){
+          that.setData({ next: data.data.links.next, schoolList: that.data.schoolList.concat(data.data.data)})
+          if (data.data.links.next == null) {
+            that.setData({ noMore: "noMore"})
+          }
+          wx.hideLoading()
 
+        }
+      })
+    }
   },
 
   /**

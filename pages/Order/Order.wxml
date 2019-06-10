@@ -9,7 +9,7 @@
     <view class="tab  {{deskIndex==3?'active':''}}" data-index='{{3}}' catchtap='changeTab'>待评价</view>
   </view>
 
-  <swiper class='seiperTab' current="{{currentIndex}}" indicator-dots="{{false}}" bindchange="bindchange">
+  <swiper class='seiperTab' current="{{currentIndex}}" indicator-dots="{{false}}"  bindchange="bindchange">
     <!--全部订单-->
     <swiper-item>
       <view class='ddlist' wx:for="{{orders}}" wx:key="index">

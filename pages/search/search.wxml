@@ -1,13 +1,44 @@
 <view>
   <view class='line'></view>
   <view class='searchHead'>
-    <input class='searchInput' value='' placeholder='英语培训'></input>
+    <input class='searchInput' value='{{userInput}}' bindinput='searchInput' auto-focus placeholder='英语培训' bindconfirm="searchSubmit"></input>
     <image src='/images/icon/search.png'></image>
     <view class='no' bindtap='no'>取消</view>
   </view>
   <view class='clear'></view>
-  <view class='History'>
+  <view class='{{History}}'>
     <view class='HistoryHead'>历史搜素</view>
     <image src='/images/icon/del.png'></image>
+  </view>
+  <view class='clear'></view>
+  <view class='school'>
+    <view class='schoolList' wx:for="{{schoolList}}" wx:key="index" bindtap='school' data-id='{{item}}'>
+      <view class='schoolLeft'>
+        <view>{{item.name}}</view>
+        <view>{{item.desc}}</view>
+        <view class='{{group3}}'>
+          <image src='/images/icon/redbag.png'></image>
+          <view>{{item.gift_packet_amount}}</view>
+          <view>仅{{item.gift_packet_range}}km内有效</view>
+        </view>
+        <view class='star'>
+          <view>{{item.views}}</view>
+
+          <image src='/images/icon/star.png'></image>
+        </view>
+        <view class='clear'></view>
+        <view class='group4'>
+          <view>￥{{item.lowest_lesson_price}}</view>
+          <view>￥{{item.lowest_lesson_price_tag}}</view>
+          <view></view>
+          <view>{{item.lowest_lesson_price_discount}}折</view>
+          <view>5km</view>
+        </view>
+      </view>
+      <view class='schoolRight'>
+        <image src= '{{schoolPicture}}{{item.cover}}'></image>
+      </view>
+      <view class='clear'></view>
+    </view>
   </view>
 </view>

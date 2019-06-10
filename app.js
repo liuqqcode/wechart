@@ -27,6 +27,8 @@ App({
     urls: 'https://wx.knowdao.com',
     urlst: 'http://test.knowdao.com',
     token: '',
-    UserType: 1
+    UserType: 1,
+    customer_id:'',
+    options:''
   }
 })

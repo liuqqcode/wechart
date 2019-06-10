@@ -102,7 +102,6 @@ Page({
         }
       }
     })
-
   },
 
   loginWechat:function(){
@@ -128,10 +127,14 @@ Page({
               success(loginRes) {
 
                 wx.setStorageSync("jwtToken", loginRes.data.token_type + " " + loginRes.data.access_token)
+                wx.setStorageSync("userType", loginRes.data.customer_type)
+                wx.setStorageSync("customer_id", loginRes.data.customer_id)
+
                 //设施全局变量token
                 app.globalData.token = loginRes.data.token_type + " " + loginRes.data.access_token;
                 //设置全局变量用户类型[1:普通用户; 2:商户; 3:推客; 4:区域代理]
                 app.globalData.UserType = loginRes.data.customer_type
+                app.globalData.customer_id = loginRes.data.customer_id
                 
                 console.log(loginRes)
                 // that.setData({ UserType: loginRes.data.customer_type})

@@ -169,6 +169,7 @@ swiper{
 }
 .group3{
   float: left;
+  width: 70%;
 }
 .group3>image{
   float: left;
@@ -191,21 +192,21 @@ swiper{
   margin-top: 7rpx;
 }
 .star{
-  position: absolute;
-  right: 30rpx;
+  width: 30%;
+  right: 0;
   float: right;
 }
 .star>image{
-  float: left;
+  float: right;
   width: 30rpx;
   height: 30rpx;
   margin-top: 5rpx;
 }
-.star>view:nth-child(2){
+.star>view:nth-child(1){
   padding-left: 10rpx;
   font-size: 28rpx;
   margin-top: 5rpx;
-  float: left;
+  float: right;
   font-family: "PingFang";
   color: rgb(153, 153, 153);
   line-height: 1.2;
@@ -263,4 +264,9 @@ swiper{
 }
 .none{
   display: none;
+}
+.noMore{
+  font-size: 30rpx;
+  text-align: center;
+  color: #999;
 }

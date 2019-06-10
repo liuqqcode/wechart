@@ -14,13 +14,13 @@ Page({
     isShow: false,
     isFans: false,
     classIndex: 0,
-    orders:'',
+    orders: '',
     //待支付
-    wait:'',
+    wait: '',
     //已支付
-    Payment:'',
+    Payment: '',
     ImageHead: '',
-    footprint:''
+    footprint: ''
 
   },
   //跳转订单详情
@@ -30,15 +30,15 @@ Page({
     })
   },
   //足迹跳转课程详情
-  kechengCon:function(e){
+  kechengCon: function (e) {
     console.log(e.currentTarget.dataset.inx.product_id)
     wx.navigateTo({
       url: '../kecen/kecen?lessonsId=' + e.currentTarget.dataset.inx.product_id,
     })
-    
+
   },
   //评价
-  evaluate:function(e){
+  evaluate: function (e) {
     console.log(e.currentTarget.dataset.inx)
     wx.navigateTo({
       url: '../evaluate/evaluate?id=' + e.currentTarget.dataset.inx,
@@ -50,13 +50,25 @@ Page({
   onLoad: function (options) {
     let that = this
     api._get("/api/v1/orders").then(data => {
-      that.setData({ orders: data.data, ImageHead: util.schoolPicture})
-      
+      that.setData({ orders: data.data, ImageHead: util.schoolPicture })
+
     })
     api._get("/api/v1/views?product_types=1,2").then(data => {
       console.log(data.data)
-      that.setData({ footprint: data.data})
+      that.setData({ footprint: data.data })
     })
+    wx.getSystemInfo({
+      success: function (res) {
+        let clientHeight = res.windowHeight,
+          clientWidth = res.windowWidth,
+          rpxR = 750 / clientWidth;
+        var calc = clientHeight * rpxR;
+        console.log(calc)
+        that.setData({
+          windowHeight: calc
+        });
+      }
+    });
   },
 
   /**
@@ -104,7 +116,7 @@ Page({
   onShow: function () {
     let that = this
     api._get("/api/v1/orders").then(data => {
-      that.setData({ orders: data.data, ImageHead: util.schoolPicture})
+      that.setData({ orders: data.data, ImageHead: util.schoolPicture })
     })
     api._get("/api/v1/views?product_types=1,2").then(data => {
       console.log(data.data)

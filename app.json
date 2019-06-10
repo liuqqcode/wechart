@@ -21,7 +21,8 @@
     "pages/evaluate/evaluate",
     "pages/Customer/Customer",
     "pages/HistoryMoney/HistoryMoney",
-    "pages/tuanGou/tuanGou"
+    "pages/tuanGou/tuanGou",
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",

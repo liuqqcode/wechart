@@ -59,10 +59,11 @@
         <image src='/images/icon/redbag.png'></image>
         <view>{{item.gift_packet_amount}}</view>
         <view>仅{{item.gift_packet_range}}km内有效</view>
-        <view class='star'>
-          <image src='/images/icon/star.png'></image>
-          <view>{{item.views}}</view>
-        </view>
+      </view>
+      <view class='star'>
+        <view>{{item.views}}</view>
+
+        <image src='/images/icon/star.png'></image>
       </view>
       <view class='clear'></view>
       <view class='group4'>
@@ -78,5 +79,5 @@
     </view>
     <view class='clear'></view>
   </view>
-
+  <view class='{{noMore}}'>没有更多了</view>
 </view>

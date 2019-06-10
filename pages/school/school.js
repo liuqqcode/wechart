@@ -67,7 +67,8 @@ Page({
     //是否收藏
     is_collected:false,
     //学校评论
-    schoolping:''
+    schoolping:[],
+    schoolpingNum:''
 
   },
   //打开客服
@@ -182,9 +183,10 @@ Page({
   },
   //分享给好友
   onShareAppMessage:function(){
+    var customer_id = wx.getStorageSync('customer_id')
     return{
       title: this.data.schoolName,
-      path: 'pages/school/school?id=' + this.data.schoolId
+      path: 'pages/school/school?id=' + this.data.schoolId + "&customer_id=" + customer_id
     }
   },
 
@@ -256,12 +258,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options)
     let that = this;
-    // console.log(app.globalData.UserType)
-    
+    var userType = wx.getStorageSync("userType")
+    if(userType == ''){
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    }
+
     //获取全局变量，如果是推客则显示客户录入按钮
-    if (app.globalData.UserType == 3){
+    if (userType == 3){
       that.setData({ kehuBtn:true})
     }else{
       that.setData({ kehuBtn:false})
@@ -288,18 +295,28 @@ Page({
       })
       
       console.log(data)
-    if (data.data.teachers != ''){
+    if (data.data.teachers != null){
       that.setData({
         teachNum: data.data.teachers.length, 
       })
     }else
-      if (data.data.videos != ''){
+      if(data.data.teachers == null){
         that.setData({
-          videosNum: data.data.videos.length,
+          teachNum:0
+        })
+      }
+    if (data.data.videos != null){
+      that.setData({
+        videosNum: data.data.videos.length,
+      })
+    }else
+      if(data.data.videos == null){
+        that.setData({
+          videosNum: 0
         })
       }
       
-      //学校是否收藏
+      //学校是否收藏,收藏为黄色星，未收藏为空星
       api._post("/api/v1/collections/verify",{
         product_type:3,
         product_id: this.data.schoolId
@@ -369,10 +386,31 @@ Page({
 
     //获取学校的评论
     api._get("/api/v1/comments/school/" + options.id).then(res => {
-      console.log(res)
-      that.setData({ schoolping:res.data})
+      that.data.schoolping.push(res.data[0])
+      that.setData({ 
+        schoolping: that.data.schoolping,
+        schoolpingNum:res.meta.total,
+      })
     })
 
+    //提交推客信息
+    api._post("/api/v1/twitters/fan/following", {
+      twitter_id:options.customer_id
+      }).then(res => {
+      console.log(res)
+    })
+
+
+  },
+  //获取全部的学校评论
+  LookAll:function(){
+    let that = this;
+    api._get("/api/v1/comments/school/" + that.data.schoolId).then(res => {
+      that.setData({
+        schoolping: res.data,
+        schoolpingNum: res.meta.total,
+      })
+    })
   },
   share: function () {
     var that = this
@@ -410,18 +448,17 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
-    // const that = this;
-    // wx.downloadFile({
-    //   url: that.data.mysrc,
-    //   success: function (sres) {
-    //     console.log(sres);
-    //     that.data.mysrc = sres.tempFilePath
-    //   }, fail: function (fres) {
-
-    //   }
-    // })
+  onShow: function (options) {
+    console.log(options)
+    let that = this;
+    var userType = wx.getStorageSync("userType")
+    console.log(userType)
+    //获取全局变量，如果是推客则显示客户录入按钮
+    if (userType == 3) {
+      that.setData({ kehuBtn: true })
+    } else {
+      that.setData({ kehuBtn: false })
+    }
   },
 
   /**

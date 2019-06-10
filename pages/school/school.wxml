@@ -137,7 +137,7 @@
     </view>
   </view>
   <view class='pingjia'>
-    <view class='pingjiahead'>用户评价（91）</view>
+    <view class='pingjiahead'>用户评价（{{schoolpingNum}}）</view>
     <view class='pingjiaCon' wx:for="{{schoolping}}" wx:key="index" data-inx="{{index}}">
       <view class='pjLeft'>
         <image src='{{item.customer_avatar_url}}'></image>
@@ -152,8 +152,8 @@
 
         </view>
         <view class='clear'></view>
-        <view class='pjtext {{webkit}}'>{{item.content}}</view>
-        <view bindtap='pjqw' class='{{pjqw}}'>全文</view>
+        <view class='pjtext {{ index == 0 ?  webkit : ""}}'>{{item.content}}</view>
+        <view bindtap='pjqw' wx:if="{{index == 0}}" class='{{pjqw}}'>全文</view>
         <view class='pjImg'>
           <image src='{{item.images}}'></image>
         </view>
@@ -161,8 +161,8 @@
     </view>
     <view class='clear'></view>
     <view class='pjBot'>
-      <view>查看全部用户评价</view>
-      <view>共91条</view>
+      <view bindtap='LookAll'>查看全部用户评价</view>
+      <view>共{{schoolpingNum}}条</view>
     </view>
     <view class='clear'></view>
   </view>

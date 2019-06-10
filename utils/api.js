@@ -1,5 +1,6 @@
 const baseUrl = 'https://yikeyingshi.com';
 let jwtToken = ''; 
+let userType = ''
 
 const http = ({ url = '', param = {}, ...other } = {}) => {
   wx.showLoading({
@@ -9,10 +10,7 @@ const http = ({ url = '', param = {}, ...other } = {}) => {
   let timeStart = Date.now();
 
   var value = wx.getStorageSync('jwtToken')
-  if (value == '') {
-    // console.log(value)
 
-  }
   return new Promise((resolve, reject) => {
     wx.request({
       url: getUrl(url),

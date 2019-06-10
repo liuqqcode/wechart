@@ -1,0 +1,18 @@
+<view>
+  <button
+    class='userBut'
+    wx:if="{{canIUse}}"
+    open-type="getUserInfo"
+    bindgetuserinfo="bindGetUserInfo"
+    type='primary'
+  >
+    授权登录
+  </button>
+  <button
+    wx:else
+    bindtap='index'
+    type='primary'
+  >
+    回到首页
+  </button>
+</view>
