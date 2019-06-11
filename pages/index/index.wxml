@@ -30,7 +30,7 @@
             <swiper-item item-id="{{index}}" data-item-id="{{index}}" bindtap='clickChange'>  
               <view class='li'>
                 <!-- <view class='li1 {{item}} {{currentItemId == index ? "selected" : ""}}' ></view> -->
-                <image class='li1 {{item}} {{currentItemId == index ? "selected" : ""}}'  src='{{schoolPicture}}{{item}}'></image>
+                <image class='li1 {{item}} {{currentItemId == index ? "selected" : ""}}'  src='{{banner}}{{bannerCon}}{{item}}'></image>
               </view> 
             </swiper-item>  
           </block>
@@ -71,7 +71,7 @@
         <view>￥{{item.lowest_lesson_price_tag}}</view>
         <view></view>
         <view>{{item.lowest_lesson_price_discount}}折</view>
-        <view>5km</view>
+        <view>{{item.distance}}km</view>
       </view>
     </view>
     <view class='schoolRight'>

@@ -52,20 +52,7 @@ Page({
                 console.log(loginRes)
                 // that.setData({ UserType: loginRes.data.customer_type})
                 console.log(loginRes.data.customer_type)
-                // switch (3) {
-                //   case 1:
-                //     that.setData({ geren: true, shangjia: false, daili: false, quyu: false });
-                //     break;
-                //   case 2:
-                //     that.setData({ geren: false, shangjia: true, daili: false, quyu: false });
-                //     break;
-                //   case 3:
-                //     that.setData({ geren: false, shangjia: false, daili: true, quyu: false });
-                //     break;
-                //   case 4:
-                //     that.setData({ geren: false, shangjia: false, daili: false, quyu: true });
-                //     break;
-                // }
+
               }
             })
           }

@@ -12,7 +12,7 @@ Page({
     school:'',
     schoolId:'',
     //用户输入手机号
-    mobile:'',
+    mobile: '', 
     //商户ID
     merchant:'',
 

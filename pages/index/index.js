@@ -30,14 +30,17 @@ Page({
       '升学'
     ],
     backClass: '',
-    currentItemId: 2,
+    currentItemId: 1,
 
     //红包
     group3: "none",
     //更多学校
     next:'',
     page:'',
-    noMore:'none'
+    noMore:'none',
+    //位置
+    Mylatitude:'',
+    Mylongitude:''
   },
 
   swiperChange: function (e) {
@@ -88,11 +91,17 @@ Page({
     
     var that = this;
 
+    wx.getLocation({
+      type:'wgs84',
+      success: function(res) {
+        that.setData({ Mylatitude: res.latitude, Mylongitude: res.longitude})
+      },
+    })
 
     //获取首页轮播图
 
     api._get("/api/v1/platform/banners").then(res => {
-      that.setData({backClass:res.data.banners.images})
+      that.setData({ banner:baiduak.banner,bannerCon:res.data.banners.path + '/',backClass:res.data.banners.images})
     })
     //获取天气以及位置信息
     var BMap = new bmap.BMapWX({
@@ -130,11 +139,32 @@ Page({
       if(data.links.next == null){
         that.setData({ noMore: "noMore"})
       }
+      //计算距离我与学校的
+      that.data.schoolList.forEach(function(item,index){
+        console.log(that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude))
+        item.distance = that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude)
+        console.log(that.data.schoolList)
+        that.setData({
+          schoolList:that.data.schoolList
+        })
+      })
     }).catch(e => {
       console.log(e)
     })
   },
 
+  getDistance: function (lat1, lng1, lat2, lng2) {
+    lat1 = lat1 || 0;
+    lng1 = lng1 || 0;
+    lat2 = lat2 || 0;
+    lng2 = lng2 || 0;
+    var rad1 = lat1 * Math.PI / 180.0;
+    var rad2 = lat2 * Math.PI / 180.0;
+    var a = rad1 - rad2;
+    var b = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
+    var r = 6378137;
+    return (r * 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(rad1) * Math.cos(rad2) * Math.pow(Math.sin(b / 2), 2)))).toFixed(0)/1000
+  },
   /**
    * 生命周期函数--监听页面显示
    */

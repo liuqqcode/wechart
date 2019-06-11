@@ -1,7 +1,8 @@
 
 //公用接口
 module.exports = {
-  ak: "tVNWtyN7EKSQFse1RWHxqbX3gCGTiGzl",
+  ak: "c2iSnw7LGNayfVGejyNSbCuHpEOZUxOr",
   schoolPicture:'https://www.yikeyingshi.com/merchant_uploads/',
-  schoolListApi: 'https://yikeyingshi.com/api/v1/schools'
+  schoolListApi: 'https://yikeyingshi.com/api/v1/schools',
+  banner:'https://www.yikeyingshi.com/'
 }
