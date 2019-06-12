@@ -1,10 +1,10 @@
 <view>
   <view class='head'> 
-    <view class='headicon' style='background-image: url("https://yikeyingshi.com/admin_uploads/images/back.png")'>
+    <view class='headicon'  style='background-image: url("https://yikeyingshi.com/admin_uploads/images/back.png")'>
       <image></image>
       <image></image>
       <image></image>
-      <image src='/images/image/header.png'></image>
+      <image class='headerImg' src='{{avatarUrl}}'></image>
     </view>
     <view class='clear'></view>
     <view class='headBot'>
@@ -12,12 +12,12 @@
     </view>
   </view>
   <view class='clear'></view>
-  <view class='conList'>
+  <view class='conList' wx:for="{{userCon}}" wx:key="index">
     <view class='conLeft'>
-      <view class='name'>张三</view>
-      <view class='phoneNum'>13215604160</view>
+      <view class='name'>{{item.name}}</view>
+      <view class='phoneNum'>{{item.phone}}</view>
       <view class='clear'></view>
-      <view class='laiyuan'>来源：代理录入</view>
+      <view class='laiyuan' wx:if="{{item.source == 1 ? true : false}}">来源：代理录入</view>
       <view class='time'>剩余24小时不点拒绝，默认同意</view>
     </view>
     <view class='conRight'>
@@ -26,32 +26,5 @@
     </view>
     <view class='clear'></view>
   </view>
-  <view class='conList'>
-    <view class='conLeft'>
-      <view class='name'>张三</view>
-      <view class='phoneNum'>13215604160</view>
-      <view class='clear'></view>
-      <view class='laiyuan'>来源：代理录入</view>
-      <view class='time'>剩余24小时不点拒绝，默认同意</view>
-    </view>
-    <view class='conRight'>
-      <view class='yes'>同意</view>
-      <view class='no'>拒绝</view>
-    </view>
-    <view class='clear'></view>
-  </view>
-  <view class='conList'>
-    <view class='conLeft'>
-      <view class='name'>张三</view>
-      <view class='phoneNum'>13215604160</view>
-      <view class='clear'></view>
-      <view class='laiyuan'>来源：代理录入</view>
-      <view class='time'>剩余24小时不点拒绝，默认同意</view>
-    </view>
-    <view class='conRight'>
-      <view class='yes'>同意</view>
-      <view class='no'>拒绝</view>
-    </view>
-    <view class='clear'></view>
-  </view>    
+   
 </view>

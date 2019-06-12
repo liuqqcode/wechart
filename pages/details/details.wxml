@@ -1,16 +1,16 @@
 <view>
   <view class='head'> 
-    <view class='headicon'>
+    <view class='headicon'  style='background-image: url("https://yikeyingshi.com/admin_uploads/images/back.png")'>
       <image></image>
-      <image src='/images/icon/message.png'></image>
       <image></image>
-      <image src='/images/image/header.png'></image>
+      <image></image>
+      <image class='headerImg' src='{{avatarUrl}}'></image>
     </view>
     <view class='clear'></view>
     <view class='headBot'>
 
     </view>
-  </view>  
+  </view>
   <view class='tuikeHead'>
     <view>
       <view bindtap='activeredbag' class='{{tkActiveRedbag}}'>推客红包</view>

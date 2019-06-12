@@ -8,10 +8,12 @@ Page({
    */
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    
+    Publishercustomer_id:'',
+    schoolId:''
   },
   //点击授权登录按钮
   bindGetUserInfo(e) {
+    let that = this
     this.loginWechat();
     // console.log(e.detail.userInfo)
     // this.setData({ userInfo: e.detail.userInfo, canIUse:false})
@@ -52,20 +54,7 @@ Page({
                 console.log(loginRes)
                 // that.setData({ UserType: loginRes.data.customer_type})
                 console.log(loginRes.data.customer_type)
-                // switch (3) {
-                //   case 1:
-                //     that.setData({ geren: true, shangjia: false, daili: false, quyu: false });
-                //     break;
-                //   case 2:
-                //     that.setData({ geren: false, shangjia: true, daili: false, quyu: false });
-                //     break;
-                //   case 3:
-                //     that.setData({ geren: false, shangjia: false, daili: true, quyu: false });
-                //     break;
-                //   case 4:
-                //     that.setData({ geren: false, shangjia: false, daili: false, quyu: true });
-                //     break;
-                // }
+
               }
             })
           }
@@ -75,21 +64,21 @@ Page({
     })
   },
   index:function(){
-    console.log("cheng")
+    let that = this;
     wx.navigateBack({
-      delta:1
+      delta: 1,
     })
-    wx.navigateTo({
-      url: '/pages/index/index',
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
-    })
+
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this;
+    that.setData({
+      Publishercustomer_id: options.customer_id,
+      schoolId:options.id
+    })
     this.loginWechat();
     wx.getSetting({
       success(res) {

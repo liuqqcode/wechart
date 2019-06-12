@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    activeBac: 0
+    activeBac: 0,
+    avatarUrl:''
   },
   active:function(e){
     this.setData({ activeBac: e.currentTarget.dataset.idx})
@@ -14,7 +15,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let that = this;
+    var headerImg = wx.getStorageSync('avatarUrl')
+    that.setData({ avatarUrl: headerImg})
   },
 
   /**

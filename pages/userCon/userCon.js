@@ -1,17 +1,28 @@
+var util = require('../../utils/util.js')
+const api = require('../../utils/api.js')
+var app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    
+    avatarUrl: '',
+    userCon:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    let that = this;
+    var headerImg = wx.getStorageSync('avatarUrl')
+    that.setData({ avatarUrl: headerImg })
+    api._get("/api/v1/merchants/clients").then(res => {
+      console.log(res)
+      that.setData({userCon:res.data})
+    })
   },
 
   /**

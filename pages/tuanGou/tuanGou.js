@@ -49,23 +49,27 @@ Page({
   },
   //立即抢购
   qiangBtn: function () {
-    let that = this
-    wx.showModal({
-      title: '是否支付',
-      content: '是否支付',
-      success(data) {
 
-      },
-      fail(data) {
-        api._post("/api/v1/orders", {
-          school: that.data.lessons.school_id,
-          merchant: that.data.lessons.merchant.id,
-          product_type: 2,
-          product_id: that.data.lessons.id,
-        }).then(res => {
-          console.log(res)
-        })
-      }
+    let that = this
+    api._post("/api/v1/orders", {
+      school: that.data.lessons.school_id,
+      merchant: that.data.lessons.merchant.id,
+      product_type: 2,
+      product_id: that.data.lessons.id,
+    }).then(res => {
+      console.log(res.payment)
+      wx.requestPayment({
+        timeStamp: res.payment.timeStamp,
+        nonceStr: res.payment.nonceStr,
+        package: res.payment.package,
+        signType: res.payment.signType,
+        paySign: res.payment.paySign,
+        success(data) {
+          wx.navigateBack({
+            delta: 1,
+          })
+        }
+      })
     })
   },
 

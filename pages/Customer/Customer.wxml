@@ -1,5 +1,5 @@
 <view>
-  <view class='head'> 
+  <!-- <view class='head'> 
     <view class='headicon'>
       <image></image>
       <image src='/images/icon/message.png'></image>
@@ -11,7 +11,7 @@
 
     </view>
   </view>
-  <view class='clear'></view>
+  <view class='clear'></view> -->
 
   <view class='form'>
 

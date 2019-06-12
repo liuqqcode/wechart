@@ -1,10 +1,10 @@
 <view>
   <view class='commentList' wx:for="{{comment}}" wx:key="index">
     <view class='comLeft'>
-      <image src='/images/image/header.png'></image>
+      <image src='{{item.customer_avatar_url}}'></image>
     </view>
     <view class='comRight'>
-      <view class='name'>我的小宝贝</view>
+      <view class='name'>{{item.customer_nickname}}</view>
       <view class='time'>{{item.created_at}}</view>
       <view class='clear'></view>
       <view class='fen'>
@@ -13,8 +13,8 @@
       </view>
       <view class='clear'></view>
       <view class='commentText'>{{item.content}}</view>
-      <view class='commentImg'>
-        <image src='{{ImgHead}}{{images}}'></image>
+      <view class='{{item.images == null ? "none" : "commentImg"}}' >
+        <image wx:for="{{item.images}}" wx:key="index" src='{{item}}'></image>
 
       </view>
       <view class='clear'></view>

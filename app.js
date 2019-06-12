@@ -29,6 +29,7 @@ App({
     token: '',
     UserType: 1,
     customer_id:'',
-    options:''
+    options:'',
+    avatarUrl:''
   }
 })

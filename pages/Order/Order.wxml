@@ -13,19 +13,26 @@
     <!--全部订单-->
     <swiper-item>
       <view class='ddlist' wx:for="{{orders}}" wx:key="index">
-        <view class='ddimg' bindtap='kechengContent' data-inx="{{item.id}}">
+        <view class='ddimg' bindtap='kechengContent' data-inx="{{item}}">
           <image src='{{ImageHead}}{{item.product_cover}}'></image>
         </view>
-        <view class='ddtext' bindtap='kechengContent' data-inx="{{item.id}}">
+        <view class='ddtext' bindtap='kechengContent' data-inx="{{item}}">
           <view>{{item.product_name}}</view>
           <view>截止时间：{{item.product_end_time}}</view>
           <view>数量：{{item.count}}</view>
           <view>总价：{{item.total_amount}}</view>
         </view>
-        <view class='ddzt'>
+        <view class='ddzt' wx:if="{{item.statement == 1 ? true : false }}">
+          <view>待支付</view>
+          <view bindtap='wechatPat' data-inx="{{item}}">付款</view>
+        </view>
+        <view class='ddzt' wx:if="{{item.statement == 2 ? true : false }}">
           <view>待评价</view>
           <view bindtap='evaluate' data-inx="{{item.id}}">评价</view>
         </view>
+        <view class='ddzt' wx:if="{{item.statement == 6 ? true : false }}">
+          <view>已评价</view>
+        </view>        
       </view>
     </swiper-item>
 
@@ -33,16 +40,16 @@
     <!--待付款-->
     <swiper-item>
       <view class='ddlist' wx:for="{{orders}}" wx:key="index" wx:if="{{item.statement == 1}}">
-        <view class='ddimg' bindtap='kechengContent' data-inx="{{item.id}}">
+        <view class='ddimg' bindtap='kechengContent' data-inx="{{item}}">
           <image src='{{ImageHead}}{{item.product_cover}}'></image>
         </view>
-        <view class='ddtext' bindtap='kechengContent' data-inx="{{item.id}}">
+        <view class='ddtext' bindtap='kechengContent' data-inx="{{item}}">
           <view>{{item.product_name}}</view>
           <view>截止时间：{{item.product_end_time}}</view>
           <view>数量：{{item.count}}</view>
           <view>总价：{{item.total_amount}}</view>
         </view>
-        <view class='dfk'>
+        <view class='dfk' bindtap='wechatPat' data-inx='{{item}}'>
           <view>付款</view>
         </view>
       </view>
@@ -63,7 +70,7 @@
             <view>数量：{{item.product_count}}</view>
             <view>总价：{{item.product_total_price}}</view>
           </view>
-          <view class='zjzt'> 
+          <view class='zjzt' bindtap='wechatPat' data-inx='{{item}}'> 
             <view>付款</view>
           </view>
         </view>
@@ -74,10 +81,10 @@
     <!--待评价-->
     <swiper-item>
       <view class='ddlist' wx:for="{{orders}}" wx:key="index" wx:if="{{item.statement == 2}}">
-        <view class='ddimg' bindtap='kechengContent' data-inx="{{item.id}}">
+        <view class='ddimg' bindtap='kechengContent' data-inx="{{item}}">
           <image src='{{ImageHead}}{{item.product_cover}}'></image>
         </view>
-        <view class='ddtext' bindtap='kechengContent' data-inx="{{item.id}}">
+        <view class='ddtext' bindtap='kechengContent' data-inx="{{item}}">
           <view>{{item.product_name}}</view>
           <view>截止时间：{{item.product_end_time}}</view>
           <view>数量：{{item.count}}</view>

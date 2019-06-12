@@ -1,5 +1,6 @@
 // pages/My/My.js
-
+var util = require('../../utils/util.js')
+const api = require('../../utils/api.js')
 var app = getApp();
 
 
@@ -17,6 +18,8 @@ Page({
     geren:true,
     quyu:false,
     // UserType:1,
+    account:'',
+    team:''
   },
   //收藏
   Collection:function(){
@@ -93,6 +96,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this;
     this.loginWechat();
     wx.getSetting({
       success(res) {
@@ -101,6 +105,16 @@ Page({
 
         }
       }
+    })
+    api._get("/api/v1/twitters/account").then(res => {
+      that.setData({
+        account:res.data
+      })
+    })
+    api._get("/api/v1/twitters/team").then(res => {
+      that.setData({
+        team:res.data
+      })
     })
   },
 
@@ -111,10 +125,10 @@ Page({
         wx.getUserInfo({
           withCredentials: true,
           success(res) {
+            wx.setStorageSync("avatarUrl", res.userInfo.avatarUrl)
+            app.globalData.avatarUrl = res.userInfo.avatarUrl
+
             that.setData({ userInfo: res.userInfo, canIUse: false })
-            console.log(that.data.userInfo)
-            console.log(res)
-            console.log(data)
             wx.request({
               url: 'https://yikeyingshi.com/api/auth/login/',
               method: 'POST',
@@ -125,7 +139,7 @@ Page({
                 code: encodeURI(data.code)
               },
               success(loginRes) {
-
+                
                 wx.setStorageSync("jwtToken", loginRes.data.token_type + " " + loginRes.data.access_token)
                 wx.setStorageSync("userType", loginRes.data.customer_type)
                 wx.setStorageSync("customer_id", loginRes.data.customer_id)
@@ -136,10 +150,9 @@ Page({
                 app.globalData.UserType = loginRes.data.customer_type
                 app.globalData.customer_id = loginRes.data.customer_id
                 
-                console.log(loginRes)
                 // that.setData({ UserType: loginRes.data.customer_type})
                 console.log(loginRes.data.customer_type)
-                switch (3){
+                switch (loginRes.data.customer_type){
                   case 1:
                     that.setData({ geren: true, shangjia: false, daili: false, quyu: false });
                     break;
@@ -165,8 +178,7 @@ Page({
   //点击授权登录按钮
   bindGetUserInfo(e) {
     this.loginWechat();
-    // console.log(e.detail.userInfo)
-    // this.setData({ userInfo: e.detail.userInfo, canIUse:false})
+
   },
 
   /**

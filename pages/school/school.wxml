@@ -136,6 +136,8 @@
       </swiper>
     </view>
   </view>
+  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
+
   <view class='pingjia'>
     <view class='pingjiahead'>用户评价（{{schoolpingNum}}）</view>
     <view class='pingjiaCon' wx:for="{{schoolping}}" wx:key="index" data-inx="{{index}}">
@@ -154,10 +156,12 @@
         <view class='clear'></view>
         <view class='pjtext {{ index == 0 ?  webkit : ""}}'>{{item.content}}</view>
         <view bindtap='pjqw' wx:if="{{index == 0}}" class='{{pjqw}}'>全文</view>
-        <view class='pjImg'>
-          <image src='{{item.images}}'></image>
+        <view class='pjImg' wx:for="{{item.images}}" wx:key="index">
+          <image src='{{item}}'></image>
         </view>
+        <view class='clear'></view>
       </view>
+      <view class='clear'></view>
     </view>
     <view class='clear'></view>
     <view class='pjBot'>

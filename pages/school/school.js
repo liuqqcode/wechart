@@ -12,7 +12,7 @@ Page({
     school:'',
     schoolId:'',
     //用户输入手机号
-    mobile:'',
+    mobile: '', 
     //商户ID
     merchant:'',
 
@@ -70,7 +70,8 @@ Page({
     schoolping:[],
     schoolpingNum:'',
     //查看全部评价
-    Reviews:true
+    Reviews:true,
+    Publishercustomer_id:''
 
   },
   //打开客服
@@ -84,6 +85,29 @@ Page({
     let that = this;
     wx.makePhoneCall({
       phoneNumber: that.data.telephone,
+    })
+  },
+  getPhoneNumber:function(e){
+    var that = this
+    console.log(e.detail.errMsg)
+    console.log(e.detail.iv)
+    console.log(e.detail.encryptedData)
+    wx.login({
+      success(data) {
+        wx.getUserInfo({
+          withCredentials: true,
+          success(res) {
+            api._post("/api/v1/customer/phone-number", {
+              code: encodeURI(data.code),
+              encryptedData: encodeURIComponent(e.detail.encryptedData),
+              iv: encodeURI(e.detail.iv)
+            }).then(res => {
+              console.log(res)
+            })
+          }
+        })
+
+      }
     })
   },
 
@@ -188,7 +212,7 @@ Page({
     var customer_id = wx.getStorageSync('customer_id')
     return{
       title: this.data.schoolName,
-      path: 'pages/school/school?id=' + this.data.schoolId + "&customer_id=" + customer_id
+      path: 'pages/school/school?id=' + this.data.schoolId + "&customer_id=" + that.data.Publishercustomer_id
     }
   },
 
@@ -260,12 +284,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+
     let that = this;
+
+    that.setData({
+      Publishercustomer_id: options.customer_id
+    })
     var userType = wx.getStorageSync("userType")
     if(userType == ''){
       wx.navigateTo({
-        url: '/pages/login/login',
+        url: '/pages/login/login?id=' + options.id +'&customer_id=' + options.customer_id,
       })
     }
 
@@ -393,15 +421,15 @@ Page({
         schoolping: that.data.schoolping,
         schoolpingNum:res.meta.total,
       })
+      console.log(res.data)
     })
 
     //提交推客信息
     api._post("/api/v1/twitters/fan/following", {
-      twitter_id:options.customer_id
-      }).then(res => {
-      console.log(res)
-    })
+      twitter_id: options.customer_id
+    }).then(res => {
 
+    })
 
   },
   //获取全部的学校评论
@@ -448,12 +476,22 @@ Page({
 
   },
 
+  postcustomer_id:function(){
+    let that = this
+
+    //提交推客信息
+    api._post("/api/v1/twitters/fan/following", {
+      twitter_id: that.data.Publishercustomer_id
+    }).then(res => {
+
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function (options) {
-    console.log(options)
+  onShow: function () {
     let that = this;
+    that.postcustomer_id()
     var userType = wx.getStorageSync("userType")
     console.log(userType)
     //获取全局变量，如果是推客则显示客户录入按钮

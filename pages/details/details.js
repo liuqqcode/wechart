@@ -1,3 +1,7 @@
+var util = require('../../utils/util.js')
+const api = require('../../utils/api.js')
+var app = getApp();
+
 Page({
 
   /**
@@ -7,7 +11,9 @@ Page({
     redbag:'redbag',
     tkActiveRedbag:'tkActive',
     tkActiveReturn:'',
-    tkReturn:'tkReturnHide'
+    tkReturn:'tkReturnHide',
+    avatarUrl: ''
+
   },
   //点击推客返点
   activeReturn:function(){
@@ -21,7 +27,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    let that = this
+    var headerImg = wx.getStorageSync('avatarUrl')
+    that.setData({ avatarUrl: headerImg })
+
+    api._get("/api/v1/twitters/packet-detail").then(res => {
+      console.log(res)
+    })
   },
 
   /**

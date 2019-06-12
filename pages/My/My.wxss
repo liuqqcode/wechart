@@ -149,7 +149,7 @@ button::after{
 .contentList{
   margin: 30rpx auto;
 }
-.contentList>view{
+.contentList>view:nth-child(1),.contentList>view:nth-child(2),.contentList>view:nth-child(3){
   float: left;
 }
 .contentList>view:nth-child(1)>image{
@@ -199,4 +199,7 @@ button::after{
   line-height: 1.2;
   margin-left: 100rpx;
   margin-top: 30rpx;
+}
+.itemHead{
+  border-radius: 50%;
 }

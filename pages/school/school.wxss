@@ -268,7 +268,9 @@ swiper-item:nth-child(1)>image{
   font-size: 35rpx;
 }
 .pingjiaCon{
+  padding: 30rpx 0;
   margin: 20rpx 0;
+  border-bottom: 1rpx solid gainsboro;
 }
 .pjLeft{
   float: left;
@@ -281,6 +283,7 @@ swiper-item:nth-child(1)>image{
 .pjLeft>image{
   width: 90rpx;
   height: 90rpx;
+  border-radius: 50%;
 }
 .pjname{
   font-size: 30rpx;
@@ -323,6 +326,7 @@ swiper-item:nth-child(1)>image{
   float: left;
   width: 175rpx;
   height: 175rpx;
+  margin: 10rpx;
 }
 .pjqw{
   margin: 20rpx 0;
@@ -338,6 +342,7 @@ swiper-item:nth-child(1)>image{
 .pjBot{
   margin: 30rpx;
   margin-bottom: 150rpx;
+  height: 1rpx;
 }
 .pjBot>view:nth-child(1){
   float: left;

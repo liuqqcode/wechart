@@ -16,7 +16,8 @@ Page({
     starNum: 4,
     details:'',
     ImgHead:'',
-    pinglun:''
+    pinglun:'',
+    imagesList:[]
   },
   //点赞星星
   star:function(e){
@@ -40,6 +41,8 @@ Page({
       uploaderList: nowList,
       showUpload: true
     })
+    that.uploadImg(that.data.uploaderList)
+
   },
   //展示图片
   showImg: function (e) {
@@ -49,8 +52,32 @@ Page({
       current: that.data.uploaderList[e.currentTarget.dataset.index]
     })
   },
+  uploadImg:function(res){
+    let that = this;
+    this.data.uploaderList.forEach(function (path){
+      wx.uploadFile({
+        url: 'https://yikeyingshi.com/api/v1/images/uploads', //仅为示例，非真实的接口地址
+        filePath: path,
+        name: 'file',
+        header: {
+          'Authorization': wx.getStorageSync('jwtToken')
+        },
+        formData: {
+          method: 'POST'
+        },
+        success(res){
+          var data = JSON.parse(res.data)
+          console.log(data.images[0])
+          that.data.imagesList.push(data.images[0])
+        }
+      })
+    })
+    
+  },
+
   //上传图片
   upload: function (e) {
+    console.log(e)
     var that = this;
     
     wx.chooseImage({
@@ -71,6 +98,7 @@ Page({
           uploaderList: uploaderList,
           uploaderNum: uploaderList.length,
         })
+        that.uploadImg(that.data.uploaderList)
       }
     })
   },
@@ -79,10 +107,8 @@ Page({
    */
   onLoad: function (options) {
 
-    console.log(options)
     let that = this;
     api._get("/api/v1/orders/" + options.id).then(data => {
-      console.log(data)
       that.setData({ details: data.data, ImgHead: util.schoolPicture })
 
     })
@@ -90,9 +116,6 @@ Page({
   //提交
   submitBtn:function(){
     let that = this;
-    console.log(this.data.pinglun)
-    console.log(this.data.uploaderList)
-    console.log(this.data.starNum)
     if (that.data.pinglun == ''){
       wx.showToast({
         title: '请输入评论',
@@ -103,9 +126,8 @@ Page({
     }else{
       let mun = 1;
       that.setData({
-        starNum : that.data.starNum + mun
+        starNum: parseInt(that.data.starNum)  + mun
       })
-      that.data.starNum = that.data.starNum + 1;
       api._post("/api/v1/comments",{
         merchant_id: that.data.details.merchant_id,
         school_id: that.data.details.school_id,
@@ -113,10 +135,12 @@ Page({
         product_id: that.data.details.product_id,
         rate: that.data.starNum,
         content: that.data.pinglun,
-        images: that.data.uploaderList,
+        images: that.data.imagesList,
         order_id: that.data.details.id
       }).then( res => {
-        console.log(res)
+        wx.navigateBack({
+          delta: 1,
+        })
       })
     }
   },

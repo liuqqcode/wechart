@@ -25,16 +25,54 @@ Page({
   },
   //跳转订单详情
   kechengContent: function (e) {
-    wx.navigateTo({
-      url: '../kecheng/kecheng?id=' + e.currentTarget.dataset.inx,
+    if (e.currentTarget.dataset.inx.product_type == 1){
+      wx.navigateTo({
+        url: '../kecheng/kecheng?id=' + e.currentTarget.dataset.inx.id,
+      })
+    } else if (e.currentTarget.dataset.inx.product_type == 2){
+      wx.navigateTo({
+        url: '../ tuanGou / tuanGou ? packagesId =' + e.currentTarget.dataset.inx.id,
+      })
+    }
+
+  },
+  //付款
+  wechatPat:function(e){
+    let that = this
+    api._post("/api/v1/orders", {
+      school: e.currentTarget.dataset.inx.school_id,
+      merchant: e.currentTarget.dataset.inx.merchant_id,
+      product_type: e.currentTarget.dataset.inx.product_type,
+      product_id: e.currentTarget.dataset.inx.product_id,
+    }).then(res => {
+      console.log(res.payment)
+      wx.requestPayment({
+        timeStamp: res.payment.timeStamp,
+        nonceStr: res.payment.nonceStr,
+        package: res.payment.package,
+        signType: res.payment.signType,
+        paySign: res.payment.paySign,
+        success(data) {
+          wx.navigateBack({
+            delta: 1,
+          })
+        }
+      })
     })
   },
   //足迹跳转课程详情
   kechengCon: function (e) {
     console.log(e.currentTarget.dataset.inx.product_id)
-    wx.navigateTo({
-      url: '../kecen/kecen?lessonsId=' + e.currentTarget.dataset.inx.product_id,
-    })
+    if (e.currentTarget.dataset.inx.product_type == 1){
+      wx.navigateTo({
+        url: '../kecen/kecen?lessonsId=' + e.currentTarget.dataset.inx.product_id,
+      })
+    } else if (e.currentTarget.dataset.inx.product_type == 2){
+      wx.navigateTo({
+        url: '../tuanGou/tuanGou?packagesId=' + e.currentTarget.dataset.inx.product_id,
+      })
+    }
+
 
   },
   //评价
@@ -50,11 +88,11 @@ Page({
   onLoad: function (options) {
     let that = this
     api._get("/api/v1/orders").then(data => {
+      console.log(data)
       that.setData({ orders: data.data, ImageHead: util.schoolPicture })
-
     })
     api._get("/api/v1/views?product_types=1,2").then(data => {
-      console.log(data.data)
+      console.log(data)
       that.setData({ footprint: data.data })
     })
     wx.getSystemInfo({

@@ -74,19 +74,19 @@
         <view class='teamIcon'>
           <image src='/images/icon/team.png'></image>
           <view>推广的人数</view>
-          <view>65</view>
+          <view>{{account.shared}}</view>
         </view>
         <view class='teamMoney'>
-          <view>0</view>
+          <view>{{account.today_amount}}</view>
           <view>今日（元）</view>
-          <view>0</view>
+          <view>{{account.month_amount}}</view>
           <view>本月（元）</view>
         </view>
         <view class='teamVi'>
           <view bindtap='tixian'>提现</view>
           <view bindtap='Todetails'>明细</view>
           <view class='clear'></view>
-          <view>45</view>
+          <view>{{account.balance}}</view>
           <view>积累（元）</view>
         </view>
       </view>
@@ -94,32 +94,19 @@
   </view>
   <view class='clear'></view>
   <view wx:if="{{daili}}" class='content'>
-    <view class='contentList'>
+    <view class='contentList' wx:for="{{team}}" wx:key="index">
       <view>
-        <image src='/images/image/header.png'></image>
+        <image class='itemHead' src='{{item.avatar_url}}'></image>
       </view>
       <view>
-        <view>青柠味的小兔</view>
+        <view>{{item.nickname}}</view>
         <image src='/images/icon/team2.png'></image>
-        <view>5</view>
+        <view>{{item.members}}</view>
         <view class='clear'></view>
-        <view>转发了50次</view>
+        <view>转发了{{item.shared_times}}次</view>
       </view>
-      <view>12.3元</view>
+      <view>{{item.balance}}元</view>
+      <view class='clear'></view>
     </view>
-    <view class='clear'></view>
-    <view class='contentList'>
-      <view>
-        <image src='/images/image/header.png'></image>
-      </view>
-      <view>
-        <view>青柠味的小兔</view>
-        <image src='/images/icon/team2.png'></image>
-        <view>5</view>
-        <view class='clear'></view>
-        <view>转发了50次</view>
-      </view>
-      <view>12.3元</view>
-    </view>    
   </view>
 </view>
