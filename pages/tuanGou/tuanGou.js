@@ -79,7 +79,7 @@ Page({
 
     api._post("/api/v1/collections", {
       school: this.data.lessons.school_id,
-      merchant: this.data.lessons.merchant.id,
+      merchant: this.data.lessons.merchant_id,
       product_type: 2,
       product_id: this.data.lessons.id,
       product_name: this.data.lessons.name,

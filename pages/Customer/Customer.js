@@ -61,6 +61,16 @@ Page({
         title: '提交成功',
         content: '',
       })
+      wx.showToast({
+        title: '提交成功',
+        icon: 'none',
+        image: '',
+        duration: 0,
+        mask: true,
+        success: function(res) {},
+        fail: function(res) {},
+        complete: function(res) {},
+      })
     })
   },
   /**
