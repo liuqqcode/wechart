@@ -4,7 +4,7 @@
     <view class='group1Con'>
       <view class='group1Left'>
         <view>{{schoolName}}</view>
-        <view>(九江校区）</view>
+        <!-- <view>(九江校区）</view> -->
         <block wx:for="{{rate}}" wx:key="index" >
           <image  src='{{greenStar}}'></image>
         </block>

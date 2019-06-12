@@ -17,6 +17,7 @@ Page({
     schoolList:[],
     schoolPicture: baiduak.schoolPicture,
     schoolListApi: baiduak.schoolListApi,
+    banner:'',
     imgUrls:[
       '/images/image/banner.png',
       '/images/image/banner.png',
@@ -92,7 +93,8 @@ Page({
     //获取首页轮播图
 
     api._get("/api/v1/platform/banners").then(res => {
-      that.setData({backClass:res.data.banners.images})
+
+      that.setData({ banner:baiduak.banner + res.data.banners.path + '/',backClass:res.data.banners.images})
     })
     //获取天气以及位置信息
     var BMap = new bmap.BMapWX({
