@@ -205,6 +205,8 @@ button::after{
 }
 .myschool{
   margin-left: 60rpx;
+  font-size: 40rpx;
+  font-weight: 600
 }
 .schoolList{
   margin: 30rpx 60rpx;

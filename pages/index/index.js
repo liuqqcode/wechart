@@ -32,7 +32,7 @@ Page({
     Mylatitude:'',
     Mylongitude:'',
     schoolFenlei:'',
-    avatarUrl: 'https://yikeyingshi.com/admin_uploads/images/back.png',
+    avatarUrl: '/images/image/header.png',
     swiperSchool:''
 
   },
@@ -105,8 +105,11 @@ Page({
     
     var that = this;
     //首页头像
-    var headerImg = wx.getStorageSync('avatarUrl')
-    that.setData({ avatarUrl: headerImg })
+    if (wx.getStorageSync('avatarUrl') != ''){
+      var headerImg = wx.getStorageSync('avatarUrl')
+      that.setData({ avatarUrl: headerImg })
+    }
+
 
     //获取位置信息坐标
     wx.getLocation({
@@ -240,8 +243,11 @@ Page({
     } else {
       that.setData({ group3: 'none' })
     }
-    var headerImg = wx.getStorageSync('avatarUrl')
-    that.setData({ avatarUrl: headerImg })
+    //首页头像
+    if (wx.getStorageSync('avatarUrl') != '') {
+      var headerImg = wx.getStorageSync('avatarUrl')
+      that.setData({ avatarUrl: headerImg })
+    }
   },
 
   /**

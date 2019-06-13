@@ -75,7 +75,7 @@
         <view></view>
         <view>{{item.lowest_lesson_price_discount}}折</view>
         <view wx:if="{{item.distance < 100}}">{{item.distance}}km</view>
-        <view wx:else>太远了</view>
+        <view wx:else>>100km</view>
       </view>
     </view>
     <view class='schoolRight'>
