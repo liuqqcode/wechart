@@ -12,7 +12,9 @@ Page({
     tkActiveRedbag:'tkActive',
     tkActiveReturn:'',
     tkReturn:'tkReturnHide',
-    avatarUrl: ''
+    avatarUrl: '',
+    redbagtui:'',
+    Return:''
 
   },
   //点击推客返点
@@ -32,7 +34,14 @@ Page({
     that.setData({ avatarUrl: headerImg })
 
     api._get("/api/v1/twitters/packet-detail").then(res => {
-      console.log(res)
+      that.setData({
+        redbagtui:res.data
+      })
+    })
+    api._get("/api/v1/twitters/commission-detail").then(res => {
+      that.setData({
+        Return: res.data
+      })
     })
   },
 

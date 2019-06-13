@@ -57,17 +57,17 @@ Page({
       paid_amount:this.data.money,
       remark:this.data.qkInput
     }).then(res => {
-      wx.showModal({
-        title: '提交成功',
-        content: '',
-      })
       wx.showToast({
         title: '提交成功',
         icon: 'none',
         image: '',
         duration: 0,
         mask: true,
-        success: function(res) {},
+        success: function(res) {
+          wx.navigateBack({
+            delta: 1,
+          })
+        },
         fail: function(res) {},
         complete: function(res) {},
       })

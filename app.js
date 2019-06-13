@@ -30,6 +30,7 @@ App({
     UserType: 1,
     customer_id:'',
     options:'',
-    avatarUrl:''
+    avatarUrl:'',
+    search:[]
   }
 })

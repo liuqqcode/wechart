@@ -8,8 +8,13 @@
   <view class='clear'></view>
   <view class='{{History}}'>
     <view class='HistoryHead'>历史搜素</view>
-    <image src='/images/icon/del.png'></image>
+    <image src='/images/icon/del.png' bindtap='del'></image>
+    <view class='clear'></view>
+    <view class='search' wx:for="{{search}}" wx:key="index">
+      <view class='searchItem' bindtap='searchItem' data-inx='{{item}}'>{{item}}</view>
+    </view>
   </view>
+
   <view class='clear'></view>
   <view class='school'>
     <view class='schoolList' wx:for="{{schoolList}}" wx:key="index" bindtap='school' data-id='{{item}}'>

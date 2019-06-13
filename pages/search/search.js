@@ -13,7 +13,9 @@ Page({
     schoolList:[],
     group3:'none',
     schoolPicture:"",
-    History:'History'
+    History:'History',
+    search:[],
+    sercherStorage:[]
   },
 
   searchInput:function(e){
@@ -25,19 +27,67 @@ Page({
    searchSubmit:function(){
      let that = this;
      api._get("/api/v1/search?key=" + that.data.userInput).then(res => {
-       console.log(res.data)
        that.setData({ 
          schoolList: res.data, 
          schoolPicture: util.schoolPicture, 
          History:"none",
         })
+       var array = []
+       if (wx.getStorageSync('search') != ''){
+         array = wx.getStorageSync('search')
+         array.push(that.data.userInput)
+       }else{
+         array.push(that.data.userInput)
+       }
+       console.log(array)
+
+       wx.setStorageSync('search', array);
+       that.getLishi();
      })
    },
+   //获取缓存
+  getLishi: function () {
+    var that = this;
+    that.setData({
+      search: wx.getStorageSync('search').reverse()
+    })
+    console.log(wx.getStorageSync('search'))
+  },
+  //删除全部搜索记录
+  del:function(){
+    wx.setStorageSync('search', '')
+    this.getLishi()
+  },
+  //点击历史搜索记录
+  searchItem:function(e){
+    console.log(e.currentTarget.dataset.inx)
+
+    let that = this;
+    api._get("/api/v1/search?key=" + e.currentTarget.dataset.inx).then(res => {
+      that.setData({
+        schoolList: res.data,
+        schoolPicture: util.schoolPicture,
+        History: "none",
+      })
+      var array = []
+      if (wx.getStorageSync('search') != '') {
+        array = wx.getStorageSync('search')
+        array.push(e.currentTarget.dataset.inx)
+      } else {
+        array.push(e.currentTarget.dataset.inx)
+      }
+      console.log(array)
+
+      wx.setStorageSync('search', array);
+      that.getLishi();
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     let that = this;
+    this.getLishi();
     var userType = wx.getStorageSync("userType")
     console.log(userType)
     //获取全局变量，如果是推客则显示客户录入按钮
@@ -80,7 +130,9 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
+  
   onReady: function () {
+    let that = this
 
   },
 

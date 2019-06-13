@@ -32,7 +32,8 @@ Page({
     Mylatitude:'',
     Mylongitude:'',
     schoolFenlei:'',
-    avatarUrl: 'https://yikeyingshi.com/admin_uploads/images/back.png'
+    avatarUrl: 'https://yikeyingshi.com/admin_uploads/images/back.png',
+    swiperSchool:''
 
   },
 
@@ -47,6 +48,16 @@ Page({
     // console.log(itemId)
     this.setData({
       currentItemId: itemId
+    })
+  },
+  changeSchool:function(e){
+    let that = this
+    console.log(e.currentTarget.dataset.inx.id)
+    api._get("/api/v1/schools?type_ids=" + e.currentTarget.dataset.inx.id).then(res => {
+      that.setData({
+        schoolList:res.data,
+        swiperSchool: e.currentTarget.dataset.inx.id
+      })
     })
   },
   //学校

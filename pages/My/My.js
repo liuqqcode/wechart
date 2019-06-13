@@ -106,16 +106,7 @@ Page({
         }
       }
     })
-    api._get("/api/v1/twitters/account").then(res => {
-      that.setData({
-        account:res.data
-      })
-    })
-    api._get("/api/v1/twitters/team").then(res => {
-      that.setData({
-        team:res.data
-      })
-    })
+
   },
 
   loginWechat:function(){
@@ -160,6 +151,16 @@ Page({
                     that.setData({ geren: false, shangjia: true, daili: false, quyu: false });
                     break;
                   case 3:
+                    api._get("/api/v1/twitters/account").then(res => {
+                      that.setData({
+                        account: res.data
+                      })
+                    })
+                    api._get("/api/v1/twitters/team").then(res => {
+                      that.setData({
+                        team: res.data
+                      })
+                    })
                     that.setData({ geren: false, shangjia: false, daili: true, quyu: false });
                     break;
                   case 4:

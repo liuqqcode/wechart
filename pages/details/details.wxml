@@ -21,45 +21,27 @@
   </view>
   <view class='clear'></view>
   <view class='{{redbag}}'>
-    <view class='redbagList'>
+    <view class='redbagList' wx:for="{{redbagtui}}" wx:key="index">
       <view class='userImg'>
-        <image src='/images/icon/user.png'></image>
+        <image src='{{item.visitor_avatar}}'></image>
       </view>
       <view class='userCon'>
-        <view>乔乔</view>
-        <view>03-20 21:30</view>
+        <view>{{item.visitor_name}}</view>
+        <view>{{item.visited_at}}</view>
       </view>
       <view class='userMoney'>
-        <view>1.02元</view>
+        <view>{{item.amount}}元</view>
       </view>
       <view class='clear'></view>
-    </view>
-    <view class='redbagList'>
-      <view class='userImg'>
-        <image src='/images/icon/user.png'></image>
-      </view>
-      <view class='userCon'>
-        <view>乔乔</view>
-        <view>03-20 21:30</view>
-      </view>
-      <view class='userMoney'>
-        <view>1.02元</view>
-      </view>
-      <view class='clear'></view>
-    </view>    
+    </view>   
   </view>
   <view class='{{tkReturn}}'>
-    <view class="tkReturnList">
-      <view>所报学校：新东方烹饪培训学校（九江校区）</view>
-      <view>姓名：一颗</view>
-      <view>电话：13456496516</view>
-      <view>学费返点：5000元</view>
+    <view class="tkReturnList" wx:for="{{Return}}" wx:key="index">
+      <view>所报学校：{{item.school_name}}</view>
+      <view>姓名：{{item.name}}</view>
+      <view>电话：{{item.phone}}</view>
+      <view>学费返点：{{item.amount}}元</view>
     </view>
-    <view class="tkReturnList">
-      <view>所报学校：新东方烹饪培训学校（九江校区）</view>
-      <view>姓名：一颗</view>
-      <view>电话：13456496516</view>
-      <view>学费返点：5000元</view>
-    </view>    
+   
   </view>
 </view>

@@ -126,6 +126,10 @@ swiper{
   margin: 20rpx 0;
   text-align: center;
 }
+.defaultCol{
+  color: white;
+  background: #32bfd0;
+}
 .swiperItem{
   height: 100rpx;
 }

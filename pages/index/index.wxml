@@ -44,8 +44,8 @@
         display-multiple-items="{{schoolFenlei}}"
       >
           <block wx:for="{{fuwuFenlei}}" wx:key="index">
-            <swiper-item>
-              <view class='fuwuitem'>{{item.name}}</view>
+            <swiper-item bindtap="changeSchool" data-inx="{{item}}">
+              <view class='fuwuitem {{item.id == swiperSchool ? "defaultCol" : ""}}'>{{item.name}}</view>
             </swiper-item>
           </block>
         </swiper>

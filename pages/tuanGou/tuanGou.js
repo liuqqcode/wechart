@@ -53,7 +53,7 @@ Page({
     let that = this
     api._post("/api/v1/orders", {
       school: that.data.lessons.school_id,
-      merchant: that.data.lessons.merchant.id,
+      merchant: that.data.lessons.merchant_id,
       product_type: 2,
       product_id: that.data.lessons.id,
     }).then(res => {
