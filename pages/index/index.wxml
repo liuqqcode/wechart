@@ -58,7 +58,10 @@
       <view class='{{group3}}'>
         <image src='/images/icon/redbag.png'></image>
         <view>{{item.gift_packet_amount}}</view>
-        <view>仅{{item.gift_packet_range}}km内有效</view>
+        <view wx:if="{{item.gift_packet_range == 1}}">仅5km内有效</view>
+        <view wx:if="{{item.gift_packet_range == 2}}">仅同城内有效</view>
+        <view wx:if="{{item.gift_packet_range == 3}}">全国内有效</view>
+
       </view>
       <view class='star'>
         <view>{{item.views}}</view>
@@ -71,7 +74,8 @@
         <view>￥{{item.lowest_lesson_price_tag}}</view>
         <view></view>
         <view>{{item.lowest_lesson_price_discount}}折</view>
-        <view>{{item.distance}}km</view>
+        <view wx:if="{{item.distance < 100}}">{{item.distance}}km</view>
+        <view wx:else>太远了</view>
       </view>
     </view>
     <view class='schoolRight'>

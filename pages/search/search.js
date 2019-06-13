@@ -15,7 +15,9 @@ Page({
     schoolPicture:"",
     History:'History',
     search:[],
-    sercherStorage:[]
+    sercherStorage:[],
+    Mylatitude:'',
+    Mylongitude:''
   },
 
   searchInput:function(e){
@@ -32,6 +34,7 @@ Page({
          schoolPicture: util.schoolPicture, 
          History:"none",
         })
+
        var array = []
        if (wx.getStorageSync('search') != ''){
          array = wx.getStorageSync('search')
@@ -39,11 +42,21 @@ Page({
        }else{
          array.push(that.data.userInput)
        }
-       console.log(array)
 
        wx.setStorageSync('search', array);
        that.getLishi();
+       //计算距离我与学校的
+       that.data.schoolList.forEach(function (item, index) {
+         console.log(that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude))
+         item.distance = that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude)
+         console.log(that.data.schoolList)
+
+       })
+       that.setData({
+         schoolList: that.data.schoolList
+       })
      })
+
    },
    //获取缓存
   getLishi: function () {
@@ -51,16 +64,30 @@ Page({
     that.setData({
       search: wx.getStorageSync('search').reverse()
     })
-    console.log(wx.getStorageSync('search'))
   },
   //删除全部搜索记录
   del:function(){
+    let that = this
     wx.setStorageSync('search', '')
-    this.getLishi()
+    that.setData({
+      search: wx.getStorageSync('search')
+    })
+  },
+  //计算距离的方法
+  getDistance: function (lat1, lng1, lat2, lng2) {
+    lat1 = lat1 || 0;
+    lng1 = lng1 || 0;
+    lat2 = lat2 || 0;
+    lng2 = lng2 || 0;
+    var rad1 = lat1 * Math.PI / 180.0;
+    var rad2 = lat2 * Math.PI / 180.0;
+    var a = rad1 - rad2;
+    var b = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
+    var r = 6378137;
+    return parseInt((r * 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(rad1) * Math.cos(rad2) * Math.pow(Math.sin(b / 2), 2)))).toFixed(0) / 100) / 10
   },
   //点击历史搜索记录
   searchItem:function(e){
-    console.log(e.currentTarget.dataset.inx)
 
     let that = this;
     api._get("/api/v1/search?key=" + e.currentTarget.dataset.inx).then(res => {
@@ -80,7 +107,18 @@ Page({
 
       wx.setStorageSync('search', array);
       that.getLishi();
+      //计算距离我与学校的
+      that.data.schoolList.forEach(function (item, index) {
+        console.log(that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude))
+        item.distance = that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude)
+        console.log(that.data.schoolList)
+
+      })
+      that.setData({
+        schoolList: that.data.schoolList
+      })
     })
+    
   },
   /**
    * 生命周期函数--监听页面加载
@@ -96,6 +134,12 @@ Page({
     } else {
       that.setData({ group3: 'none' })
     }
+
+    that.setData({
+      Mylatitude: wx.getStorageSync('Mylatitude'),
+      Mylongitude: wx.getStorageSync('Mylongitude')
+    })
+    console.log(that.data.Mylatitude)
   },
   //选择学校
   school: function (e) {

@@ -44,10 +44,15 @@
       </swiper>
     </view>
   </view>
+  <view class='clear'></view>
   <view class='location'>
     <image src='/images/icon/location.png'></image>
     <view>{{location}}</view>
-    <image bindtap='callPhone' src="/images/icon/phone.png"></image>
+    <!-- <image bindtap='callPhone' src="/images/icon/phone.png"></image> -->
+    <button class='phoneButton' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+      <image src='/images/icon/phone.png'></image>
+    </button>
+
   </view>
   <view class='clear'></view>
   <view class='botique'>
@@ -140,7 +145,7 @@
 
   <view class='pingjia'>
     <view class='pingjiahead'>用户评价（{{schoolpingNum}}）</view>
-    <view class='pingjiaCon' wx:for="{{schoolping}}" wx:key="index" data-inx="{{index}}">
+    <view class='pingjiaCon' wx:if="{{schoolping=='' ? false : true}}" wx:for="{{schoolping}}" wx:key="index" data-inx="{{index}}">
       <view class='pjLeft'>
         <image src='{{item.customer_avatar_url}}'></image>
       </view>

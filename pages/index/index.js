@@ -45,22 +45,32 @@ Page({
   },
   clickChange: function (e) {
     var itemId = e.currentTarget.dataset.itemId;
-    // console.log(itemId)
     this.setData({
       currentItemId: itemId
     })
   },
+  //点击学校分类
   changeSchool:function(e){
     let that = this
-    console.log(e.currentTarget.dataset.inx.id)
-    api._get("/api/v1/schools?type_ids=" + e.currentTarget.dataset.inx.id).then(res => {
+    api._get("/api/v1/schools?type_ids=" + e.currentTarget.dataset.inx.id).then(data => {
+
+      that.setData({ schoolList: data.data, next: data.links.next, swiperSchool: e.currentTarget.dataset.inx.id })
+      if (data.links.next == null) {
+        that.setData({ noMore: "noMore" })
+      }
+      //计算距离我与学校的
+      that.data.schoolList.forEach(function (item, index) {
+        console.log(that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude))
+        item.distance = that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude)
+        console.log(that.data.schoolList)
+
+      })
       that.setData({
-        schoolList:res.data,
-        swiperSchool: e.currentTarget.dataset.inx.id
+        schoolList: that.data.schoolList
       })
     })
   },
-  //学校
+  //学校详情
   school:function(e){
     let that = this;
     console.log(e.currentTarget.dataset.id)
@@ -103,6 +113,9 @@ Page({
       type:'wgs84',
       success: function(res) {
         that.setData({ Mylatitude: res.latitude, Mylongitude: res.longitude})
+        that.getBaiduLocation();
+        wx.setStorageSync('Mylatitude', res.latitude);
+        wx.setStorageSync('Mylongitude', res.longitude)
       },
     })
 
@@ -111,26 +124,7 @@ Page({
     api._get("/api/v1/platform/banners").then(res => {
       that.setData({ banner:baiduak.banner,bannerCon:res.data.banners.path + '/',backClass:res.data.banners.images})
     })
-    //获取天气以及位置信息
-    var BMap = new bmap.BMapWX({
-      ak: baiduak.ak
-    });
-    var success = function (data) {
-      var weatherData = data.currentWeather[0];
-      var regex1 = /.*\([^\)\(\d]*(\d+)[^\)\(\d]*\).*/;
-      that.setData({
-        city: weatherData.currentCity,
-        weatherDesc: weatherData.weatherDesc,
-        dateC: weatherData.date.replace(regex1,"$1")
-      });
-    }
-    var fail = function (data) {
-      console.log('fail!!!!')
-    };
-    BMap.weather({
-      fail: fail,
-      success: success
-    });
+
 
     //获取首页学校分类
     api._get("/api/v1/school-types").then(res => {
@@ -142,32 +136,60 @@ Page({
         that.setData({ schoolFenlei:4.5})
       }
     })
+    this.getSchoolList();
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    //获取学校列表
-    var that = this;
+  //获取天气以及位置信息
+  getBaiduLocation(){
+    let that = this
+    var BMap = new bmap.BMapWX({
+      ak: baiduak.ak
+    });
+    var success = function (data) {
+      var weatherData = data.currentWeather[0];
+      var regex1 = /.*\([^\)\(\d]*(\d+)[^\)\(\d]*\).*/;
+      that.setData({
+        city: weatherData.currentCity,
+        weatherDesc: weatherData.weatherDesc,
+        dateC: weatherData.date.replace(regex1, "$1")
+      });
+    }
+    var fail = function (data) {
+      console.log('fail!!!!')
+    };
+    BMap.weather({
+      fail: fail,
+      success: success
+    });
+  },
+  //获取学校列表
+  getSchoolList:function(){
+    let that = this
     api._get('/api/v1/schools').then(data => {
-      that.setData({ schoolList: data.data, next: data.links.next})
-      console.log(data.links.next)
-      if(data.links.next == null){
-        that.setData({ noMore: "noMore"})
+      that.setData({ schoolList: data.data, next: data.links.next })
+      if (data.links.next == null) {
+        that.setData({ noMore: "noMore" })
       }
       //计算距离我与学校的
-      that.data.schoolList.forEach(function(item,index){
+      that.data.schoolList.forEach(function (item, index) {
         console.log(that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude))
         item.distance = that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude)
         console.log(that.data.schoolList)
-        that.setData({
-          schoolList:that.data.schoolList
-        })
+
+      })
+      that.setData({
+        schoolList: that.data.schoolList
       })
     }).catch(e => {
       console.log(e)
     })
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+    var that = this;
+
   },
 
   getDistance: function (lat1, lng1, lat2, lng2) {
@@ -187,6 +209,29 @@ Page({
    */
   onShow: function () {
     let that = this;
+    // this.getSchoolList();
+    this.getBaiduLocation();
+    // that.setData({ swiperSchool:100})
+    //获取位置信息坐标
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        that.setData({ Mylatitude: res.latitude, Mylongitude: res.longitude })
+        that.getBaiduLocation();
+        wx.setStorageSync('Mylatitude', res.latitude);
+        wx.setStorageSync('Mylongitude', res.longitude)
+      },
+    })
+    //计算距离我与学校的
+    that.data.schoolList.forEach(function (item, index) {
+      console.log(that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude))
+      item.distance = that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude)
+      console.log(that.data.schoolList)
+
+    })
+    that.setData({
+      schoolList: that.data.schoolList
+    })
     var userType = wx.getStorageSync("userType")
     console.log(userType)
     //获取全局变量，如果是推客则显示客户录入按钮

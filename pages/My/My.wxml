@@ -109,4 +109,20 @@
       <view class='clear'></view>
     </view>
   </view>
+  <view wx:if="{{quyu}}">
+    <view class='myschool'>我的学校</view>
+    <view class='schoolList' >
+      <view class='schoolLeft'>
+        <image src='/images/image/header.png'></image>
+      </view>
+      <view class='schoolRight'>
+        <view>成都新东方烹饪培训学校</view>
+        <view>
+          <view>本月佣金：100元</view>
+          <view>累计佣金：100元</view>
+        </view>
+      </view>
+      <view class='clear'></view>
+    </view>
+  </view>
 </view>
