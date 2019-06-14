@@ -1,0 +1,9 @@
+<view>
+  <view class='moCon'>
+    <image class='moeny' src='/images/icon/money.png'></image>
+    <view class='myMoney'>{{moneysource}}</view>
+    <view class='moneyNum'>￥{{money}}</view>
+  </view>
+
+
+</view>

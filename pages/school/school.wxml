@@ -6,7 +6,7 @@
         <view>{{schoolName}}</view>
         <!-- <view>(九江校区）</view> -->
         <block wx:for="{{rate}}" wx:key="index" >
-          <image  src='{{greenStar}}'></image>
+          <image  src='{{CollectionImgYes}}'></image>
         </block>
 
         <view class='fen'>{{rate}}分</view>
@@ -154,7 +154,7 @@
         <view class='clear'></view>
         <view class='pjfen'>
           <view>打分</view>
-          <image wx:for="{{item.rate}}" wx:key="index" src='/images/icon/stargreen.png'></image>
+          <image wx:for="{{item.rate}}" wx:key="index" src='/images/icon/yellowStar.png'></image>
 
         </view>
         <view class='clear'></view>

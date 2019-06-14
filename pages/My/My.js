@@ -89,7 +89,12 @@ Page({
   //区域代理历史佣金
   History:function(){
     wx.navigateTo({
-      url: '../HistoryMoney/HistoryMoney',
+      url: '../HistoryMoney/HistoryMoney?type=History',
+    })
+  },
+  Month:function(){
+    wx.navigateTo({
+      url: '../HistoryMoney/HistoryMoney?type=Month',
     })
   },
   /**
@@ -147,7 +152,7 @@ Page({
                 
                 // that.setData({ UserType: loginRes.data.customer_type})
                 console.log(loginRes.data.customer_type)
-                switch (loginRes.data.customer_type){
+                switch (4){
                   case 1:
                     that.setData({ geren: true, shangjia: false, daili: false, quyu: false });
                     break;
