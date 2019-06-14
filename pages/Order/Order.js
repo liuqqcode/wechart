@@ -93,7 +93,7 @@ Page({
     })
     api._get("/api/v1/views?product_types=1,2").then(data => {
       console.log(data)
-      that.setData({ footprint: data.data })
+      that.setData({ footprint: data.data, ImageHead: util.schoolPicture})
     })
     wx.getSystemInfo({
       success: function (res) {
@@ -158,7 +158,7 @@ Page({
     })
     api._get("/api/v1/views?product_types=1,2").then(data => {
       console.log(data.data)
-      that.setData({ footprint: data.data })
+      that.setData({ footprint: data.data, ImageHead: util.schoolPicture})
     })
   },
 

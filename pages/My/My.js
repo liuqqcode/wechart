@@ -129,8 +129,12 @@ Page({
                 iv: encodeURI(res.iv),
                 code: encodeURI(data.code)
               },
+              
               success(loginRes) {
-                
+                wx.setStorageSync("encryptedData", res.encryptedData)
+                wx.setStorageSync("iv", res.iv)
+                wx.setStorageSync("code", data.code)
+                console.log(data.code)
                 wx.setStorageSync("jwtToken", loginRes.data.token_type + " " + loginRes.data.access_token)
                 wx.setStorageSync("userType", loginRes.data.customer_type)
                 wx.setStorageSync("customer_id", loginRes.data.customer_id)
@@ -143,7 +147,7 @@ Page({
                 
                 // that.setData({ UserType: loginRes.data.customer_type})
                 console.log(loginRes.data.customer_type)
-                switch (4){
+                switch (loginRes.data.customer_type){
                   case 1:
                     that.setData({ geren: true, shangjia: false, daili: false, quyu: false });
                     break;

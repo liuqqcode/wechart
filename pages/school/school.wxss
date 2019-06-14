@@ -362,6 +362,21 @@ swiper-item:nth-child(1)>image{
   height: 85rpx;
   overflow: hidden;
 }
+.buttonPhone{
+  float: left;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 0;
+  border-top: 1rpx solid gainsboro;
+}
+.buttonPhone>image{
+  width: 40rpx;
+  height: 35rpx;
+  margin-top: 10rpx;
+}
+.buttonPhone>view{
+  font-size: 20rpx;
+}
 .yuyue>view{
   float: left;
   background: white;
@@ -436,7 +451,7 @@ swiper-item:nth-child(1)>image{
   height: 46rpx;
   font-size: 30rpx;
   text-align: center;
-  width: 550rpx;
+  width: 553rpx;
   padding: 20rpx 0;
 }
 .shareBG{

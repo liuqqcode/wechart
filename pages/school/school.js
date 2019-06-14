@@ -102,7 +102,14 @@ Page({
               encryptedData: encodeURIComponent(e.detail.encryptedData),
               iv: encodeURI(e.detail.iv)
             }).then(res => {
-              console.log(res)
+              console.log(res.data.phoneNumber)
+              api._post("/api/v1/customer/phone-call",{
+                school:that.data.schoolId,
+                merchant: that.data.merchant,
+                phone: res.data.phoneNumber
+              }).then(data => {
+                that.callPhone()
+              })
             })
           }
         })
@@ -426,7 +433,10 @@ Page({
 
     //提交推客信息
     api._post("/api/v1/twitters/fan/following", {
-      twitter_id: options.customer_id
+      twitter_id: options.customer_id,
+      school_id:that.data.schoolId,
+      latitude: wx.getStorageSync('Mylatitude'),
+      longitude: wx.getStorageSync('Mylongitude')
     }).then(res => {
 
     })

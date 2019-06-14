@@ -1,4 +1,7 @@
 // pages/khgl/khgl.js
+var baiduak = require('../../utils/util.js')
+const api = require('../../utils/api.js')
+var app = getApp();
 Page({
 
   /**
@@ -6,7 +9,8 @@ Page({
    */
   data: {
     activeBac: 0,
-    avatarUrl:''
+    avatarUrl:'',
+    agentData:''
   },
   active:function(e){
     this.setData({ activeBac: e.currentTarget.dataset.idx})
@@ -18,6 +22,11 @@ Page({
     let that = this;
     var headerImg = wx.getStorageSync('avatarUrl')
     that.setData({ avatarUrl: headerImg})
+    api._get("/api/v1/clients").then(res => {
+      console.log(res.data)
+      that.setData({ agentData:res.data})
+    })
+
   },
 
   /**

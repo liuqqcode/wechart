@@ -141,7 +141,6 @@
       </swiper>
     </view>
   </view>
-  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
 
   <view class='pingjia'>
     <view class='pingjiahead'>用户评价（{{schoolpingNum}}）</view>
@@ -176,10 +175,10 @@
     <view class='clear'></view>
   </view>
   <view class='yuyue'>
-    <view  bindtap='callPhone'>
+    <button class='buttonPhone' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
       <image src='/images/icon/phone2.png'></image>
       <view>电话</view>
-    </view>
+    </button>
     <view>
       <button open-type="contact" bindcontact="handleContact">
         <image src='/images/icon/message2.png'></image>
