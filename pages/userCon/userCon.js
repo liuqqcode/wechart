@@ -9,7 +9,8 @@ Page({
    */
   data: {
     avatarUrl: '',
-    userCon:''
+    userCon:'',
+    time:true
   },
 
   /**
@@ -31,7 +32,7 @@ Page({
       confirmation:1
     }).then(res => {
       api._get("/api/v1/merchants/clients").then(res => {
-        that.setData({ userCon: res.data })
+        that.setData({ userCon: res.data ,time:false})
       })
     })
   },
@@ -42,7 +43,7 @@ Page({
       confirmation: 0
     }).then(res => {
       api._get("/api/v1/merchants/clients").then(res => {
-        that.setData({ userCon: res.data })
+        that.setData({ userCon: res.data,time:false})
       })
     })
   },

@@ -146,7 +146,6 @@ Page({
     })
 
     //获取首页轮播图
-
     api._get("/api/v1/platform/banners").then(res => {
       that.setData({ banner:baiduak.banner,bannerCon:res.data.banners.path + '/',backClass:res.data.banners.images})
     })

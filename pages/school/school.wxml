@@ -34,7 +34,7 @@
         display-multiple-items="2"
       >
         <block wx:for="{{videos}}" wx:key="index">
-          <swiper-item>
+          <swiper-item class="vedioSwiperItem">
             <video show-fullscreen-btn='true' src='{{schoolPictureAPI}}{{item}}'></video>
           </swiper-item>
         </block>

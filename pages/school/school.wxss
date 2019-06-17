@@ -54,7 +54,10 @@
 video{
   height: 100%;
   width: 100%;
-  margin: 20rpx 0;
+  margin: 20rpx;
+}
+.vedioSwiperItem:nth-child(1)>video{
+  margin-left: 0;
 }
 swiper-item>image{
   width: 100%;
