@@ -1,12 +1,12 @@
 <view class='info'>
   <view class='inputCon'>
     <view>真实姓名：</view>
-    <input placeholder='请输入姓名'></input>
+    <input placeholder='请输入姓名' bindinput='name'></input>
     <view class='clear'></view>
     <view>手机号：</view>
-    <input placeholder='请输入联系方式'></input>
+    <input placeholder='请输入联系方式' maxlength='11' bindinput='tel'></input>
     <view class='clear'></view>
-    <textarea placeholder='情况说明：' placeholder-class='textareaBla'></textarea>
+    <textarea placeholder='情况说明：' bindinput='conent' placeholder-class='textareaBla'></textarea>
   </view>
-  <button class='submit'>确定</button>
+  <button class='submit' bindtap='submit'>确定</button>
 </view>

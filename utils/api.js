@@ -3,9 +3,9 @@ let jwtToken = '';
 let userType = ''
 
 const http = ({ url = '', param = {}, ...other } = {}) => {
-  wx.showLoading({
-    title: '请求中，请耐心等待..'
-  });
+  // wx.showLoading({
+  //   title: '请求中，请耐心等待..'
+  // });
 
   let timeStart = Date.now();
 
@@ -21,7 +21,7 @@ const http = ({ url = '', param = {}, ...other } = {}) => {
       },
       ...other,
       complete: (res) => {
-        wx.hideLoading();
+        // wx.hideLoading();
         // console.log(`耗时${Date.now() - timeStart}`);
         if (res.statusCode >= 200 && res.statusCode < 300) {
           resolve(res.data)

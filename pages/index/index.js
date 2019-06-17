@@ -87,6 +87,29 @@ Page({
           product_image: e.currentTarget.dataset.id.cover
         }).then( res => {
           console.log(res)
+        }).catch(err => {
+          console.log(err.statusCode)
+          if (err.statusCode == 401) {
+            wx.showModal({
+              title: '错误',
+              content: '登录失效，请去登录',
+              showCancel: true,
+              cancelText: '取消',
+              cancelColor: '',
+              confirmText: '确认',
+              confirmColor: '',
+              success: function(res) {
+                if(res.confirm){
+                  wx.navigateTo({
+                    url: '/pages/login/login?id=' + e.currentTarget.dataset.id.id
+                  })
+                }
+              },
+              fail: function(res) {},
+              complete: function(res) {},
+            })
+
+          }
         })
       }
     })

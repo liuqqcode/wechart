@@ -24,7 +24,28 @@ Page({
       that.setData({userCon:res.data})
     })
   },
-
+  yes:function(e){
+    let that = this
+    console.log(e.currentTarget.dataset.inx)
+    api._post("/api/v1/merchants/clients/handle/" + e.currentTarget.dataset.inx,{
+      confirmation:1
+    }).then(res => {
+      api._get("/api/v1/merchants/clients").then(res => {
+        that.setData({ userCon: res.data })
+      })
+    })
+  },
+  no:function(e){
+    let that = this
+    console.log(e.currentTarget.dataset.inx)
+    api._post("/api/v1/merchants/clients/handle/" + e.currentTarget.dataset.inx, {
+      confirmation: 0
+    }).then(res => {
+      api._get("/api/v1/merchants/clients").then(res => {
+        that.setData({ userCon: res.data })
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

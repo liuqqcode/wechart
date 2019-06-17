@@ -21,8 +21,8 @@
       <view class='time'>剩余24小时不点拒绝，默认同意</view>
     </view>
     <view class='conRight'>
-      <view class='yes'>同意</view>
-      <view class='no'>拒绝</view>
+      <view class='yes' data-inx='{{item.id}}' bindtap='yes'>同意</view>
+      <view class='no' data-inx='{{item.id}}' bindtap='no'>拒绝</view>
     </view>
     <view class='clear'></view>
   </view>

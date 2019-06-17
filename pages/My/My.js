@@ -19,7 +19,9 @@ Page({
     quyu:false,
     // UserType:1,
     account:'',
-    team:''
+    team:'',
+    myschool:'',
+    ImageHead:''
   },
   //收藏
   Collection:function(){
@@ -152,7 +154,7 @@ Page({
                 
                 // that.setData({ UserType: loginRes.data.customer_type})
                 console.log(loginRes.data.customer_type)
-                switch (4){
+                switch (loginRes.data.customer_type){
                   case 1:
                     that.setData({ geren: true, shangjia: false, daili: false, quyu: false });
                     break;
@@ -174,6 +176,13 @@ Page({
                     break;
                   case 4:
                     that.setData({ geren: false, shangjia: false, daili: false, quyu: true });
+                    api._get("/api/v1/agents/schools").then(res => {
+                      console.log(res.data.schools)
+                      that.setData({
+                        myschool:res.data.schools,
+                        ImageHead: util.schoolPicture
+                      })
+                    })
                     break;
                 }
               }

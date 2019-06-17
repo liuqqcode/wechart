@@ -111,15 +111,15 @@
   </view>
   <view wx:if="{{quyu}}">
     <view class='myschool'>我的学校</view>
-    <view class='schoolList' >
+    <view class='schoolList' wx:for="{{myschool}}" wx:key="index">
       <view class='schoolLeft'>
-        <image src='/images/image/header.png'></image>
+        <image src='{{ImageHead}}{{item.cover}}'></image>
       </view>
       <view class='schoolRight'>
-        <view>成都新东方烹饪培训学校</view>
+        <view>{{item.name}}</view>
         <view>
-          <view>本月佣金：100元</view>
-          <view>累计佣金：100元</view>
+          <view>本月佣金：{{item.commission_month}}元</view>
+          <view>累计佣金：{{item.commission_total}}元</view>
         </view>
       </view>
       <view class='clear'></view>

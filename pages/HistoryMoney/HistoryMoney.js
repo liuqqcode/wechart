@@ -21,11 +21,22 @@ Page({
       wx.setNavigationBarTitle({
         title: '历史佣金',
       })
+      api._get("/api/v1/agents/history-commission").then(res => {
+        that.setData({
+          money: res.data.history_commission
+        })
+      })
     } else if (options.type == 'Month'){
       wx.setNavigationBarTitle({
         title: '本月佣金',
       })
+      api._get("/api/v1/agents/month-commission").then(res => {
+        that.setData({
+          money: res.data.month_commission
+        })
+      })
     }
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -22,7 +22,7 @@
     </view>
     <view class='tel'>
       <view>电话：</view>
-      <input value='' bindinput ="mobileInput" placeholder='请输入手机号'></input>
+      <input value='' bindinput ="mobileInput" maxlength='11' placeholder='请输入手机号'></input>
       <view class='clear'></view>
     </view>
     <view class='money'>

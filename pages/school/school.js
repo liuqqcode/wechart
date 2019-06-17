@@ -189,6 +189,13 @@ Page({
           product_image: e.currentTarget.dataset.id.cover
         }).then(res => {
           console.log(res)
+        }).catch(err => {
+          console.log(err.statusCode)
+          if (err.statusCode == 401){
+            wx.navigateTo({
+              url: '/pages/login/login',
+            })
+          }
         })
       }
     })
@@ -210,6 +217,13 @@ Page({
           product_image: e.currentTarget.dataset.id.cover
         }).then(res => {
           console.log(res)
+        }).catch(err => {
+          console.log(err.statusCode)
+          if (err.statusCode == 401) {
+            wx.navigateTo({
+              url: '/pages/login/login',
+            })
+          }
         })
       }
     })
@@ -458,26 +472,32 @@ Page({
     wx.showLoading({
       title: '努力生成中...'
     })
-    wx.canvasToTempFilePath({
-      x: 0,
-      y: 0,
-      width: 545,
-      height: 771,
-      destWidth: 545,
-      destHeight: 771,
-      canvasId: 'shareImg',
-      success: function (res) {
-        console.log(res.tempFilePath);
-        that.setData({
-          prurl: res.tempFilePath,
-          hidden: false
-        })
-        wx.hideLoading()
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
+    setTimeout(function(){
+      wx.canvasToTempFilePath({
+        x: 0,
+        y: 0,
+        width: 545,
+        height: 771,
+        destWidth: 545,
+        destHeight: 771,
+        canvasId: 'shareImg',
+        success: function (res) {
+          console.log(res.tempFilePath);
+          that.setData({
+            prurl: res.tempFilePath,
+            hidden: false
+          })
+          wx.hideLoading()
+        },
+        fail: function (res) {
+          console.log(res)
+        }
+      })
+    },2000)
+
+  },
+  getImg:function(){
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
