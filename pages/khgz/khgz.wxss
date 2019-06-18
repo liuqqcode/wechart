@@ -57,3 +57,17 @@ page{
   color: rgb(219, 106, 232);
   text-align: center;
 }
+.message{
+  width: 50rpx !important;
+  height: 50rpx !important;
+  text-align: center;
+  margin-top: 30rpx;
+}
+.send{
+  text-align: center;
+}
+.sendMes{
+}
+.header{
+  border-radius: 50%;
+}

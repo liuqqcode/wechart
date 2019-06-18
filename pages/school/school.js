@@ -76,7 +76,7 @@ Page({
   },
   //打开客服
   handleContact(e) {
-    console.log(e.path)
+    console.log(e)
     console.log(e.query)
   },
 

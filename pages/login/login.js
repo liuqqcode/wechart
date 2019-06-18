@@ -44,6 +44,7 @@ Page({
                 wx.setStorageSync("jwtToken", loginRes.data.token_type + " " + loginRes.data.access_token)
                 wx.setStorageSync("userType", loginRes.data.customer_type)
                 wx.setStorageSync("customer_id", loginRes.data.customer_id)
+                wx.setStorageSync('openid', loginRes.data.customer_openid)
 
                 //设置全局变量token
                 app.globalData.token = loginRes.data.token_type + " " + loginRes.data.access_token;

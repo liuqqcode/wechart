@@ -180,7 +180,7 @@
       <view>电话</view>
     </button>
     <view>
-      <button open-type="contact" bindcontact="handleContact">
+      <button bindta="handleContact">
         <image src='/images/icon/message2.png'></image>
         <view>咨询</view>
       </button>

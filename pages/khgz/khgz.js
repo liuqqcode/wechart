@@ -1,18 +1,29 @@
 // pages/khgz/khgz.js
+var util = require('../../utils/util.js')
+const api = require('../../utils/api.js')
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    content:'',
+    name:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let that = this
+    api._get("/api/v1/twitters/trace").then(res => {
+      console.log(res.data.fans)
+      that.setData({
+        content:res.data.fans,
+        name:res.data.fans[0].name
+      })
+    })
   },
 
   /**
