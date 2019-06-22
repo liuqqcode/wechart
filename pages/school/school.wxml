@@ -26,6 +26,8 @@
     </view>
     <view class='clear'></view>
   </view>
+  <view class='bggray {{videosNum == 0 ? "none" : ""}}' style='margin-top:30rpx;'></view>
+  
   <view class='vedio {{videosNum == 0 ? "none" : ""}}' >
     <view>看视频长姿势</view>
     <view>全部视频{{videosNum}}个</view>
@@ -36,7 +38,7 @@
       >
         <block wx:for="{{videos}}" wx:key="index">
           <swiper-item class="vedioSwiperItem">
-            <video show-fullscreen-btn='true' src='{{schoolPictureAPI}}{{item}}'></video>
+            <video data-inx='{{item}}' bindtap='videoshow' show-fullscreen-btn='true' src='{{schoolPictureAPI}}{{item}}'></video>
           </swiper-item>
         </block>
         <swiper-item wx:if="videosNum == 1">
@@ -46,7 +48,7 @@
     </view>
   </view>
   <view class='clear'></view>
-  <view class='bggray'></view>
+  <view class='bggray' style='margin-top:30rpx;'></view>
   <view class='location'>
     <image src='/images/icon/location.png'></image>
     <view>{{location}}</view>
@@ -112,7 +114,7 @@
   </view>
   <view class='clear'></view>
   <view class='bggray'></view>
-  <view class='teach'>
+  <view class='teach {{teachNum == 0 ? "none" :""}}' >
     <view class='teachHead'>
       <view>名师风采</view>
       <view>全部老师{{teachNum}}位</view>
@@ -131,18 +133,31 @@
           </swiper-item>
 
         </block>
-        <swiper-item>
-            <image src=''></image>
-            <view class='teachName'></view>
-            <view class='teachAge'></view>
-            <view class='teachZY'></view>
-          </swiper-item>
+        <block class='{{teachNum <= 1 ? "" :"none"}}'>
           <swiper-item>
             <image src=''></image>
             <view class='teachName'></view>
             <view class='teachAge'></view>
             <view class='teachZY'></view>
           </swiper-item>
+        </block>        
+        <block class='{{teachNum <= 2 ? "" :"none"}}'>
+          <swiper-item >
+            <image src=''></image>
+            <view class='teachName'></view>
+            <view class='teachAge'></view>
+            <view class='teachZY'></view>
+          </swiper-item>
+        </block>           
+        <block  class='{{teachNum <= 3 ? "" :"none"}}'>
+          <swiper-item>
+            <image src=''></image>
+            <view class='teachName'></view>
+            <view class='teachAge'></view>
+            <view class='teachZY'></view>
+          </swiper-item>
+        </block>   
+
       </swiper>
     </view>
   </view>
@@ -159,13 +174,13 @@
         <view class='pjdate'>{{item.created_at}}</view>
         <view class='clear'></view>
         <view class='pjfen'>
-          <view>打分</view>
+          <!-- <view>打分</view> -->
           <image wx:for="{{item.rate}}" wx:key="index" src='/images/icon/yellowStar.png'></image>
 
         </view>
         <view class='clear'></view>
         <view class='pjtext {{ index == 0 ?  webkit : ""}}'>{{item.content}}</view>
-        <view bindtap='pjqw' wx:if="{{index == 0}}" class='{{pjqw}}'>全文</view>
+        <!-- <view bindtap='pjqw' wx:if="{{index == 0}}" class='{{pjqw}}'>全文</view> -->
         <view class='pjImg' wx:for="{{item.images}}" wx:key="index">
           <image src='{{item}}'></image>
         </view>
@@ -198,8 +213,8 @@
     <view bindtap='quxiao' class='{{shareBG}}'></view>
     <view class='{{shareCon}}'>
       <view class='shareIcon'>
-        <view bindtap='onShareAppMessage'>
-          <button open-type="share">
+        <view>
+          <button open-type="share"  bindtap='onShareAppMessage'>
             <image src='/images/icon/wechart.png'></image>
             <view>分享给好友</view>        
           </button>
@@ -254,6 +269,10 @@
     <view class='hbTitle'>生成海报</view>
     <image  src='{{prurl}}'></image>
     <view bindtap='saveImg' class='saveBtn'>保存图片</view>
+  </view>
+  <view class='goHome' wx:if="{{isshare}}" bindtap='goHome'>
+    <image src='/images/icon/homewhite.png'></image>
+    <view>首页</view>
   </view>
   <text wx:if="{{kehuBtn}}" class='kehuBtn' bindtap='kehuBtn'>客户\n录入</text>
   

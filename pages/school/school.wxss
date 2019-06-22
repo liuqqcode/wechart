@@ -39,9 +39,9 @@
   height: 50rpx;
 }
 .group1Right>view:nth-child(1)>image{
-  margin-top: 2rpx;
-  width: 48rpx;
-  height: 48rpx;
+  margin-top: 4rpx;
+  width: 46rpx;
+  height: 46rpx;
 }
 .group1Right>view{
   float: left;
@@ -80,15 +80,15 @@ swiper-item:nth-child(1)>image{
   margin-top: 30rpx;
 }
 .vedio>view:nth-child(1){
-  font-size: 35rpx;
-  font-weight: 600;
+  font-size: 30rpx;
+  /* font-weight: 600; */
   float: left;
   font-family: "PingFang";
   color: rgb(0, 0, 0);
-  line-height: 1.2;
+  /* line-height: 1.2; */
 }
 .vedio>view:nth-child(2){
-  font-size: 30rpx;
+  font-size: 25rpx;
   float: right;
   color: #999999;
 }
@@ -97,9 +97,10 @@ swiper-item:nth-child(1)>image{
   padding-bottom: 65rpx;
 }
 .location>image:nth-child(1){
-  width: 37rpx;
-  height: 55rpx;
+  width: 25rpx;
+  height: 37rpx;
   float: left;
+  margin-top: 15rpx;
   margin-right: 20rpx;
 }
 .location>view{
@@ -254,7 +255,7 @@ swiper-item:nth-child(1)>image{
   float: left;
 }
 .teachHead>view:nth-child(2){
-  font-size: 35rpx;
+  font-size: 25rpx;
   float: right;
   color: #999999;
 }
@@ -324,7 +325,7 @@ swiper-item:nth-child(1)>image{
   margin: 5rpx;
 }
 .pjtext{
-  font-size: 30rpx;
+  font-size: 25rpx;
   line-height: 2;
   overflow: hidden;
   -webkit-line-clamp: 3;
@@ -341,7 +342,10 @@ swiper-item:nth-child(1)>image{
   float: left;
   width: 175rpx;
   height: 175rpx;
-  margin: 10rpx;
+  margin: 20rpx 10rpx;
+}
+.pjImg>image:nth-child(1){
+  margin-left: 0;
 }
 .pjqw{
   margin: 20rpx 0;
@@ -373,13 +377,13 @@ swiper-item:nth-child(1)>image{
   width: 100%;
   position: fixed;
   bottom: 0;
-  height: 85rpx;
+  height: 100rpx;
   overflow: hidden;
 }
 .buttonPhone{
   float: left;
   width: 100rpx;
-  height: 85rpx;
+  height: 100rpx;
   border-radius: 0;
   border-top: 1rpx solid gainsboro;
 }
@@ -437,7 +441,7 @@ swiper-item:nth-child(1)>image{
 .yuyue>view:nth-child(2)>button{
   background: white;
   width: 100rpx;
-  height: 86rpx;
+  height: 100rpx;
   float: left;
   bottom: 0;
   border-radius: 0;
@@ -462,11 +466,12 @@ swiper-item:nth-child(1)>image{
   color: white;
   /* right: 0; */
   /* bottom: 0; */
-  height: 46rpx;
+  height: 100rpx;
   font-size: 30rpx;
   text-align: center;
   width: 548rpx;
-  padding: 20rpx 0;
+  line-height: 3;
+  /* padding: 20rpx 0; */
 }
 .shareBG{
   top: 0;
@@ -710,7 +715,7 @@ canvas{
   padding: 20rpx 0;
 }
 .kehuBtn{
-  background: #f2c720 !important;
+  background: #81d740 !important;
   font-size: 30rpx;
   width: 70rpx;
   height: 70rpx;
@@ -724,9 +729,10 @@ canvas{
 }
 .phoneButton{
   float: right;
-  width: 100rpx;
+  width: 80rpx;
   height: 50rpx;
   background: none;
+  margin-top: 10rpx
 }
 .phoneButton>image{
   width: 50rpx;
@@ -748,4 +754,22 @@ canvas{
   background: rgb(233, 233, 233);
   height: 10rpx;
   width: 100%;
+}
+.goHome{
+  position: fixed;
+  left: 30rpx;
+  bottom: 200rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: gray;
+  opacity: 0.9;
+  color: white;
+  font-size: 25rpx;
+  text-align: center;
+}
+.goHome>image{
+  margin-top: 10rpx;
+  width: 50rpx;
+  height: 40rpx;
 }

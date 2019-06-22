@@ -71,7 +71,8 @@ Page({
     schoolpingNum:'',
     //查看全部评价
     Reviews:true,
-    Publishercustomer_id:''
+    Publishercustomer_id:'',
+    isshare:''
 
   },
   //打开客服
@@ -87,11 +88,16 @@ Page({
       phoneNumber: that.data.telephone,
     })
   },
+  //分享的页面回到首页
+  goHome:function(){
+    wx.reLaunch({
+      url: '/pages/index/index',
+    })
+  },
   getPhoneNumber:function(e){
     var that = this
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
+
+
     wx.login({
       success(data) {
         wx.getUserInfo({
@@ -233,10 +239,13 @@ Page({
     var customer_id = wx.getStorageSync('customer_id')
     return{
       title: this.data.schoolName,
-      path: 'pages/school/school?id=' + this.data.schoolId + "&customer_id=" + that.data.Publishercustomer_id
+      path: 'pages/school/school?id=' + this.data.schoolId + "&customer_id=" + this.data.Publishercustomer_id
     }
   },
-
+  //视频全屏播放
+  videoshow:function(e){
+    console.log(e)
+  },
   //生存海报
   builder:function(){
     this.setData({ canvasImg: 'canvasImg'})
@@ -274,11 +283,9 @@ Page({
   //保存图片
   saveImg() {
     var that = this;
-
     
     that.setData({ shareBG: '', shareCon: 'shareConHide', page: '', canvasImg: 'canvasImgHide', hidden: true})    
-    
-    
+
     //生产环境时 记得这里要加入获取相册授权的代码
     wx.saveImageToPhotosAlbum({
       filePath: that.data.prurl,
@@ -299,7 +306,6 @@ Page({
         })
       }
     })
-
   },
   /**
    * 生命周期函数--监听页面加载
@@ -307,6 +313,14 @@ Page({
   onLoad: function (options) {
 
     let that = this;
+
+    //是否为分享进来的用户
+    if (options.isshare == 1) {
+      console.log('是分享进入');
+      this.setData({
+        'isshare': options.isshare
+      })
+    }
 
     that.setData({
       Publishercustomer_id: options.customer_id
@@ -345,7 +359,7 @@ Page({
         videos: data.data.videos, 
       })
       
-      console.log(data)
+      console.log(data.data.name)
     if (data.data.teachers != null){
       that.setData({
         teachNum: data.data.teachers.length, 
@@ -569,7 +583,7 @@ Page({
         videos: data.data.videos,
       })
 
-      console.log(data)
+      console.log(data.data.name)
       if (data.data.teachers != null) {
         that.setData({
           teachNum: data.data.teachers.length,
@@ -590,6 +604,7 @@ Page({
             videosNum: 0
           })
         }
+      wx.stopPullDownRefresh();
     })
 
   },

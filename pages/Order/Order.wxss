@@ -211,3 +211,6 @@ swiper-item {
 .zjzt{
   margin-left: 0;
 }
+.none{
+  display: none;
+}

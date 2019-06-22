@@ -9,9 +9,14 @@
     <view class="tab  {{deskIndex==3?'active':''}}" data-index='{{3}}' catchtap='changeTab'>待评价</view>
   </view>
 
+
   <swiper class='seiperTab' current="{{currentIndex}}" indicator-dots="{{false}}"  bindchange="bindchange">
     <!--全部订单-->
     <swiper-item>
+      <view style='margin-top:200rpx;' class='{{orders == "" ? "" :"none"}}'>
+        <image style='width:150rpx;height:150rpx;margin-left:300rpx' src='/images/icon/text.png'></image>
+        <view style='text-align:center;font-size:30rpx;color:gray;'>您还没有订单哦</view>
+      </view>
       <view class='ddlist' wx:for="{{orders}}" wx:key="index">
         <view class='ddimg' bindtap='kechengContent' data-inx="{{item}}">
           <image src='{{ImageHead}}{{item.product_cover}}'></image>
@@ -39,6 +44,10 @@
 
     <!--待付款-->
     <swiper-item>
+      <view style='margin-top:200rpx;' class='{{orders == "" ? "" :"none"}}'>
+        <image style='width:150rpx;height:150rpx;margin-left:300rpx' src='/images/icon/text.png'></image>
+        <view style='text-align:center;font-size:30rpx;color:gray;'>您还没有订单哦</view>
+      </view>    
       <view class='ddlist' wx:for="{{orders}}" wx:key="index" wx:if="{{item.statement == 1}}">
         <view class='ddimg' bindtap='kechengContent' data-inx="{{item}}">
           <image src='{{ImageHead}}{{item.product_cover}}'></image>
@@ -58,6 +67,10 @@
 
     <!--我的足迹-->
     <swiper-item>
+      <view style='margin-top:200rpx;' class='{{footprint == "" ? "" :"none"}}'>
+        <image style='width:150rpx;height:150rpx;margin-left:300rpx' src='/images/icon/text.png'></image>
+        <view style='text-align:center;font-size:30rpx;color:gray;'>您还没有足迹哦</view>
+      </view>
       <view class='wdzj' wx:for="{{footprint}}" wx:key="index">
         <view class='zidata'>{{item.updated_at}}</view>
         <view class='zjcon'>
@@ -80,6 +93,10 @@
 
     <!--待评价-->
     <swiper-item>
+      <view style='margin-top:200rpx;' class='{{orders == "" ? "" :"none"}}'>
+        <image style='width:150rpx;height:150rpx;margin-left:300rpx' src='/images/icon/text.png'></image>
+        <view style='text-align:center;font-size:30rpx;color:gray;'>您还没有订单哦</view>
+      </view>
       <view class='ddlist' wx:for="{{orders}}" wx:key="index" wx:if="{{item.statement == 2}}">
         <view class='ddimg' bindtap='kechengContent' data-inx="{{item}}">
           <image src='{{ImageHead}}{{item.product_cover}}'></image>

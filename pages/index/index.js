@@ -48,6 +48,12 @@ Page({
     this.setData({
       currentItemId: itemId
     })
+    wx.navigateTo({
+      url: '/pages/banner/banner',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
   },
   //点击学校分类
   changeSchool:function(e){
@@ -153,8 +159,6 @@ Page({
       var headerImg = wx.getStorageSync('avatarUrl')
       that.setData({ avatarUrl: headerImg })
     }
-
-
 
 
     //获取首页轮播图
@@ -398,6 +402,7 @@ Page({
         that.setData({
           schoolList: that.data.schoolList
         })
+        wx.stopPullDownRefresh();
       })
     }
   },
