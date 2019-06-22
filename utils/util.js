@@ -2,7 +2,7 @@
 //公用接口
 module.exports = {
   ak: "c2iSnw7LGNayfVGejyNSbCuHpEOZUxOr",
-  schoolPicture:'https://www.yikeyingshi.com/merchant_uploads/',
+  schoolPicture:'https://tuanxue-merchant-1256699616.cos.ap-beijing.myqcloud.com/',
   schoolListApi: 'https://yikeyingshi.com/api/v1/schools',
-  banner:'https://www.yikeyingshi.com/'
+  banner: 'https://tuanxue-admin-1256699616.cos.ap-beijing.myqcloud.com/'
 }

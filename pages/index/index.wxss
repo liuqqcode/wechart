@@ -1,50 +1,64 @@
 
-
+page{
+  background: #f4f4f4;
+}
 .frist{
   position: relative;
-
+  background: white;
+  width: 100%;
+  height: 80rpx;
 }
 .head{
   float: left;
+
+  background: white;
+  height: 74rpx;
+  width: 130rpx;
+}
+.head>image{
   border-radius: 50%;
-  margin-top: 30rpx;
+  margin-top: 5rpx;
   margin-left: 30rpx;
-  width: 100rpx;
-  height: 100rpx;
+  width: 70rpx;
+  height: 70rpx;
+  background: white;
 }
 .dizi{
+  display: none;
   float: left;
 }
 .adresse{
-  margin-left: 10rpx;
-  margin-top: 30rpx;
-  font-size: 30rpx;
+  margin-left: 15rpx;
+  margin-top:8rpx;
+  font-size: 27rpx;
 }
 .down{
   width: 25rpx;
   height: 15rpx;
 }
 .tianqi{
-  margin-top: 20rpx;
+  margin-top: 15rpx;
   margin-left: 10rpx;
-  font-size: 25rpx;
+  font-size: 23rpx;
 }
 .search{
   
   float: right;
-  margin-top: 50rpx;
+  margin-top: 10rpx;
   /* margin-left: 20rpx; */
   font-size: 25rpx;
   padding-left: 40rpx;
-  width: 350rpx;
+  width: 550rpx;
   height: 60rpx;
   border: 1px solid gainsboro;
   border-radius:50rpx;
 }
 .searchVi{
-  margin-right: 30rpx;
-  float: right;
+  width: 590rpx;
+  padding-right: 30rpx;
+  float: left;
   position: relative;
+  background: white;
 }
 .add{
   float: left;
@@ -57,18 +71,19 @@
   position: absolute;
   width: 25rpx;
   height: 25rpx;
-  top: 70rpx;
-  right: 33rpx;
+  top: 30rpx;
+  right: 50rpx;
 }
 .clear{
   clear: both;
 }
 swiper{
-  height: 350rpx;
+  height: 310rpx;
 }
 .swiper{
-  margin-top: 30rpx;
-  margin-bottom: 30rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  background: white;
 }
 
 .li{
@@ -78,8 +93,8 @@ swiper{
 .li1{
   width: 635rpx;
   margin: 0 auto;
-  border-radius: 50rpx;
-  height: 350rpx;
+  border-radius: 20rpx;
+  height: 310rpx;
   margin-left: 10rpx;
   /* transform: scale(0.9); */
 }
@@ -110,7 +125,9 @@ swiper{
   padding: 0 80rpx;
 }
 .fuwu{
-  margin-left: 30rpx;
+  background: white;
+  padding-left: 30rpx;
+  padding-bottom: 20rpx;
 }
 .fuwuFenlei{
   float: left;
@@ -121,22 +138,32 @@ swiper{
   padding: 5rpx 15rpx;
   border-radius: 10rpx;
   font-size: 30rpx;
-  color: #666666;
+  color: #414141;
   background: #f6f6f6;
-  margin: 20rpx 0;
+  margin: 5rpx 0;
   text-align: center;
+  width: 120rpx;
 }
 .defaultCol{
   color: white;
   background: #32bfd0;
 }
 .swiperItem{
-  height: 100rpx;
+  height: 50rpx;
 }
-
+.schoolItemCon{
+  background: #f4f4f4;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
 .schoolList{
-  margin: 10rpx 30rpx 40rpx 30rpx;
-
+  margin: 0 30rpx 20rpx 30rpx;
+  background: white;
+  padding: 20rpx;
+  border-radius: 20rpx;
+}
+.schoolList:last-child{
+  margin-bottom: 0
 }
 .schoolLeft{
   float: left;
@@ -159,25 +186,27 @@ swiper{
 }
 .schoolLeft>view:nth-child(2){
   font-size: 25rpx;
-  margin: 20rpx 0;
+  margin: 10rpx 0;
   font-weight: 400;
   color: #666666;
 }
 .schoolRight{
   float: left;
   width: 40%;
+  height: 190rpx;
 }
 .schoolRight>image{
   width: 100%;
-  height: 220rpx;
+  height: 190rpx;
+  border-radius: 20rpx;
 }
 .group3{
   float: left;
-  width: 70%;
+  width: 50%;
 }
 .group3>image{
   float: left;
-  width: 30rpx;
+  width: 25rpx;
   height: 30rpx;
   margin-top: 5rpx;
 }
@@ -196,9 +225,10 @@ swiper{
   margin-top: 7rpx;
 }
 .star{
-  width: 30%;
+  width: 40%;
   right: 0;
   float: right;
+  /* margin-top: 10rpx; */
 }
 .star>image{
   float: right;
@@ -216,44 +246,45 @@ swiper{
   line-height: 1.2;
 }
 .group4{
-  margin: 30rpx 0;
+  margin-top: 15rpx;
 }
 .group4>view:nth-child(1){
   float: left;
   font-size: 30rpx;
   font-family: "PingFang";
   color: rgb(42, 185, 211);
-  line-height: 1.2;
+  /* line-height: 1.2; */
 }
 .group4>view:nth-child(2){
   /* margin-top: 5rpx; */
   float: left;
-  font-size: 25rpx;
+  font-size: 20rpx;
   font-family: "PingFang";
   color: rgb(153, 153, 153);
-  line-height: 1.4;
+  /* line-height: 1.4; */
   padding-left: 10rpx;
   text-decoration:line-through;
+  margin-top: 10rpx;
 }
 .group4>view:nth-child(3){
   float: left;
   margin-left: 10rpx;
-  margin-top: 5rpx;
+  margin-top: 11rpx;
   height: 0;
   width: 0;
-  border-top:13rpx solid transparent;
-  border-bottom:13rpx solid transparent;
+  border-top:11rpx solid transparent;
+  border-bottom:10rpx solid transparent;
   border-right:15rpx solid #f19e38;
 }
 
 .group4>view:nth-child(4){
   float: left;
   font-size: 18rpx;
-  margin-top: 5rpx;
+  margin-top: 11rpx;
   font-family: "PingFang";
   color: rgb(255, 255, 255);
   background: #f19e38;
-  padding: 5rpx;
+  padding: 2rpx;
   line-height: 1;
 }
 .group4>view:nth-child(5){
@@ -270,7 +301,8 @@ swiper{
   display: none;
 }
 .noMore{
+  background: #f4f4f4;
   font-size: 30rpx;
   text-align: center;
-  color: #999;
+  color: rgb(168, 168, 168);
 }

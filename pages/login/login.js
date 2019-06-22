@@ -55,7 +55,9 @@ Page({
                 console.log(loginRes)
                 // that.setData({ UserType: loginRes.data.customer_type})
                 console.log(loginRes.data.customer_type)
-
+                wx.navigateBack({
+                  delta: 1,
+                })
               }
             })
           }

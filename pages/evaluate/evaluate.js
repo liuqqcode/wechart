@@ -56,7 +56,7 @@ Page({
     let that = this;
     this.data.uploaderList.forEach(function (path){
       wx.uploadFile({
-        url: 'https://yikeyingshi.com/api/v1/images/uploads', //仅为示例，非真实的接口地址
+        url: 'https://yikeyingshi.com/api/v1/images/uploads', 
         filePath: path,
         name: 'file',
         header: {

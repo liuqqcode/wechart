@@ -4,7 +4,7 @@
     <input value='' bindinput='merchant_name' placeholder='请输入机构名称'></input>
     <view class='clear'></view>
     <view>联系电话：</view>
-    <input value='' bindinput='contact' placeholder='请输入联系电话'></input>
+    <input value='' bindinput='contact' maxlength='11' placeholder='请输入联系电话'></input>
     <view class='clear'></view>
     <view>姓名：</view>
     <input value='' bindinput='name' placeholder='请输入姓名'></input>

@@ -47,10 +47,9 @@ Page({
        that.getLishi();
        //计算距离我与学校的
        that.data.schoolList.forEach(function (item, index) {
-         console.log(that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude))
          item.distance = that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude)
-         console.log(that.data.schoolList)
-
+         item.lowest_lesson_price = parseInt(item.lowest_lesson_price)
+         item.lowest_lesson_price_tag = parseInt(item.lowest_lesson_price_tag)
        })
        that.setData({
          schoolList: that.data.schoolList
@@ -109,10 +108,9 @@ Page({
       that.getLishi();
       //计算距离我与学校的
       that.data.schoolList.forEach(function (item, index) {
-        console.log(that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude))
         item.distance = that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude)
-        console.log(that.data.schoolList)
-
+        item.lowest_lesson_price = parseInt(item.lowest_lesson_price)
+        item.lowest_lesson_price_tag = parseInt(item.lowest_lesson_price_tag)
       })
       that.setData({
         schoolList: that.data.schoolList

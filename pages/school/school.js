@@ -358,7 +358,7 @@ Page({
       }
     if (data.data.videos != null){
       that.setData({
-        videosNum: data.data.videos.length,
+        videosNum: data.data.videos.length
       })
     }else
       if(data.data.videos == null){
@@ -550,6 +550,47 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    let that = this;
+
+    //获取学校详情信息
+    api._get('/api/v1/schools/' + that.data.schoolId).then(data => {
+      that.setData({
+        school: data.data,
+        merchant: data.data.merchant.id,
+        schoolPictureAPI: util.schoolPicture,
+        schoolBanner: data.data.cover,
+        schoolName: data.data.name,
+        location: data.data.location,
+        telephone: data.data.telephone,
+        rate: data.data.rate,
+        lessons: data.data.lessons,
+        packages: data.data.packages,
+        teachers: data.data.teachers,
+        videos: data.data.videos,
+      })
+
+      console.log(data)
+      if (data.data.teachers != null) {
+        that.setData({
+          teachNum: data.data.teachers.length,
+        })
+      } else
+        if (data.data.teachers == null) {
+          that.setData({
+            teachNum: 0
+          })
+        }
+      if (data.data.videos != null) {
+        that.setData({
+          videosNum: data.data.videos.length
+        })
+      } else
+        if (data.data.videos == null) {
+          that.setData({
+            videosNum: 0
+          })
+        }
+    })
 
   },
 
@@ -557,6 +598,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+ 
 
   },
 

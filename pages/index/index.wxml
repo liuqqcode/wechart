@@ -1,8 +1,10 @@
 <!--index.wxml-->
 <view class="container">
-  <view class='line'></view>
+  <!-- <view class='line'></view> -->
   <view class='frist'>
-    <image class='head' src='{{avatarUrl}}'></image>
+    <view class='head'>
+      <image src='{{avatarUrl}}'></image>
+    </view>
     <view class='dizi'>
         <view class='adresse'>{{city}}
           <image class='down'></image>  
@@ -28,7 +30,7 @@
       <block wx:for="{{backClass}}" wx:key="index">
         <swiper-item item-id="{{index}}" data-item-id="{{index}}" bindtap='clickChange'>  
           <view class='li'>
-            <image class='li1 {{item}} {{currentItemId == index ? "selected" : ""}}'  src='{{banner}}{{bannerCon}}{{item}}'></image>
+            <image class='li1 {{item}} {{currentItemId == index ? "selected" : ""}}'  src='{{banner}}{{item}}'></image>
           </view> 
         </swiper-item>  
       </block>
@@ -49,37 +51,40 @@
         </swiper>
   </view>
   <view class='clear'></view>
-  <view class='schoolList' wx:for="{{schoolList}}" wx:key="index" bindtap='school' data-id='{{item}}'>
-    <view class='schoolLeft'>
-      <view>{{item.name}}</view>
-      <view>{{item.desc}}</view>
-      <view class='{{group3}}'>
-        <image src='/images/icon/redbag.png'></image>
-        <view>{{item.gift_packet_amount}}</view>
-        <view wx:if="{{item.gift_packet_range == 1}}">仅5km内有效</view>
-        <view wx:if="{{item.gift_packet_range == 2}}">仅同城内有效</view>
-        <view wx:if="{{item.gift_packet_range == 3}}">全国内有效</view>
+  <view class='schoolItemCon'>
+    <view class='schoolList' wx:for="{{schoolList}}" wx:key="index" bindtap='school' data-id='{{item}}'>
+      <view class='schoolLeft'>
+        <view>{{item.name}}</view>
+        <view>{{item.desc}}</view>
+        <view class='{{group3}}'>
+          <image src='/images/icon/redbag.png'></image>
+          <view>{{item.gift_packet_amount}}</view>
+          <view wx:if="{{item.gift_packet_range == 1}}">5km内</view>
+          <view wx:if="{{item.gift_packet_range == 2}}">同城</view>
+          <view wx:if="{{item.gift_packet_range == 3}}">不限</view>
 
+        </view>
+        <view class='star'>
+          <view>{{item.views}}</view>
+
+          <image src='/images/icon/star.png'></image>
+        </view>
+        <view class='clear'></view>
+        <view class='group4'>
+          <view>￥{{item.lowest_lesson_price}}</view>
+          <view>￥{{item.lowest_lesson_price_tag}}</view>
+          <view></view>
+          <view>{{item.lowest_lesson_price_discount}}折</view>
+          <view wx:if="{{item.distance < 100}}">{{item.distance}}km</view>
+          <view wx:else>>100km</view>
+        </view>
       </view>
-      <view class='star'>
-        <view>{{item.views}}</view>
-
-        <image src='/images/icon/star.png'></image>
+      <view class='schoolRight'>
+        <image src= '{{schoolPicture}}{{item.cover}}'></image>
       </view>
       <view class='clear'></view>
-      <view class='group4'>
-        <view>￥{{item.lowest_lesson_price}}</view>
-        <view>￥{{item.lowest_lesson_price_tag}}</view>
-        <view></view>
-        <view>{{item.lowest_lesson_price_discount}}折</view>
-        <view wx:if="{{item.distance < 100}}">{{item.distance}}km</view>
-        <view wx:else>>100km</view>
-      </view>
     </view>
-    <view class='schoolRight'>
-      <image src= '{{schoolPicture}}{{item.cover}}'></image>
-    </view>
-    <view class='clear'></view>
   </view>
+ 
   <view class='{{noMore}}'>没有更多了</view>
 </view>

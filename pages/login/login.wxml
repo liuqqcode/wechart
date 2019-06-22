@@ -1,4 +1,5 @@
 <view>
+  <view class='model'>授权已过期，请重新登陆</view>
   <button
     class='userBut'
     wx:if="{{canIUse}}"

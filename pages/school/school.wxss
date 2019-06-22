@@ -1,6 +1,7 @@
 .group1>image{
   width: 100%;
   height: 400rpx;
+  z-index: 1;
 }
 .group1Con{
   margin: 30rpx;
@@ -14,6 +15,7 @@
   font-weight: 600;
   font-family: "PingFang";
   color: rgb(0, 0, 0);
+
 }
 .group1Left>image{
   width: 40rpx;
@@ -23,26 +25,32 @@
   float: left;
 }
 .fen{
-    margin-top: 10rpx;
-    color: #90dd1d;
+    margin-top: 8rpx;
+    color: #fed757;
     font-size: 35rpx;
 }
 .group1Right{
   width: 240rpx;
   float: left;
-  /* margin-top: 20rpx; */
+  margin-top: 6rpx;
 }
 .group1Right>view>image{
   width: 50rpx;
   height: 50rpx;
+}
+.group1Right>view:nth-child(1)>image{
+  margin-top: 2rpx;
+  width: 48rpx;
+  height: 48rpx;
 }
 .group1Right>view{
   float: left;
   text-align: center;
   width: 120rpx;
 }
+
 .group1Right>view>view{
-  margin-top: 10rpx;
+  /* margin-top: 10rpx; */
   font-size: 30rpx;
   font-family: "PingFang";
   color: #999999;
@@ -85,16 +93,18 @@ swiper-item:nth-child(1)>image{
   color: #999999;
 }
 .location{
-  margin: 30rpx;
+  margin: 20rpx 30rpx;
+  padding-bottom: 65rpx;
 }
 .location>image:nth-child(1){
-  width: 34rpx;
-  height: 43rpx;
+  width: 37rpx;
+  height: 55rpx;
   float: left;
   margin-right: 20rpx;
 }
 .location>view{
   float: left;
+  width: 535rpx;
   font-size: 30rpx;
 }
 .location>image:nth-child(3){
@@ -103,7 +113,7 @@ swiper-item:nth-child(1)>image{
   float: right;
 }
 .botique{
-  margin: 60rpx 30rpx;
+  margin: 30rpx;
 }
 .botiqueIcon>image{
   float: left;
@@ -173,7 +183,7 @@ swiper-item:nth-child(1)>image{
   margin-right: 20rpx;
 }
 .groupBuy{
-  margin: 60rpx 30rpx;
+  margin: 30rpx;
 }
 .groupBuy>view:nth-child(1)>image{
   float:left;
@@ -234,10 +244,10 @@ swiper-item:nth-child(1)>image{
   float: left;
 }
 .teach{
-  margin: 60rpx 30rpx;
+  margin: 20rpx 30rpx;
 }
 .teachSwiper>swiper{
-  height: 360rpx;
+  height: 340rpx;
 }
 .teachHead>view:nth-child(1){
   font-size: 35rpx;
@@ -273,7 +283,7 @@ swiper-item:nth-child(1)>image{
   font-size: 35rpx;
 }
 .pingjiaCon{
-  padding: 30rpx 0;
+  /* padding: 30rpx 0; */
   margin: 20rpx 0;
   border-bottom: 1rpx solid gainsboro;
 }
@@ -360,6 +370,7 @@ swiper-item:nth-child(1)>image{
   color: #999999;
 }
 .yuyue{
+  width: 100%;
   position: fixed;
   bottom: 0;
   height: 85rpx;
@@ -368,7 +379,7 @@ swiper-item:nth-child(1)>image{
 .buttonPhone{
   float: left;
   width: 100rpx;
-  height: 100rpx;
+  height: 85rpx;
   border-radius: 0;
   border-top: 1rpx solid gainsboro;
 }
@@ -426,7 +437,7 @@ swiper-item:nth-child(1)>image{
 .yuyue>view:nth-child(2)>button{
   background: white;
   width: 100rpx;
-  height: 100rpx;
+  height: 86rpx;
   float: left;
   bottom: 0;
   border-radius: 0;
@@ -445,16 +456,16 @@ swiper-item:nth-child(1)>image{
   margin-top: -10rpx;
 }
 .yyst{
-  position: fixed;
-  float: right;
+  /* position: fixed; */
+  float: left;
   background: #f2c720 !important;
   color: white;
-  right: 0;
-  bottom: 0;
+  /* right: 0; */
+  /* bottom: 0; */
   height: 46rpx;
   font-size: 30rpx;
   text-align: center;
-  width: 553rpx;
+  width: 548rpx;
   padding: 20rpx 0;
 }
 .shareBG{
@@ -699,7 +710,7 @@ canvas{
   padding: 20rpx 0;
 }
 .kehuBtn{
-  background: greenyellow;
+  background: #f2c720 !important;
   font-size: 30rpx;
   width: 70rpx;
   height: 70rpx;
@@ -720,4 +731,21 @@ canvas{
 .phoneButton>image{
   width: 50rpx;
   height: 50rpx;
+}
+.none{
+  display: none;
+}
+.shua{
+  position: fixed;
+  top: 30rpx;
+  font-size: 30rpx;
+  text-align: center;
+  z-index: -1;
+  margin: 0 auto;
+}
+.bggray{
+  /* margin-top: 30rpx; */
+  background: rgb(233, 233, 233);
+  height: 10rpx;
+  width: 100%;
 }

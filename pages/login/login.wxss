@@ -1,4 +1,8 @@
 button{
-  margin-top: 500rpx;
+  margin-top: 50rpx;
   width: 90%;
+}
+.model{
+  margin-top: 450rpx;
+  text-align: center;
 }

@@ -1,5 +1,6 @@
 <view class='{{page}}'>
   <view class='group1'>
+  <!-- <text class='shua'>松手刷新...</text> -->
     <image src='{{schoolPictureAPI}}{{schoolBanner}}'></image>
     <view class='group1Con'>
       <view class='group1Left'>
@@ -25,7 +26,7 @@
     </view>
     <view class='clear'></view>
   </view>
-  <view class='vedio'>
+  <view class='vedio {{videosNum == 0 ? "none" : ""}}' >
     <view>看视频长姿势</view>
     <view>全部视频{{videosNum}}个</view>
     <view class='swiper'>
@@ -38,13 +39,14 @@
             <video show-fullscreen-btn='true' src='{{schoolPictureAPI}}{{item}}'></video>
           </swiper-item>
         </block>
-        <swiper-item>
+        <swiper-item wx:if="videosNum == 1">
         </swiper-item>
 
       </swiper>
     </view>
   </view>
   <view class='clear'></view>
+  <view class='bggray'></view>
   <view class='location'>
     <image src='/images/icon/location.png'></image>
     <view>{{location}}</view>
@@ -55,6 +57,8 @@
 
   </view>
   <view class='clear'></view>
+  <view class='bggray'></view>
+
   <view class='botique'>
     <view class='botiqueIcon'>
       <image src='/images/icon/botique.png'></image>
@@ -107,6 +111,7 @@
     </view>
   </view>
   <view class='clear'></view>
+  <view class='bggray'></view>
   <view class='teach'>
     <view class='teachHead'>
       <view>名师风采</view>
@@ -141,6 +146,7 @@
       </swiper>
     </view>
   </view>
+  <view class='bggray'></view>
 
   <view class='pingjia'>
     <view class='pingjiahead'>用户评价（{{schoolpingNum}}）</view>

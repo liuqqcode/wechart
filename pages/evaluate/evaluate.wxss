@@ -62,6 +62,13 @@
 }
 .ui_uploader_item{
   float: left;
+  position: relative;
+  margin-left: 30rpx;
+}
+.ui_uploader_item_icon{
+  position: absolute;
+  top: -10rpx;
+  right: -10rpx;
 }
 .evaluateStar{
   margin: 0 30rpx;

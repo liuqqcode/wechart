@@ -52,23 +52,43 @@ Page({
   //点击学校分类
   changeSchool:function(e){
     let that = this
-    api._get("/api/v1/schools?type_ids=" + e.currentTarget.dataset.inx.id).then(data => {
 
-      that.setData({ schoolList: data.data, next: data.links.next, swiperSchool: e.currentTarget.dataset.inx.id })
-      if (data.links.next == null) {
-        that.setData({ noMore: "noMore" })
-      }
-      //计算距离我与学校的
-      that.data.schoolList.forEach(function (item, index) {
-        console.log(that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude))
-        item.distance = that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude)
-        console.log(that.data.schoolList)
-
+    if (that.data.swiperSchool == e.currentTarget.dataset.inx.id){
+      wx.showLoading({
+        title: '请求中，请稍后...',
       })
+      that.getSchoolList();
       that.setData({
-        schoolList: that.data.schoolList
+        swiperSchool:''
       })
-    })
+      wx.hideLoading()
+    }else{
+      wx.showLoading({
+        title: '请求中，请稍后...',
+      })
+      api._get("/api/v1/schools?type_ids=" + e.currentTarget.dataset.inx.id).then(data => {
+
+        that.setData({
+          schoolList: data.data,
+          next: data.links.next,
+          swiperSchool: e.currentTarget.dataset.inx.id
+        })
+        if (data.links.next == null) {
+          that.setData({ noMore: "noMore" })
+        }
+        //计算距离我与学校的
+        that.data.schoolList.forEach(function (item, index) {
+          item.distance = that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude)
+          item.lowest_lesson_price = parseInt(item.lowest_lesson_price)
+          item.lowest_lesson_price_tag = parseInt(item.lowest_lesson_price_tag)
+
+        })
+        that.setData({
+          schoolList: that.data.schoolList
+        })
+        wx.hideLoading()
+      })
+    }
   },
   //学校详情
   school:function(e){
@@ -127,6 +147,7 @@ Page({
   onLoad: function (options) {
     
     var that = this;
+    
     //首页头像
     if (wx.getStorageSync('avatarUrl') != ''){
       var headerImg = wx.getStorageSync('avatarUrl')
@@ -134,16 +155,7 @@ Page({
     }
 
 
-    //获取位置信息坐标
-    wx.getLocation({
-      type:'wgs84',
-      success: function(res) {
-        that.setData({ Mylatitude: res.latitude, Mylongitude: res.longitude})
-        that.getBaiduLocation();
-        wx.setStorageSync('Mylatitude', res.latitude);
-        wx.setStorageSync('Mylongitude', res.longitude)
-      },
-    })
+
 
     //获取首页轮播图
     api._get("/api/v1/platform/banners").then(res => {
@@ -151,15 +163,50 @@ Page({
     })
 
 
-    //获取首页学校分类
+    //获取首页学校分类banner下方的分类
     api._get("/api/v1/school-types").then(res => {
       console.log(res.data)
       that.setData({ fuwuFenlei:res.data})
       if(res.data.length <= 4){
         that.setData({ schoolFenlei:res.data.length})
       }else{
-        that.setData({ schoolFenlei:4.5})
+        that.setData({ schoolFenlei:4})
       }
+    })
+
+  //获取学校列表
+    api._get('/api/v1/schools').then(data => {
+      console.log(data.data)
+      that.setData({
+        schoolList: data.data,
+        next: data.links.next
+      })
+      if (data.links.next == null) {
+        that.setData({ noMore: "noMore" })
+      }
+      //获取位置信息坐标
+      wx.getLocation({
+        type: 'wgs84',
+        success: function (res) {
+          that.setData({ Mylatitude: res.latitude, Mylongitude: res.longitude })
+          that.getBaiduLocation();
+          wx.setStorageSync('Mylatitude', res.latitude);
+          wx.setStorageSync('Mylongitude', res.longitude)
+
+          //计算距离我与学校的
+          that.data.schoolList.forEach(function (item, index) {
+            item.distance = that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude)
+            item.lowest_lesson_price = parseInt(item.lowest_lesson_price)
+            item.lowest_lesson_price_tag = parseInt(item.lowest_lesson_price_tag)
+          })
+          that.setData({
+            schoolList: that.data.schoolList
+          })
+        },
+      })
+
+    }).catch(e => {
+      console.log(e)
     })
     this.getSchoolList();
   },
@@ -191,16 +238,19 @@ Page({
   getSchoolList:function(){
     let that = this
     api._get('/api/v1/schools').then(data => {
-      that.setData({ schoolList: data.data, next: data.links.next })
+      console.log(data.data)
+      that.setData({
+        schoolList: data.data,
+        next: data.links.next 
+      })
       if (data.links.next == null) {
         that.setData({ noMore: "noMore" })
       }
       //计算距离我与学校的
       that.data.schoolList.forEach(function (item, index) {
-        console.log(that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude))
         item.distance = that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude)
-        console.log(that.data.schoolList)
-
+        item.lowest_lesson_price = parseInt(item.lowest_lesson_price)
+        item.lowest_lesson_price_tag = parseInt(item.lowest_lesson_price_tag)
       })
       that.setData({
         schoolList: that.data.schoolList
@@ -234,7 +284,6 @@ Page({
    */
   onShow: function () {
     let that = this;
-    // this.getSchoolList();
     this.getBaiduLocation();
     // that.setData({ swiperSchool:100})
     //获取位置信息坐标
@@ -249,10 +298,9 @@ Page({
     })
     //计算距离我与学校的
     that.data.schoolList.forEach(function (item, index) {
-      console.log(that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude))
       item.distance = that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude)
-      console.log(that.data.schoolList)
-
+      item.lowest_lesson_price = parseInt(item.lowest_lesson_price)
+      item.lowest_lesson_price_tag = parseInt(item.lowest_lesson_price_tag)
     })
     that.setData({
       schoolList: that.data.schoolList
@@ -291,6 +339,67 @@ Page({
    */
   onPullDownRefresh: function () {
 
+
+    var that = this;
+    //首页头像
+    if (wx.getStorageSync('avatarUrl') != '') {
+      var headerImg = wx.getStorageSync('avatarUrl')
+      that.setData({ avatarUrl: headerImg })
+    }
+
+
+    //获取位置信息坐标
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        that.setData({ Mylatitude: res.latitude, Mylongitude: res.longitude })
+        that.getBaiduLocation();
+        wx.setStorageSync('Mylatitude', res.latitude);
+        wx.setStorageSync('Mylongitude', res.longitude)
+      },
+    })
+
+    //获取首页轮播图
+    api._get("/api/v1/platform/banners").then(res => {
+      that.setData({ banner: baiduak.banner, backClass: res.data.banners.images })
+    })
+
+
+    //获取首页学校分类banner下方的分类
+    api._get("/api/v1/school-types").then(res => {
+      console.log(res.data)
+      that.setData({ fuwuFenlei: res.data })
+      if (res.data.length <= 4) {
+        that.setData({ schoolFenlei: res.data.length })
+      } else {
+        that.setData({ schoolFenlei: 4.5 })
+      }
+    })
+    if (that.data.swiperSchool == ''){
+      this.getSchoolList();
+    }else{
+      let that = this
+      api._get("/api/v1/schools?type_ids=" + that.data.swiperSchool).then(data => {
+
+        that.setData({
+          schoolList: data.data,
+          next: data.links.next
+        })
+        if (data.links.next == null) {
+          that.setData({ noMore: "noMore" })
+        }
+        //计算距离我与学校的
+        that.data.schoolList.forEach(function (item, index) {
+          item.distance = that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude)
+          item.lowest_lesson_price = parseInt(item.lowest_lesson_price)
+          item.lowest_lesson_price_tag = parseInt(item.lowest_lesson_price_tag)
+
+        })
+        that.setData({
+          schoolList: that.data.schoolList
+        })
+      })
+    }
   },
 
   /**
@@ -306,6 +415,7 @@ Page({
       wx.request({
         url: that.data.next,
         success(data){
+          
           that.setData({ next: data.data.links.next, schoolList: that.data.schoolList.concat(data.data.data)})
           if (data.data.links.next == null) {
             that.setData({ noMore: "noMore"})

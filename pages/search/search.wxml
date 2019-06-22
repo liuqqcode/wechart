@@ -24,9 +24,9 @@
         <view class='{{group3}}'>
           <image src='/images/icon/redbag.png'></image>
           <view>{{item.gift_packet_amount}}</view>
-          <view wx:if="{{item.gift_packet_range == 1}}">仅5km内有效</view>
-          <view wx:if="{{item.gift_packet_range == 2}}">仅同城内有效</view>
-          <view wx:if="{{item.gift_packet_range == 3}}">全国内有效</view>
+          <view wx:if="{{item.gift_packet_range == 1}}">5km内</view>
+          <view wx:if="{{item.gift_packet_range == 2}}">同城</view>
+          <view wx:if="{{item.gift_packet_range == 3}}">不限</view>
         </view>
         <view class='star'>
           <view>{{item.views}}</view>
