@@ -1,0 +1,5 @@
+<view>
+  <block class='content' >
+    <image wx:for="{{content.images}}" wx:key="index" class='imageCon' src='{{banner}}{{item}}'></image>
+  </block>
+</view>

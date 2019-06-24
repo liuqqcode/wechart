@@ -49,7 +49,7 @@ Page({
       currentItemId: itemId
     })
     wx.navigateTo({
-      url: '/pages/banner/banner',
+      url: '/pages/banner/banner?id=' + e.currentTarget.dataset.itemId,
       success: function(res) {},
       fail: function(res) {},
       complete: function(res) {},
@@ -321,6 +321,13 @@ Page({
     if (wx.getStorageSync('avatarUrl') != '') {
       var headerImg = wx.getStorageSync('avatarUrl')
       that.setData({ avatarUrl: headerImg })
+    }
+
+    //更新token
+    if (wx.getStorageSync('jwtToken') != ""){
+      api._post("/api/auth/refresh").then(res => {
+        wx.setStorageSync('jwtToken', res.token_type + ' ' + res.access_token)
+      })
     }
   },
 

@@ -1,0 +1,4 @@
+.imageCon{
+  width: 100%;
+  display: block;
+}

@@ -21,7 +21,6 @@ Page({
     page:'',
     phoneUse:'phoneUseHide',
     canvasImg:'canvasImgHide',
-    webkit:'webkit',
     
     //评价全文
     pjqw:'pjqw',
@@ -72,7 +71,10 @@ Page({
     //查看全部评价
     Reviews:true,
     Publishercustomer_id:'',
-    isshare:''
+    isshare:'',
+    webkit:'',
+    comment:''
+
 
   },
   //打开客服
@@ -124,10 +126,7 @@ Page({
     })
   },
 
-  //查看全文
-  pjqw:function(){
-    this.setData({ webkit: '', pjqw:'pjqwHide'})
-  },
+
 
   //分享
   shareBtn:function(){
@@ -318,7 +317,7 @@ Page({
     if (options.isshare == 1) {
       console.log('是分享进入');
       this.setData({
-        'isshare': options.isshare
+        isshare: true
       })
     }
 
@@ -451,12 +450,17 @@ Page({
 
     //获取学校的评论
     api._get("/api/v1/comments/school/" + options.id).then(res => {
+      if(res.data[0].content.length > 75){
+        res.data[0].webkit = true
+      }else{
+        res.data[0].webkit = false
+      }
       that.data.schoolping.push(res.data[0])
       that.setData({ 
         schoolping: that.data.schoolping,
         schoolpingNum:res.meta.total,
       })
-      console.log(res.data)
+      console.log(that.data.schoolping)
     })
 
     //提交推客信息
@@ -474,11 +478,19 @@ Page({
   LookAll:function(){
     let that = this;
     api._get("/api/v1/comments/school/" + that.data.schoolId).then(res => {
+      res.data.forEach(item => {
+        if(item.content.length > 75){
+          item.webkit = true
+        }else{
+          item.webkit = false
+        }
+      })
       that.setData({
         schoolping: res.data,
         schoolpingNum: res.meta.total,
         Reviews:false
       })
+      console.log(that.data.schoolping)
     })
   },
   share: function () {
@@ -509,6 +521,21 @@ Page({
       })
     },2000)
 
+  },
+  //查看评论详情
+  Viewcomments:function(e){
+    let that = this
+    console.log(e.currentTarget.dataset.inx)
+    if (e.currentTarget.dataset.inx.webkit == true){
+      e.currentTarget.dataset.inx.webkit = false
+      that.setData({
+        schoolping:that.data.schoolping
+      })
+    }else{
+      e.currentTarget.dataset.inx.webkit = true
+      console.log("false")
+    }
+    
   },
   getImg:function(){
     

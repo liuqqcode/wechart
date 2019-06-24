@@ -179,10 +179,10 @@
 
         </view>
         <view class='clear'></view>
-        <view class='pjtext {{ index == 0 ?  webkit : ""}}'>{{item.content}}</view>
+        <view class='pjtext {{ item.webkit ?  "webkit" : ""}}'  bindtap='Viewcomments' data-inx='{{item}}'>{{item.content}}</view>
         <!-- <view bindtap='pjqw' wx:if="{{index == 0}}" class='{{pjqw}}'>全文</view> -->
         <view class='pjImg' wx:for="{{item.images}}" wx:key="index">
-          <image src='{{item}}'></image>
+          <image src='{{schoolPictureAPI}}{{item}}'></image>
         </view>
         <view class='clear'></view>
       </view>
