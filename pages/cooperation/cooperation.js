@@ -10,14 +10,19 @@ Page({
   data: {
     merchant_name:'',
     contact:'',
-    name:''
+    name:'',
+    merchantData:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    api._get("api/v1/merchants/passports").then(data => {
+      that.setData({
+        merchantData: data.data
+      })
+    })
   },
 
   merchant_name:function(e){
@@ -55,15 +60,10 @@ Page({
         name:that.data.name,
         contact: that.data.contact
       }).then(res => {
-        wx.showToast({
-          title: '提交成功',
-          icon: 'success',
-          image: '',
-          duration: 3000,
-          mask: true,
-          success: function () { 
-
-          },
+        api._get("api/v1/merchants/passports").then( data => {
+          that.setData({
+            merchantData:data.data
+          })
         })
 
       }) 

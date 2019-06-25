@@ -314,7 +314,8 @@ Page({
     let that = this;
 
     //是否为分享进来的用户
-    if (options.isshare == 1) {
+    console.log(options)
+    if (options.customer_id) {
       console.log('是分享进入');
       this.setData({
         isshare: true
@@ -525,15 +526,22 @@ Page({
   //查看评论详情
   Viewcomments:function(e){
     let that = this
-    console.log(e.currentTarget.dataset.inx)
+    var num;
+    for(var i = 0 ; i < that.data.schoolping.length ; i++){
+      if (that.data.schoolping[i].id == e.currentTarget.dataset.inx.id){
+        num = i
+      }
+    }
     if (e.currentTarget.dataset.inx.webkit == true){
-      e.currentTarget.dataset.inx.webkit = false
+      that.data.schoolping[num].webkit = false
       that.setData({
         schoolping:that.data.schoolping
       })
     }else{
-      e.currentTarget.dataset.inx.webkit = true
-      console.log("false")
+      that.data.schoolping[num].webkit = true
+      that.setData({
+        schoolping:that.data.schoolping
+      })
     }
     
   },

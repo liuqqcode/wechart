@@ -37,7 +37,7 @@
       </view>
       <view wx:if="{{daili}}" bindtap='daili'>
         <image src='/images/icon/handshake.png'></image>
-        <view>发展代理</view>
+        <view>发展推客</view>
       </view>
       <view wx:if="{{daili}}" bindtap='khgl'>
         <image src='/images/icon/manage.png'></image>
