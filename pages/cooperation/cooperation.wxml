@@ -1,5 +1,5 @@
 <view class='info'>
-  <view class='inputCon' wx:if="{{merchantData == ''}}">
+  <view class='inputCon' wx:if="{{merchantData == '' && submission == false}}">
     <view>机构名称：</view>
     <input value='' bindinput='merchant_name' placeholder='请输入机构名称'></input>
     <view class='clear'></view>
@@ -10,10 +10,13 @@
     <input value='' bindinput='name' placeholder='请输入姓名'></input>
     <view class='clear'></view>
   </view>
-  <button wx:if="{{merchantData == ''}}" class='submit' bindtap='submit'>确定</button>
+  <button wx:if="{{merchantData == '' && submission == false}}" class='submit' bindtap='submit'>确定</button>
   <view wx:if="{{merchantData != ''}}">
     <view>登陆地址：{{merchantData.entry}}</view>
     <view>账户名：{{merchantData.username}}</view>
     <view>密码：{{merchantData.password}}</view>
+  </view>
+  <view wx:if="{{submission}}">
+    <view style='text-align:center;margin-top:150rpx;'>提交完成，后台正在审核</view>
   </view>
 </view>

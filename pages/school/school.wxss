@@ -131,7 +131,7 @@ swiper-item:nth-child(1)>image{
 }
 .botiqueConLeft{
   width: 200rpx;
-  height: 200rpx;
+  height: 150rpx;
   float: left;
 }
 .botiqueConLeft>image{
@@ -146,7 +146,8 @@ swiper-item:nth-child(1)>image{
 .botiqueConRight>view:nth-child(1){
   font-size: 30rpx;
   font-weight: 600;
-  margin-bottom: 40rpx;
+  margin-bottom: 15rpx;
+  margin-top: 5rpx;
 }
 .botiqueConRight>view:nth-child(2){
   float: left;
@@ -175,7 +176,7 @@ swiper-item:nth-child(1)>image{
   color: #999999;
 }
 .botiqueConRightBot{
-  margin-top: 40rpx;
+  margin-top: 20rpx;
 }
 .botiqueConRightBot>view{
   float: left;
@@ -201,7 +202,7 @@ swiper-item:nth-child(1)>image{
 }
 .groupBuyConLeft{
   width:200rpx;
-  height:200rpx;
+  height:150rpx;
   float:left;
 }
 .groupBuyConLeft>image{
@@ -216,7 +217,8 @@ swiper-item:nth-child(1)>image{
 .groupBuyConRight>view:nth-child(1){
   font-size:30rpx;
   font-weight:600;
-  margin-bottom:40rpx;
+  margin-bottom:15rpx;
+  margin-top: 5rpx;
 }
 .groupBuyConRight>view:nth-child(2){
   float:left;
@@ -232,7 +234,7 @@ swiper-item:nth-child(1)>image{
   margin-left: 20rpx
 }
 .groupBuyConRight>view:nth-child(5){
-  margin-top: 40rpx;
+  margin-top: 20rpx;
 }
 .groupBuyConRight>view:nth-child(5)>image{
   width: 30rpx;
@@ -330,19 +332,19 @@ swiper-item:nth-child(1)>image{
   overflow: hidden;
   -webkit-line-clamp: 3;
   line-clamp: 3;
+  margin-bottom: 30rpx;
 }
 .webkit{
   display: -webkit-box;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
-   text-overflow: -o-ellipsis-lastline;
-
+  text-overflow: -o-ellipsis-lastline;
 }
 .pjImg>image{
   float: left;
   width: 175rpx;
   height: 175rpx;
-  margin: 20rpx 10rpx;
+  margin: 0rpx 10rpx 30rpx 10rpx;
 }
 .pjImg>image:nth-child(1){
   margin-left: 0;
@@ -715,7 +717,8 @@ canvas{
   padding: 20rpx 0;
 }
 .kehuBtn{
-  background: #81d740 !important;
+  background: #4dc86f !important;
+  color: white;
   font-size: 30rpx;
   width: 70rpx;
   height: 70rpx;
@@ -726,6 +729,7 @@ canvas{
   bottom: 300rpx;
   padding-right: 10rpx;
   padding-top: 10rpx;
+  box-shadow: 0rpx 0rpx 15rpx rgb(73, 73, 73)
 }
 .phoneButton{
   float: right;

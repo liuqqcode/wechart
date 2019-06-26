@@ -33,9 +33,9 @@
     <view class='tcHead'>套餐</view>
     <view class='tcContent' wx:for="{{lessons.lessons}}" wx:key="index">
       <view>
-        <view>{{item.name}}</view>
+        <view>{{item.lesson_name}}</view>
         <view>1份</view>
-        <view>{{item.price}}元</view>
+        <view>{{item.lesson_price}}元</view>
       </view>
       <view class='clear'></view>
     </view>

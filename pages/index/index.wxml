@@ -15,7 +15,14 @@
       <input class='search' placeholder='英语培训'></input>
       <image class='searchIcon' src='/images/icon/search.png'></image>
     </view>
-
+    <view class='picker'>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="pickerCon">
+          {{array[index]}}
+        </view>
+        <image class='pickerImage' src='/images/icon/down2.png'></image>
+      </picker>
+    </view>
   </view>
   <view class='clear'></view>
   <view class='swiper'>

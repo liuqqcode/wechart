@@ -35,14 +35,14 @@ page{
 .contentCon>view>view:nth-child(2){
   font-size: 25rpx;
   font-family: "PingFang";
-  color: rgb(219, 106, 232);
+  color: #32bfd0;
   line-height: 1.2;
   float: left;
 }
 .contentCon>view>view:nth-child(3){
   font-size: 25rpx;
   font-family: "PingFang";
-  color: rgb(219, 106, 232);
+  color: #32bfd0;
   line-height: 1.2;
   float: right;
 }
@@ -54,7 +54,7 @@ page{
 }
 .contentCon>text{
   font-size: 30rpx;
-  color: rgb(219, 106, 232);
+  color: #32bfd0;
   text-align: center;
 }
 .message{

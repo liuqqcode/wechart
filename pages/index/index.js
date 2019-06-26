@@ -11,6 +11,27 @@ Page({
    * 页面的初始数据
    */
   data: {
+    array: ['学校排序', '红包排序', '距离排序', '好评排序'],
+    objectArray: [
+      {
+        id: 0,
+        name: '学校排序'
+      },
+      {
+        id: 1,
+        name: '红包排序'
+      },
+      {
+        id: 2,
+        name: '距离排序'
+      },
+      {
+        id: 3,
+        name: '好评排序'
+      }
+    ],
+    index: 0,
+
     city:'成都',
     weatherDesc:'多云',
     dateC:'24',
@@ -35,6 +56,17 @@ Page({
     avatarUrl: '/images/image/header.png',
     swiperSchool:''
 
+  },
+  //学校排列方式
+  bindPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value
+    })
+    switch (e.detail.value){
+      case 0 :
+        
+    }
   },
 
   swiperChange: function (e) {
@@ -154,6 +186,12 @@ Page({
     
     var that = this;
     
+    //获取分享图
+    api._get("/api/v1/platform/share-image").then(res => {
+      wx.setStorageSync('images', res.data.shares.images)
+    })
+
+
     //首页头像
     if (wx.getStorageSync('avatarUrl') != ''){
       var headerImg = wx.getStorageSync('avatarUrl')
@@ -409,9 +447,10 @@ Page({
         that.setData({
           schoolList: that.data.schoolList
         })
-        wx.stopPullDownRefresh();
       })
     }
+    wx.stopPullDownRefresh();
+
   },
 
   /**

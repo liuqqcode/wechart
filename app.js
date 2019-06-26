@@ -31,6 +31,7 @@ App({
     customer_id:'',
     options:'',
     avatarUrl:'',
-    search:[]
+    search:[],
+    images:''
   }
 })

@@ -235,11 +235,20 @@ Page({
   },
   //分享给好友
   onShareAppMessage:function(){
+    let that = this;
     var customer_id = wx.getStorageSync('customer_id')
-    return{
-      title: this.data.schoolName,
-      path: 'pages/school/school?id=' + this.data.schoolId + "&customer_id=" + this.data.Publishercustomer_id
+    var header = util.banner
+    var image = wx.getStorageSync('images')
+    return {
+      title: that.data.schoolName,
+      path: 'pages/school/school?id=' + that.data.schoolId + "&customer_id=" + that.data.Publishercustomer_id,
+      imageUrl: header + image[Math.floor(Math.random() * image.length)]
     }
+    // api._get("/api/v1/platform/share-image").then(res => {
+    //   console.log(that.data.schoolName)
+
+    // })
+
   },
   //视频全屏播放
   videoshow:function(e){
@@ -473,7 +482,11 @@ Page({
     }).then(res => {
 
     })
-
+    
+    //获取分享图
+    api._get("/api/v1/platform/share-image").then(res => {
+      wx.setStorageSync('images', res.data.shares.images)
+    })
   },
   //获取全部的学校评论
   LookAll:function(){

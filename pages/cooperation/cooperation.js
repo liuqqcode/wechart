@@ -11,13 +11,18 @@ Page({
     merchant_name:'',
     contact:'',
     name:'',
-    merchantData:''
+    merchantData:'',
+    submission:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this
+    that.setData({
+      submission: wx.getStorageSync('submission')
+    })
     api._get("api/v1/merchants/passports").then(data => {
       that.setData({
         merchantData: data.data
@@ -60,10 +65,17 @@ Page({
         name:that.data.name,
         contact: that.data.contact
       }).then(res => {
+        that.setData({
+          submission:true
+        })
+        wx.setStorageSync('submission', true)
         api._get("api/v1/merchants/passports").then( data => {
           that.setData({
-            merchantData:data.data
+            merchantData:data.data,
+            submission:false
           })
+          console.log("d")
+          wx.setStorageSync('submission', false)
         })
 
       }) 

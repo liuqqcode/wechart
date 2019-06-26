@@ -163,7 +163,7 @@
   </view>
   <view class='bggray'></view>
 
-  <view class='pingjia'>
+  <view class='pingjia' wx:if="{{schoolpingNum != 0}}">
     <view class='pingjiahead'>用户评价（{{schoolpingNum}}）</view>
     <view class='pingjiaCon' wx:if="{{schoolping=='' ? false : true}}" wx:for="{{schoolping}}" wx:key="index" data-inx="{{index}}">
       <view class='pjLeft'>
@@ -182,7 +182,7 @@
         <view class='pjtext {{ item.webkit ?  "webkit" : ""}}'  bindtap='Viewcomments' data-inx='{{item}}'>{{item.content}}</view>
         <!-- <view bindtap='pjqw' wx:if="{{index == 0}}" class='{{pjqw}}'>全文</view> -->
         <view class='pjImg' wx:for="{{item.images}}" wx:key="index">
-          <image src='{{schoolPictureAPI}}{{item}}'></image>
+          <image src='{{item}}'></image>
         </view>
         <view class='clear'></view>
       </view>
@@ -274,6 +274,6 @@
     <image src='/images/icon/homewhite.png'></image>
     <view>首页</view>
   </view>
-  <text wx:if="{{kehuBtn}}" class='kehuBtn' bindtap='kehuBtn'>客户\n录入</text>
+  <text wx:if="{{kehuBtn}}"  class='kehuBtn' bindtap='kehuBtn'>客户\n录入</text>
   
 </view>

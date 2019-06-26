@@ -43,18 +43,18 @@ page{
 }
 .search{
   
-  float: right;
+  float: left;
   margin-top: 10rpx;
   /* margin-left: 20rpx; */
   font-size: 25rpx;
-  padding-left: 40rpx;
-  width: 550rpx;
+  padding-left: 20rpx;
+  width: 400rpx;
   height: 60rpx;
   border: 1px solid gainsboro;
   border-radius:50rpx;
 }
 .searchVi{
-  width: 590rpx;
+  width: 400rpx;
   padding-right: 30rpx;
   float: left;
   position: relative;
@@ -72,7 +72,7 @@ page{
   width: 25rpx;
   height: 25rpx;
   top: 30rpx;
-  right: 50rpx;
+  right: 30rpx;
 }
 .clear{
   clear: both;
@@ -305,4 +305,21 @@ swiper{
   font-size: 30rpx;
   text-align: center;
   color: rgb(168, 168, 168);
+}
+.picker{
+  width: 150rpx;
+  float: left;
+  font-size: 30rpx;
+  margin-top: 20rpx;
+  margin-left: 10rpx;
+}
+.pickerCon{
+  float: left;
+}
+.pickerImage{
+  float: left;
+  width: 25rpx;
+  height: 15rpx;
+  margin-top: 15rpx;
+  margin-left: 5rpx;
 }
