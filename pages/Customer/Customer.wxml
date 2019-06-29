@@ -25,15 +25,22 @@
       <input value='' bindinput ="mobileInput" maxlength='11' placeholder='请输入手机号'></input>
       <view class='clear'></view>
     </view>
-    <view class='money'>
+    <!-- <view class='money'>
       <view>缴费金额：</view>
       <input value='' bindinput ="moneyInput"  placeholder='请输入金额'></input>
       <view class='clear'></view>
+    </view> -->
+    <!-- <view class='qkCon'> -->
+      <!-- <view>情况说明：</view> -->
+      <!-- <textarea hidden='' value='' bindinput ="qkInput"  class='qktext'></textarea> -->
+    <!-- </view> -->
+    <view>
+      <view>情况说明</view>
+      <view wx:for="{{qktext}}" wx:key="index" class='qkText {{item.show? "seltext":""}}' bindtap='selText' data-inx='{{item}}'>
+        {{item.text}}
+      </view>
     </view>
-    <view class='qkCon'>
-      <view>情况说明：</view>
-      <textarea value='' bindinput ="qkInput"  class='qktext'></textarea>
-    </view>
+    <view class='clear'></view>
     <view class='submit' bindtap='submit'>确定</view>
   </view>
 </view>

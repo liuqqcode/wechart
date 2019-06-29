@@ -2,3 +2,8 @@
   width: 100%;
   display: block;
 }
+.text{
+  margin: 30rpx;
+  text-align: center;
+  font-size: 30rpx;
+}

@@ -148,24 +148,24 @@ Page({
         }).catch(err => {
           console.log(err.statusCode)
           if (err.statusCode == 401) {
-            wx.showModal({
-              title: '错误',
-              content: '登录失效，请去登录',
-              showCancel: true,
-              cancelText: '取消',
-              cancelColor: '',
-              confirmText: '确认',
-              confirmColor: '',
-              success: function(res) {
-                if(res.confirm){
-                  wx.navigateTo({
-                    url: '/pages/login/login?id=' + e.currentTarget.dataset.id.id
-                  })
-                }
-              },
-              fail: function(res) {},
-              complete: function(res) {},
-            })
+            // wx.showModal({
+            //   title: '错误',
+            //   content: '登录失效，请去登录',
+            //   showCancel: true,
+            //   cancelText: '取消',
+            //   cancelColor: '',
+            //   confirmText: '确认',
+            //   confirmColor: '',
+            //   success: function(res) {
+            //     if(res.confirm){
+            //       wx.navigateTo({
+            //         url: '/pages/login/login?id=' + e.currentTarget.dataset.id.id
+            //       })
+            //     }
+            //   },
+            //   fail: function(res) {},
+            //   complete: function(res) {},
+            // })
 
           }
         })
@@ -200,8 +200,13 @@ Page({
 
 
     //获取首页轮播图
-    api._get("/api/v1/platform/banners").then(res => {
-      that.setData({ banner:baiduak.banner,bannerCon:res.data.banners.path + '/',backClass:res.data.banners.images})
+    api._get("/api/v1/platform/activities").then(res => {
+      console.log(res)
+      that.setData({ 
+        banner:baiduak.banner,
+        bannerCon:res.data,
+        backClass:res.data
+      })
     })
 
 
@@ -409,8 +414,13 @@ Page({
     })
 
     //获取首页轮播图
-    api._get("/api/v1/platform/banners").then(res => {
-      that.setData({ banner: baiduak.banner, backClass: res.data.banners.images })
+    api._get("/api/v1/platform/activities").then(res => {
+      console.log(res)
+      that.setData({
+        banner: baiduak.banner,
+        bannerCon: res.data,
+        backClass: res.data
+      })
     })
 
 

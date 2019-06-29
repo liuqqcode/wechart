@@ -1,5 +1,5 @@
 <view>
-  <view class='model'>授权已过期，请重新登陆</view>
+  <view class='model'>第一次到来需要登陆哦~~~</view>
   <button
     class='userBut'
     wx:if="{{canIUse}}"
@@ -9,11 +9,11 @@
   >
     授权登录
   </button>
-  <button
+  <!-- <button
     wx:else
     bindtap='index'
     type='primary'
   >
     回到首页
-  </button>
+  </button> -->
 </view>

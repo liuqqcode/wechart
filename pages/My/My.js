@@ -99,6 +99,11 @@ Page({
       url: '../HistoryMoney/HistoryMoney?type=Month',
     })
   },
+  total:function(){
+    wx.navigateTo({
+      url: '../total/total',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -155,7 +160,7 @@ Page({
                 
                 // that.setData({ UserType: loginRes.data.customer_type})
                 console.log(loginRes.data.customer_type)
-                switch (3){
+                switch (loginRes.data.customer_type){
                   case 1:
                     that.setData({ geren: true, shangjia: false, daili: false, quyu: false });
                     break;

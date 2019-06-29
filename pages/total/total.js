@@ -8,9 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    banner:'',
-    content:'',
-    text:''
+    myschool:'',
+    ImageHead:''
   },
 
   /**
@@ -18,14 +17,12 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-    console.log(options.id)
-    api._get("/api/v1/platform/activities/" + options.id).then(res => {
+    api._get("/api/v1/agents/schools").then(res => {
+      console.log(res.data.schools)
       that.setData({
-        banner: util.banner,
-        content:res.data.images,
-        text:res.data.content
+        myschool: res.data.schools,
+        ImageHead: util.schoolPicture
       })
-      console.log(res.data)
     })
   },
 

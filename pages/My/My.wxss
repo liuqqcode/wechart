@@ -222,10 +222,11 @@ button::after{
   height: 150rpx;
 }
 .schoolRight{
-  widows: 70%;
+  width: 70%;
+  overflow: hidden;
 }
 .schoolRight>view:nth-child(1){
-  font-size:35rpx;
+  font-size:30rpx;
   font-family:"PingFang";
   color:rgb(0, 0, 0);
   font-weight:bold;

@@ -42,7 +42,6 @@ page{
   font-size: 23rpx;
 }
 .search{
-  
   float: left;
   margin-top: 10rpx;
   /* margin-left: 20rpx; */
@@ -311,7 +310,7 @@ swiper{
   float: left;
   font-size: 30rpx;
   margin-top: 20rpx;
-  margin-left: 10rpx;
+  /* margin-left: 10rpx; */
 }
 .pickerCon{
   float: left;

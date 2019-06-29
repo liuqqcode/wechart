@@ -11,8 +11,41 @@ Page({
     Biography:'',
     phone:'',
     name:'',
-    money:'',
-    qkinput:''
+    // money:'',
+    qkinput:'',
+    qktext: [
+      {
+        id:0,
+        text:'有意向学习',
+        show:false
+      }, 
+      {
+        id:1,
+        text:'能去学校',
+        show: false
+      },
+      {
+        id:2,
+        text: '能缴费',
+        show: false
+      } ,
+      {
+        id:3,
+        text:'需要校方给他打电话',
+        show: false
+      }, 
+      {
+        id:4,
+        text: '有疑虑',
+        show: false
+      } ,
+      {
+        id:5,
+        text:'目前在学想换校',
+        show: false
+      }
+    ],
+
   },
 
   /**
@@ -35,15 +68,34 @@ Page({
         name: e.detail.value
       })
   },
-  moneyInput:function(e){
-    this.setData({
-      money: e.detail.value
-    })
-  },
+  // moneyInput:function(e){
+  //   this.setData({
+  //     money: e.detail.value
+  //   })
+  // },
   qkInput:function(e){
     this.setData({
       qkinput: e.detail.value
     })
+  },
+  selText:function(e){
+    let that = this
+    console.log(e.currentTarget.dataset.inx)
+    that.data.qktext.forEach(item =>{
+      console.log(item.id)
+      if (item.id == e.currentTarget.dataset.inx.id){
+        if(item.show == false){
+          item.show = true
+        }else{
+          item.show = false
+        }
+      }
+    })
+    console.log(that.data.qktext)
+    that.setData({
+      qktext: that.data.qktext
+    })
+
   },
   //确定提交
   submit:function(){
@@ -54,7 +106,7 @@ Page({
       merchant_id: this.data.Biography.merchant,
       phone: this.data.phone,
       name: this.data.name,
-      paid_amount:this.data.money,
+      // paid_amount:this.data.money,
       remark:this.data.qkInput
     }).then(res => {
       wx.showToast({

@@ -1,5 +1,6 @@
 <view>
   <block class='content' >
-    <image wx:for="{{content.images}}" wx:key="index" class='imageCon' src='{{banner}}{{item}}'></image>
+    <image wx:for="{{content}}" wx:key="index" class='imageCon' src='{{banner}}{{item}}'></image>
+    <view wx:if="{{text != null}}" class='text'>{{text}}</view>
   </block>
 </view>

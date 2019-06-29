@@ -23,27 +23,27 @@
   </view>
   <view>
     <view class='iconTen'>
-      <view wx:if="{{daili || shangjia || geren}}" bindtap='Collection'>
+      <view wx:if="{{daili || shangjia || geren || quyu}}" bindtap='Collection'>
         <image src='/images/icon/collct.png'></image>
         <view>收藏</view>
       </view>
-      <view wx:if="{{daili || shangjia || geren}}" bindtap='comment'>
+      <view wx:if="{{daili || shangjia || geren || quyu}}" bindtap='comment'>
         <image src='/images/icon/comment.png'></image>
         <view>评论</view>
       </view>
-      <view wx:if="{{daili || shangjia || geren}}" bindtap='browse'>
+      <view wx:if="{{daili || shangjia || geren || quyu}}" bindtap='browse'>
         <image src='/images/icon/lately.png'></image>
         <view>最近浏览</view>
       </view>
-      <view wx:if="{{daili}}" bindtap='daili'>
+      <view wx:if="{{daili || quyu}}" bindtap='daili'>
         <image src='/images/icon/handshake.png'></image>
         <view>发展推客</view>
       </view>
-      <view wx:if="{{daili}}" bindtap='khgl'>
+      <view wx:if="{{daili || quyu}}" bindtap='khgl'>
         <image src='/images/icon/manage.png'></image>
         <view>客户管理</view>
       </view>
-      <view wx:if="{{daili}}" bindtap='khgz'>
+      <view wx:if="{{daili || quyu}}" bindtap='khgz'>
         <image src='/images/icon/user.png'></image>
         <view>客户跟踪</view>
       </view>
@@ -55,7 +55,7 @@
         <image src='/images/icon/handshake.png'></image>
         <view>我要合作</view>
       </view>
-      <view wx:if="{{quyu}}" bindtap='yue'>
+      <!-- <view wx:if="{{quyu}}" bindtap='yue'>
         <image src='/images/icon/yue.png'></image>
         <view>余额</view>
       </view>
@@ -66,8 +66,13 @@
       <view wx:if="{{quyu}}" bindtap='Month'>
         <image src='/images/icon/yongjin.png'></image>
         <view>本月佣金</view>
+      </view> -->
+      <view wx:if="{{quyu}}" bindtap='total'>
+        <image src='/images/icon/homeA.png'></image>
+        <view>总代</view>
       </view>
     </view>
+    <view class='clear'></view>
     <view wx:if="{{daili}}" class='team'>
       <view>我的团队</view>
       <view class='teamContent'>
@@ -109,7 +114,7 @@
       <view class='clear'></view>
     </view>
   </view>
-  <view wx:if="{{quyu}}">
+  <!-- <view wx:if="{{quyu}}">
     <view class='myschool'>我的学校</view>
     <view class='schoolList' wx:for="{{myschool}}" wx:key="index">
       <view class='schoolLeft'>
@@ -124,5 +129,5 @@
       </view>
       <view class='clear'></view>
     </view>
-  </view>
+  </view> -->
 </view>

@@ -1,0 +1,16 @@
+<view>
+    <view class='myschool'>我的学校</view>
+    <view class='schoolList' wx:for="{{myschool}}" wx:key="index">
+      <view class='schoolLeft'>
+        <image src='{{ImageHead}}{{item.cover}}'></image>
+      </view>
+      <view class='schoolRight'>
+        <view>{{item.name}}</view>
+        <view>
+          <view>本月佣金：{{item.commission_month}}元</view>
+          <view>累计佣金：{{item.commission_total}}元</view>
+        </view>
+      </view>
+      <view class='clear'></view>
+    </view>
+</view>

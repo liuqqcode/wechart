@@ -48,8 +48,8 @@
   font-size:30rpx;
   line-height:2;
   overflow:hidden;
-  -webkit-line-clamp:3;
-  line-clamp:3;
+  /* -webkit-line-clamp:3;
+  line-clamp:3; */
 }
 .commentImg>image{
   float: left;

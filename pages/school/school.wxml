@@ -34,11 +34,11 @@
     <view class='swiper'>
       <swiper
         class='vedioSwiper'
-        display-multiple-items="2"
+        display-multiple-items="2.5"
       >
         <block wx:for="{{videos}}" wx:key="index">
           <swiper-item class="vedioSwiperItem">
-            <video data-inx='{{item}}' bindtap='videoshow' show-fullscreen-btn='true' src='{{schoolPictureAPI}}{{item}}'></video>
+            <video id='{{item}}' data-inx='{{item}}' bindtap='videoshow' show-fullscreen-btn='true' src='{{schoolPictureAPI}}{{item}}'></video>
           </swiper-item>
         </block>
         <swiper-item wx:if="videosNum == 1">
@@ -207,6 +207,8 @@
       </button>
     </view>
     <view bindtap='phoneUseH' class='yyst'>预约试听</view>
+    <view wx:if="{{buttonBon}}" class='buttonBon'></view>
+
   </view>
 
   <view class='share'>
@@ -261,7 +263,6 @@
       <view class='clear'></view>
       <button bindtap='yuyueSuccess' class='yuyueBtn'>预约试听</button>
     </view>
-
   </view>
   <canvas  canvas-id="shareImg" style="width:545px;height:771px"></canvas>
 

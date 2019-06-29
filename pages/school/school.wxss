@@ -57,12 +57,13 @@
   line-height: 1.2;
 }
 .vedioSwiper{
-  /* height: 280rpx; */
+  height: 200rpx;
 }
 video{
-  height: 100%;
-  width: 100%;
-  margin: 20rpx;
+  border-radius: 20rpx;
+  height: 90%;
+  width: 90%;
+  margin: 20rpx 0;
 }
 .vedioSwiperItem:nth-child(1)>video{
   margin-left: 0;
@@ -379,7 +380,7 @@ swiper-item:nth-child(1)>image{
   width: 100%;
   position: fixed;
   bottom: 0;
-  height: 100rpx;
+  /* height: 100rpx; */
   overflow: hidden;
 }
 .buttonPhone{
@@ -776,4 +777,11 @@ canvas{
   margin-top: 10rpx;
   width: 50rpx;
   height: 40rpx;
+}
+.buttonBon{
+  height: 50rpx;
+  width: 100%;
+  background: white;
+  z-index: 10;
+  float: left;
 }

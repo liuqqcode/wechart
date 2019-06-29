@@ -20,7 +20,7 @@
         <view class="pickerCon">
           {{array[index]}}
         </view>
-        <image class='pickerImage' src='/images/icon/down2.png'></image>
+        <!-- <image class='pickerImage' src='/images/icon/down2.png'></image> -->
       </picker>
     </view>
   </view>
@@ -35,9 +35,9 @@
       previous-margin="50rpx"  
     >  
       <block wx:for="{{backClass}}" wx:key="index">
-        <swiper-item item-id="{{index}}" data-item-id="{{index}}" bindtap='clickChange'>  
+        <swiper-item item-id="{{item.id}}" data-item-id="{{item.id}}" bindtap='clickChange'>  
           <view class='li'>
-            <image class='li1 {{item}} {{currentItemId == index ? "selected" : ""}}'  src='{{banner}}{{item}}'></image>
+            <image class='li1 {{item}} {{currentItemId == index ? "selected" : ""}}'  src='{{banner}}{{item.image}}'></image>
           </view> 
         </swiper-item>  
       </block>

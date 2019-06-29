@@ -4,7 +4,7 @@
     <view>预约成功</view>
   </view>
   <view class='SuccessYes'>已成功预约</view>
-  <view class='Successschoole'>【成都新东方烹饪培训学校（九江校区）】</view>
+  <!-- <view class='Successschoole'>【成都新东方烹饪培训学校（九江校区）】</view> -->
   <view class='SuccessPh'>请留意您的手机，我们将通知商户尽快与您联系。</view>
   <view class='SuccessPh'>订单中心可查看订单信息</view>
 </view>

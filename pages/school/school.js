@@ -73,8 +73,9 @@ Page({
     Publishercustomer_id:'',
     isshare:'',
     webkit:'',
-    comment:''
-
+    comment:'',
+    //手机为iphonex的加底部白边
+    buttonBon:''
 
   },
   //打开客服
@@ -239,20 +240,18 @@ Page({
     var customer_id = wx.getStorageSync('customer_id')
     var header = util.banner
     var image = wx.getStorageSync('images')
+    console.log(header + image[Math.floor(Math.random() * image.length)])
     return {
       title: that.data.schoolName,
       path: 'pages/school/school?id=' + that.data.schoolId + "&customer_id=" + that.data.Publishercustomer_id,
       imageUrl: header + image[Math.floor(Math.random() * image.length)]
     }
-    // api._get("/api/v1/platform/share-image").then(res => {
-    //   console.log(that.data.schoolName)
-
-    // })
 
   },
   //视频全屏播放
   videoshow:function(e){
-    console.log(e)
+    var videoContext = wx.createVideoContext(e.currentTarget.dataset.inx, this);
+    videoContext.requestFullScreen();
   },
   //生存海报
   builder:function(){
@@ -321,11 +320,24 @@ Page({
   onLoad: function (options) {
 
     let that = this;
+    
+    //判断手机型号
+    wx.getSystemInfo({
+      success: function(res) {
+        if (res.model == "iPhone X" || res.model == "iPhone Xr" || res.model == "iPhone Xs" || res.model == "iPhone Xs Max"){
+          console.log(res)
+          that.setData({
+            buttonBon:true
+          })
+        }
+      },
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+
 
     //是否为分享进来的用户
-    console.log(options)
     if (options.customer_id) {
-      console.log('是分享进入');
       this.setData({
         isshare: true
       })
@@ -340,7 +352,7 @@ Page({
         url: '/pages/login/login?id=' + options.id +'&customer_id=' + options.customer_id,
       })
     }
-
+    
     //获取全局变量，如果是推客则显示客户录入按钮
     if (userType == 3){
       that.setData({ kehuBtn:true})
