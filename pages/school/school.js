@@ -75,7 +75,11 @@ Page({
     webkit:'',
     comment:'',
     //手机为iphonex的加底部白边
-    buttonBon:''
+    buttonBon:'',
+    prurl:'',
+    pjBot2:'',
+    getPhoneNumberOK:false,
+    userphone:''
 
   },
   //打开客服
@@ -97,37 +101,127 @@ Page({
       url: '/pages/index/index',
     })
   },
-  getPhoneNumber:function(e){
-    var that = this
-
-
-    wx.login({
-      success(data) {
-        wx.getUserInfo({
-          withCredentials: true,
-          success(res) {
-            api._post("/api/v1/customer/phone-number", {
-              code: encodeURI(data.code),
-              encryptedData: encodeURIComponent(e.detail.encryptedData),
-              iv: encodeURI(e.detail.iv)
-            }).then(res => {
-              console.log(res.data.phoneNumber)
-              api._post("/api/v1/customer/phone-call",{
-                school:that.data.schoolId,
-                merchant: that.data.merchant,
-                phone: res.data.phoneNumber
-              }).then(data => {
-                that.callPhone()
-              })
-            })
-          }
-        })
-
-      }
+  //有电话缓存的拨打电话
+  getPhoneNumberYES:function(){
+    let that = this
+    api._post("/api/v1/customer/phone-call", {
+      school: that.data.schoolId,
+      merchant: that.data.merchant,
+      phone: wx.getStorageSync("userphone")
+    }).then(data => {
+      that.callPhone()
     })
   },
+  getPhoneNumberYY:function(){
+    let that = this
+    wx.showLoading({
+      title: '请稍等...',
+      mask: true,
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+    api._post("/api/v1/appointments", {
+      school: that.data.schoolId,
+      merchant: that.data.merchant,
+      phone: wx.getStorageSync("userphone")
+    }).then(data => {
+      wx.hideLoading()
+      wx.navigateTo({
+        url: '../yuyueSuccess/yuyueSuccess',
+      })
+    })
+  },
+  getPhoneNumber:function(e){
+    var that = this
+    if (e.detail.errMsg == 'getPhoneNumber:ok'){
+      let userphone = wx.getStorageSync('userphone')
+      if (e.target.dataset.yu == 1) {     //如果是点击预约试听的
+        if (userphone) {
+          api._post("/api/v1/appointments", {
+            school: that.data.schoolId,
+            merchant: that.data.merchant,
+            phone: wx.getStorageSync("userphone")
+          }).then(data => {
+            wx.navigateTo({
+              url: '../yuyueSuccess/yuyueSuccess',
+            })
+          })
+        } else {
 
+          wx.login({
+            success(data) {
+              wx.getUserInfo({
+                withCredentials: true,
+                success(res) {
+                  api._post("/api/v1/customer/phone-number", {
+                    code: encodeURI(data.code),
+                    encryptedData: encodeURIComponent(e.detail.encryptedData),
+                    iv: encodeURI(e.detail.iv)
+                  }).then(res => {
+                    wx.setStorageSync('userphone', res.data.phoneNumber)
+                    that.setData({
+                      userphone:res.data.phoneNumber,
+                      getPhoneNumberOK:true
+                    })
+                    api._post("/api/v1/appointments", {
+                      school: that.data.schoolId,
+                      merchant: that.data.merchant,
+                      phone: res.data.phoneNumber
+                    }).then(data => {
+                      wx.navigateTo({
+                        url: '../yuyueSuccess/yuyueSuccess',
+                      })
+                    })
+                  })
+                }
+              })
+            }
+          })
+        }
 
+      } else {      //点击拨打电话的
+        if (userphone) {    //已经获取到电话的
+          api._post("/api/v1/customer/phone-call", {
+            school: that.data.schoolId,
+            merchant: that.data.merchant,
+            phone: wx.getStorageSync("userphone")
+          }).then(data => {
+            that.callPhone()
+          })
+        } else {
+          wx.login({
+            success(data) {
+              wx.getUserInfo({
+                withCredentials: true,
+                success(res) {
+                  api._post("/api/v1/customer/phone-number", {
+                    code: encodeURI(data.code),
+                    encryptedData: encodeURIComponent(e.detail.encryptedData),
+                    iv: encodeURI(e.detail.iv)
+                  }).then(res => {
+                    wx.setStorageSync('userphone', res.data.phoneNumber)
+                    that.setData({
+                      userphone: res.data.phoneNumber,
+                      getPhoneNumberOK: true
+                    })
+                    api._post("/api/v1/customer/phone-call", {
+                      school: that.data.schoolId,
+                      merchant: that.data.merchant,
+                      phone: res.data.phoneNumber
+                    }).then(data => {
+                      that.callPhone()
+                    })
+                  })
+                }
+              })
+            }
+          })
+        }
+      }
+    }
+
+  },
 
   //分享
   shareBtn:function(){
@@ -251,8 +345,24 @@ Page({
   //视频全屏播放
   videoshow:function(e){
     var videoContext = wx.createVideoContext(e.currentTarget.dataset.inx, this);
-    videoContext.requestFullScreen();
+    videoContext.requestFullScreen({
+      direction:0
+    });
+    
   },
+  screenChange(e) {
+    let fullScreen = e.detail.fullScreen //值true为进入全屏，false为退出全屏
+    if (!fullScreen) { //退出全屏
+      var videoContext = wx.createVideoContext(e.currentTarget.dataset.inx, this);
+      videoContext.exitFullScreen()
+      videoContext.stop()
+    } else { //进入全屏
+      // this.setData({
+      //   controls: true
+      // })
+    }
+  },
+
   //生存海报
   builder:function(){
     this.setData({ canvasImg: 'canvasImg'})
@@ -318,16 +428,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
     let that = this;
     
+    //是否有电话号码缓存
+    if(wx.getStorageSync("userphone")){
+      that.setData({
+        userphone: wx.getStorageSync("userphone"),
+        getPhoneNumberOK: true
+      })
+    }
     //判断手机型号
     wx.getSystemInfo({
       success: function(res) {
         if (res.model == "iPhone X" || res.model == "iPhone Xr" || res.model == "iPhone Xs" || res.model == "iPhone Xs Max"){
           console.log(res)
           that.setData({
-            buttonBon:true
+            buttonBon:true,
+            pjBot2:true
           })
         }
       },
@@ -346,6 +463,8 @@ Page({
     that.setData({
       Publishercustomer_id: options.customer_id
     })
+    console.log(wx.getStorageSync("userType"))
+
     var userType = wx.getStorageSync("userType")
     if(userType == ''){
       wx.navigateTo({
@@ -472,12 +591,15 @@ Page({
 
     //获取学校的评论
     api._get("/api/v1/comments/school/" + options.id).then(res => {
-      if(res.data[0].content.length > 75){
-        res.data[0].webkit = true
-      }else{
-        res.data[0].webkit = false
-      }
+      res.data.forEach(item => {
+        if (item.content.length > 75) {
+          item.webkit = true
+        } else {
+          item.webkit = false
+        }
+      })
       that.data.schoolping.push(res.data[0])
+      that.data.schoolping.push(res.data[1])
       that.setData({ 
         schoolping: that.data.schoolping,
         schoolpingNum:res.meta.total,
@@ -524,28 +646,26 @@ Page({
     wx.showLoading({
       title: '努力生成中...'
     })
-    setTimeout(function(){
-      wx.canvasToTempFilePath({
-        x: 0,
-        y: 0,
-        width: 545,
-        height: 771,
-        destWidth: 545,
-        destHeight: 771,
-        canvasId: 'shareImg',
-        success: function (res) {
-          console.log(res.tempFilePath);
-          that.setData({
-            prurl: res.tempFilePath,
-            hidden: false
-          })
-          wx.hideLoading()
-        },
-        fail: function (res) {
-          console.log(res)
-        }
-      })
-    },2000)
+    wx.canvasToTempFilePath({
+      x: 0,
+      y: 0,
+      width: 545,
+      height: 771,
+      destWidth: 545,
+      destHeight: 771,
+      canvasId: 'shareImg',
+      success: function (res) {
+        console.log(res.tempFilePath);
+        that.setData({
+          prurl: res.tempFilePath,
+          hidden: false
+        })
+        wx.hideLoading()
+      },
+      fail: function (res) {
+        console.log(res)
+      }
+    })
 
   },
   //查看评论详情

@@ -22,6 +22,7 @@
           <view>收藏</view>
         </view>
         <view class='clear'></view>
+        <image class='shareBtn' src='/images/icon/shareBtn.png'></image>
       </view>
     </view>
     <view class='clear'></view>
@@ -38,12 +39,24 @@
       >
         <block wx:for="{{videos}}" wx:key="index">
           <swiper-item class="vedioSwiperItem">
-            <video id='{{item}}' data-inx='{{item}}' bindtap='videoshow' show-fullscreen-btn='true' src='{{schoolPictureAPI}}{{item}}'></video>
+            <video 
+              id='{{item}}' 
+              show-play-btn="{{false}}"
+              bindfullscreenchange="screenChange" 
+              data-inx='{{item}}' 
+              bindtap='videoshow' 
+              show-fullscreen-btn='{{false}}' 
+              src='{{schoolPictureAPI}}{{item}}'
+              poster="https://tuanxue-merchant-1256699616.cos.ap-beijing.myqcloud.com/images/b4.jpg"
+            ></video>
           </swiper-item>
         </block>
-        <swiper-item wx:if="videosNum == 1">
+        <swiper-item wx:if="{{videosNum == 1}}">
         </swiper-item>
-
+        <swiper-item wx:if="{{videosNum == 1}}">
+        </swiper-item>
+        <swiper-item wx:if="{{videosNum == 2}}">
+        </swiper-item>
       </swiper>
     </view>
   </view>
@@ -53,7 +66,7 @@
     <image src='/images/icon/location.png'></image>
     <view>{{location}}</view>
     <!-- <image bindtap='callPhone' src="/images/icon/phone.png"></image> -->
-    <button class='phoneButton' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+    <button class='phoneButton' open-type="{{getPhoneNumberOK? '' : 'getPhoneNumber'}}" bindgetphonenumber="{{getPhoneNumberOK? '' : 'getPhoneNumber'}}" bindtap="{{getPhoneNumberOK? 'getPhoneNumberYES' : ''}}">
       <image src='/images/icon/phone.png'></image>
     </button>
 
@@ -189,27 +202,32 @@
       <view class='clear'></view>
     </view>
     <view class='clear'></view>
-    <view class='pjBot'>
+    <view class='pjBot '>
       <view wx:if="{{Reviews}}" bindtap='LookAll'>查看全部用户评价</view>
       <view>共{{schoolpingNum}}条</view>
     </view>
     <view class='clear'></view>
   </view>
+  <view class='pjBot2'></view>
   <view class='yuyue'>
-    <button class='buttonPhone' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+    <button class='buttonPhone' open-type="{{getPhoneNumberOK? '' : 'getPhoneNumber'}}" bindgetphonenumber="{{getPhoneNumberOK? '' : 'getPhoneNumber'}}" bindtap="{{getPhoneNumberOK? 'getPhoneNumberYES' : ''}}">
       <image src='/images/icon/phone2.png'></image>
       <view>电话</view>
     </button>
     <view>
-      <button bindta="handleContact">
+      <button bindtap="handleContact">
         <image src='/images/icon/message2.png'></image>
         <view>咨询</view>
       </button>
     </view>
-    <view bindtap='phoneUseH' class='yyst'>预约试听</view>
-    <view wx:if="{{buttonBon}}" class='buttonBon'></view>
+    <view  class='yyst'>
+      <button data-yu='1' open-type="{{getPhoneNumberOK? '' : 'getPhoneNumber'}}" bindgetphonenumber="{{getPhoneNumberOK? '' : 'getPhoneNumber'}}" bindtap="{{getPhoneNumberOK? 'getPhoneNumberYY' : ''}}">预约试听</button>
+    </view>
+    <!-- <view wx:if="{{buttonBon}}" class='buttonBon'></view> -->
 
   </view>
+
+  
 
   <view class='share'>
     <view bindtap='quxiao' class='{{shareBG}}'></view>
@@ -271,10 +289,10 @@
     <image  src='{{prurl}}'></image>
     <view bindtap='saveImg' class='saveBtn'>保存图片</view>
   </view>
-  <view class='goHome' wx:if="{{isshare}}" bindtap='goHome'>
+  <!-- <view class='goHome' wx:if="{{isshare}}" bindtap='goHome'>
     <image src='/images/icon/homewhite.png'></image>
     <view>首页</view>
-  </view>
+  </view> -->
   <text wx:if="{{kehuBtn}}"  class='kehuBtn' bindtap='kehuBtn'>客户\n录入</text>
   
 </view>

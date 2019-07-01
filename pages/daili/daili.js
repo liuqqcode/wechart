@@ -33,14 +33,22 @@ Page({
   },
   submit:function(e){
     let that = this
+    wx.showLoading({
+      title: '正在提交',
+      mask: true,
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
     api._post("/api/v1/twitters/accept-invitation",{
       parent_id:1,
       name:that.data.name,
       phone:that.dat.tel,
       content:that.data.content
     }).then(res => {
+      wx.hideLoading()
       wx.navigateTo({
-        url: '/page/index/index',
+        url: '/pages/index/index',
         success: function(res) {},
         fail: function(res) {},
         complete: function(res) {},

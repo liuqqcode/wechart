@@ -56,6 +56,7 @@
       </view>   -->
     </view>
   </view>
+  <view class='btn2'></view>
   <view class='qiangou'>
     <view class='jiage'>￥{{lessons.price}}</view>
     <!-- <view class='menshi'>门市价：￥1440</view> -->

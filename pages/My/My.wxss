@@ -91,6 +91,7 @@ button::after{
   text-align: center;
 }
 .teamContent>view{
+  margin: 0 20rpx;
   float: left;
 }
 .teamIcon>image{
@@ -104,8 +105,11 @@ button::after{
   margin: 15rpx 0;
 }
 .teamMoney,.teamVi{
-  margin: 0 40rpx;
+  margin: 0 20rpx;
   float: left;
+}
+.teamVi{
+  margin-right: 0;
 }
 .teamMoney>view{
   font-size: 25rpx;
@@ -123,7 +127,7 @@ button::after{
   padding: 5rpx 10rpx;
   border: 1px solid rgb(202, 165, 24);
   border-radius: 5rpx;
-  font-size: 25rpx;
+  font-size: 30rpx;
   font-family: "PingFang";
   color: rgb(202, 165, 24);
   line-height: 1.2;

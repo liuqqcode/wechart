@@ -109,16 +109,55 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
-    this.loginWechat();
+    that.loginWechat();
     wx.getSetting({
       success(res) {
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-
+          
         }
       }
     })
-
+    let user = wx.getStorageSync("userType")
+    if(user){
+      wx.getUserInfo({
+        withCredentials: true,
+        success: function(res) {
+          that.setData({ userInfo: res.userInfo, canIUse: false })
+        },
+      })
+    }
+    switch (user) {
+      case 1:
+        that.setData({ geren: true, shangjia: false, daili: false, quyu: false });
+        break;
+      case 2:
+        that.setData({ geren: false, shangjia: true, daili: false, quyu: false });
+        break;
+      case 3:
+        api._get("/api/v1/twitters/account").then(res => {
+          that.setData({
+            account: res.data
+          })
+        })
+        api._get("/api/v1/twitters/team").then(res => {
+          that.setData({
+            team: res.data
+          })
+        })
+        that.setData({ geren: false, shangjia: false, daili: true, quyu: false });
+        break;
+      case 4:
+        that.setData({ geren: false, shangjia: false, daili: false, quyu: true });
+        api._get("/api/v1/agents/schools").then(res => {
+          console.log(res.data.schools)
+          that.setData({
+            myschool: res.data.schools,
+            ImageHead: util.schoolPicture
+          })
+        })
+        break;
+    }
   },
 
   loginWechat:function(){
@@ -129,6 +168,7 @@ Page({
           withCredentials: true,
           success(res) {
             wx.setStorageSync("avatarUrl", res.userInfo.avatarUrl)
+            wx.setStorageSync("canIUse", false)
             app.globalData.avatarUrl = res.userInfo.avatarUrl
 
             that.setData({ userInfo: res.userInfo, canIUse: false })
@@ -217,7 +257,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this
+    let user = wx.getStorageSync("userType")
+    if (user) {
+      wx.getUserInfo({
+        withCredentials: true,
+        success: function (res) {
+          console.log(res)
+          that.setData({ userInfo: res.userInfo, canIUse: false })
+        },
+      })
+    }
   },
 
   /**

@@ -11,14 +11,6 @@
           <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
           <text class="userinfo-nickname">{{userInfo.nickName}}</text>
       </view>           
-        <button
-          class='userBut'
-          wx:if="{{canIUse}}"
-          open-type="getUserInfo"
-          bindgetuserinfo="bindGetUserInfo"
-        >
-          授权登录
-        </button>
     </view>
   </view>
   <view>
@@ -55,7 +47,7 @@
         <image src='/images/icon/handshake.png'></image>
         <view>我要合作</view>
       </view>
-      <!-- <view wx:if="{{quyu}}" bindtap='yue'>
+      <view wx:if="{{quyu}}" bindtap='yue'>
         <image src='/images/icon/yue.png'></image>
         <view>余额</view>
       </view>
@@ -66,13 +58,15 @@
       <view wx:if="{{quyu}}" bindtap='Month'>
         <image src='/images/icon/yongjin.png'></image>
         <view>本月佣金</view>
-      </view> -->
+      </view>
       <view wx:if="{{quyu}}" bindtap='total'>
         <image src='/images/icon/homeA.png'></image>
         <view>总代</view>
       </view>
     </view>
     <view class='clear'></view>
+    
+
     <view wx:if="{{daili}}" class='team'>
       <view>我的团队</view>
       <view class='teamContent'>
@@ -114,6 +108,15 @@
       <view class='clear'></view>
     </view>
   </view>
+
+        <button
+          type='primary'
+          wx:if="{{canIUse}}"
+          open-type="getUserInfo"
+          bindgetuserinfo="bindGetUserInfo"
+        >
+          授权登录
+        </button>
   <!-- <view wx:if="{{quyu}}">
     <view class='myschool'>我的学校</view>
     <view class='schoolList' wx:for="{{myschool}}" wx:key="index">

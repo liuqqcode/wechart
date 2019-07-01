@@ -58,7 +58,7 @@
   "sitemapLocation": "sitemap.json",
   "permission": {
     "scope.userLocation": {
-      "desc": "确定"
+      "desc": "仅限于查找附近学校和领取红包"
     }
   }
 }

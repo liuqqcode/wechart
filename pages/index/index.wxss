@@ -221,7 +221,7 @@ swiper{
   float: left;
   color: rgb(153, 153, 153);
   font-family: "PingFang";
-  margin-top: 7rpx;
+  margin-top: 9rpx;
 }
 .star{
   width: 40%;
@@ -231,13 +231,13 @@ swiper{
 }
 .star>image{
   float: right;
-  width: 30rpx;
-  height: 30rpx;
-  margin-top: 5rpx;
+  width: 25rpx;
+  height: 25rpx;
+  margin-top: 7rpx;
 }
 .star>view:nth-child(1){
   padding-left: 10rpx;
-  font-size: 28rpx;
+  font-size: 25rpx;
   margin-top: 5rpx;
   float: right;
   font-family: "PingFang";

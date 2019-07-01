@@ -51,6 +51,7 @@
       </view>  
     </view>
   </view>
+  <view class='but2'></view>
   <view class='qiangou'>
     <view class='jiage'>￥{{lessons.price}}</view>
     <view class='menshi'>门市价：￥{{lessons.total_lesson_price}}</view>

@@ -222,7 +222,9 @@ Page({
     })
 
   //获取学校列表
+
     api._get('/api/v1/schools').then(data => {
+
       console.log(data.data)
       that.setData({
         schoolList: data.data,
@@ -256,6 +258,11 @@ Page({
       console.log(e)
     })
     this.getSchoolList();
+
+    //获取分享图
+    api._get("/api/v1/platform/share-image").then(res => {
+      wx.setStorageSync('images', res.data.shares.images)
+    })
   },
 
   //获取天气以及位置信息
@@ -354,11 +361,31 @@ Page({
     })
     var userType = wx.getStorageSync("userType")
     console.log(userType)
-    //获取全局变量，如果是推客则显示客户录入按钮
+    //获取全局变量，如果是推客则显示红包
     if (userType == 3) {
       that.setData({ group3: 'group3' })
     } else {
       that.setData({ group3: 'none' })
+    }
+
+    if(userType == 1){
+      that.setData({
+        array: ['学校排序',  '距离排序', '好评排序'],
+        objectArray: [
+          {
+            id: 0,
+            name: '学校排序'
+          },
+          {
+            id: 1,
+            name: '距离排序'
+          },
+          {
+            id: 2,
+            name: '好评排序'
+          }
+        ],
+      })
     }
     //首页头像
     if (wx.getStorageSync('avatarUrl') != '') {
@@ -372,6 +399,7 @@ Page({
         wx.setStorageSync('jwtToken', res.token_type + ' ' + res.access_token)
       })
     }
+
   },
 
   /**
@@ -491,7 +519,16 @@ Page({
   /**
    * 用户点击右上角分享
    */
+  //分享给好友
   onShareAppMessage: function () {
-
-  }
+    let that = this;
+    var header = baiduak.banner
+    var image = wx.getStorageSync('images')
+    console.log(header + image[Math.floor(Math.random() * image.length)])
+    return {
+      title: '口碑团学',
+      path: 'pages/index/index',
+      imageUrl: header + image[Math.floor(Math.random() * image.length)]
+    }
+  },
 })

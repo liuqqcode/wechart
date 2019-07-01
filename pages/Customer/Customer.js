@@ -12,40 +12,8 @@ Page({
     phone:'',
     name:'',
     // money:'',
-    qkinput:'',
-    qktext: [
-      {
-        id:0,
-        text:'有意向学习',
-        show:false
-      }, 
-      {
-        id:1,
-        text:'能去学校',
-        show: false
-      },
-      {
-        id:2,
-        text: '能缴费',
-        show: false
-      } ,
-      {
-        id:3,
-        text:'需要校方给他打电话',
-        show: false
-      }, 
-      {
-        id:4,
-        text: '有疑虑',
-        show: false
-      } ,
-      {
-        id:5,
-        text:'目前在学想换校',
-        show: false
-      }
-    ],
-
+    qkInput:'',
+    qktext: [],
   },
 
   /**
@@ -55,6 +23,11 @@ Page({
     let that = this
     that.setData({ Biography:options})
     console.log(options.id)
+    api._get("/api/v1/clients-reasons").then(res => {
+      that.setData({
+        qktext:res.data
+      })
+    })
 
   },
   //获取手机号
@@ -68,38 +41,29 @@ Page({
         name: e.detail.value
       })
   },
-  // moneyInput:function(e){
-  //   this.setData({
-  //     money: e.detail.value
-  //   })
-  // },
-  qkInput:function(e){
-    this.setData({
-      qkinput: e.detail.value
-    })
-  },
+
   selText:function(e){
     let that = this
-    console.log(e.currentTarget.dataset.inx)
+    let arr = []
     that.data.qktext.forEach(item =>{
-      console.log(item.id)
       if (item.id == e.currentTarget.dataset.inx.id){
         if(item.show == false){
           item.show = true
+          arr.push(item.text)
         }else{
           item.show = false
         }
       }
     })
-    console.log(that.data.qktext)
     that.setData({
-      qktext: that.data.qktext
+      qktext: that.data.qktext,
+      qkInput:arr
     })
 
   },
   //确定提交
   submit:function(){
-
+    let that = this
     api._post("/api/v1/clients", {
       school_id: this.data.Biography.id,
       school_name: this.data.Biography.schoolName,
@@ -136,7 +100,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   },
 
   /**

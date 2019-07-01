@@ -82,7 +82,7 @@ Page({
       Publishercustomer_id: options.customer_id,
       schoolId:options.id
     })
-    this.loginWechat();
+    that.loginWechat();
     wx.getSetting({
       success(res) {
         if (res.authSetting['scope.userInfo']) {

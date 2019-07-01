@@ -82,7 +82,11 @@
 }
 .taocan{
   margin: 15rpx 30rpx;
-  margin-bottom: 140rpx;
+  /* margin-bottom: 140rpx; */
+}
+.btn2{
+  height: 100rpx;
+  width: 100%;
 }
 .tcHead{
   font-size: 30rpx;
@@ -141,7 +145,7 @@
 }
 .jiage{
   font-size: 50rpx;
-  margin-top: 35rpx;
+  /* margin-top: 35rpx; */
 }
 .menshi{
   margin-top: 55rpx;
