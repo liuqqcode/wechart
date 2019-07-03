@@ -47,7 +47,6 @@
               bindtap='videoshow' 
               show-fullscreen-btn='{{false}}' 
               src='{{schoolPictureAPI}}{{item}}'
-              poster="https://tuanxue-merchant-1256699616.cos.ap-beijing.myqcloud.com/images/b4.jpg"
             ></video>
           </swiper-item>
         </block>

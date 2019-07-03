@@ -14,6 +14,7 @@ Page({
     // money:'',
     qkInput:'',
     qktext: [],
+    arr:[]
   },
 
   /**
@@ -22,7 +23,7 @@ Page({
   onLoad: function (options) {
     let that = this
     that.setData({ Biography:options})
-    console.log(options.id)
+    // console.log(options.id)
     api._get("/api/v1/clients-reasons").then(res => {
       that.setData({
         qktext:res.data
@@ -44,26 +45,34 @@ Page({
 
   selText:function(e){
     let that = this
-    let arr = []
     that.data.qktext.forEach(item =>{
       if (item.id == e.currentTarget.dataset.inx.id){
         if(item.show == false){
           item.show = true
-          arr.push(item.text)
+          that.data.arr.push(item.text)
         }else{
           item.show = false
+          for(var i = 0 ; i < that.data.arr.length ; i++){
+            if(that.data.arr[i] == item.text){
+              that.data.arr.splice(i,1)
+            }
+          }
         }
       }
     })
     that.setData({
       qktext: that.data.qktext,
-      qkInput:arr
+      qkInput:that.data.arr
     })
 
   },
   //确定提交
   submit:function(){
     let that = this
+    let arr2 = ""
+    that.data.arr.forEach(item => {
+      arr2 = arr2 + " " + item
+    })
     api._post("/api/v1/clients", {
       school_id: this.data.Biography.id,
       school_name: this.data.Biography.schoolName,
@@ -71,13 +80,13 @@ Page({
       phone: this.data.phone,
       name: this.data.name,
       // paid_amount:this.data.money,
-      remark:this.data.qkInput
+      remark:arr2
     }).then(res => {
       wx.showToast({
         title: '提交成功',
         icon: 'none',
         image: '',
-        duration: 0,
+        duration: 3000,
         mask: true,
         success: function(res) {
           wx.navigateBack({
