@@ -720,7 +720,7 @@ canvas{
 }
 .yuyueBtn{
   margin: 40rpx 0;
-  background: #deb618;
+  background: #f09e38;
   color: white;
   font-size: 40rpx;
   width: 80%;
@@ -796,8 +796,8 @@ canvas{
   float: left;
 }
 .shareBtn{
-  width: 100%;
+  width: 260rpx;
   height: 70rpx;
-  margin-left: -59rpx;
+  margin-left: -70rpx;
   margin-top: 5rpx;
 }

@@ -2,7 +2,7 @@
   <view class='head'> 
     <view class='headicon' style='background-image: url("https://tuanxue-admin-1256699616.cos.ap-beijing.myqcloud.com/images/back.png")'>
       <image></image>
-      <image src='/images/icon/message.png'></image>
+      <!-- <image src='/images/icon/message.png'></image> -->
       <image></image>
       <image src='{{headerImg}}'></image>
     </view>
@@ -32,10 +32,12 @@
         <view>发展推客</view>
       </view>
       <view wx:if="{{daili || quyu}}" bindtap='khgl'>
+        <view wx:if="{{notLookgl}}" class='redcircular'>{{notLookglNum}}</view>
         <image src='/images/icon/manage.png'></image>
         <view>客户管理</view>
       </view>
       <view wx:if="{{daili || quyu}}" bindtap='khgz'>
+        <view wx:if="{{notLookgz}}" class='redcircular'>{{notLookgzNum}}</view>
         <image src='/images/icon/user.png'></image>
         <view>客户跟踪</view>
       </view>
@@ -43,7 +45,11 @@
         <image src='/images/icon/handshake.png'></image>
         <view>查看用户</view>
       </view>
-      <view wx:if="{{geren}}" bindtap='geren'>
+      <view wx:if="{{shangjia}}" bindtap='redbag'>
+        <image src='/images/icon/yongjin.png'></image>
+        <view>红包充值</view>
+      </view>
+      <view wx:if="{{geren || daili}}" bindtap='geren'>
         <image src='/images/icon/handshake.png'></image>
         <view>我要合作</view>
       </view>

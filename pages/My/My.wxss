@@ -49,7 +49,9 @@ button::after{
 .headicon>image:nth-child(2),.headicon>image:nth-child(3){
   float: right;
   margin-right: 40rpx;
-  height: 35rpx;
+  height: 55rpx;
+  width: 55rpx;
+  margin-top: 20rpx;
 }
 .headicon>image:nth-child(4){
   width: 110rpx;
@@ -64,6 +66,7 @@ button::after{
 .iconTen>view{
   float: left;
   width: 250rpx;
+  position: relative;
 }
 .iconTen>view>image{
   width: 47rpx;
@@ -246,4 +249,18 @@ button::after{
 }
 .schoolRight>view:nth-child(2)>view:nth-child(2){
   float: right;
+}
+.redcircular{
+  position: absolute;
+  background: red;
+  height: 35rpx;
+  width: 35rpx;
+  /* padding: 0 10rpx; */
+  border-radius: 50%;
+  top: -15rpx;
+  right: 85rpx;
+  font-size: 25rpx !important;
+  color: white !important;
+  font-weight: 600 !important;
+  padding-top: 5rpx;
 }

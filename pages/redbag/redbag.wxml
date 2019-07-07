@@ -1,0 +1,15 @@
+<view>
+  <view class='redbagCon'>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <view class="picker">
+        红包范围：{{array[index]}}
+      </view>
+    </picker>
+  </view>
+  <view class='redbagInp'>
+    <input value='' bindinput='getredbag' type='number' placeholder='红包金额'></input>
+  </view>
+  <view class='redbagButton'>
+    <button type='primary' bindtap='submit'>确定</button>
+  </view>
+</view>

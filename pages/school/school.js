@@ -84,8 +84,12 @@ Page({
   },
   //打开客服
   handleContact(e) {
-    console.log(e)
-    console.log(e.query)
+    wx.navigateTo({
+      url: '/pages/messageCon/message',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
   },
 
   //拨打电话

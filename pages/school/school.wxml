@@ -68,7 +68,6 @@
     <button class='phoneButton' open-type="{{getPhoneNumberOK? '' : 'getPhoneNumber'}}" bindgetphonenumber="{{getPhoneNumberOK? '' : 'getPhoneNumber'}}" bindtap="{{getPhoneNumberOK? 'getPhoneNumberYES' : ''}}">
       <image src='/images/icon/phone.png'></image>
     </button>
-
   </view>
   <view class='clear'></view>
   <view class='bggray'></view>

@@ -18,7 +18,7 @@
       <view class='phoneNum'>{{item.phone}}</view>
       <view class='clear'></view>
       <view class='laiyuan' wx:if="{{item.source == 1 ? true : false}}">来源：代理录入</view>
-      <view class='{{time == true ? "time" : "none"}}'>剩余24小时不点拒绝，默认同意</view>
+      <view class='{{time == true ? "time" : "none"}}'>24小时不点拒绝，默认同意</view>
     </view>
     <view class='conRight'>
       <view class='yes' data-inx='{{item.id}}' bindtap='yes'>同意</view>

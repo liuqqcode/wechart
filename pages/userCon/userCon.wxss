@@ -55,7 +55,7 @@
 .yes{
   float: left;
   color: white;
-  background: #aac627;
+  background: #4dc86f !important;
   padding: 1rpx 20rpx;
   border-radius: 15rpx;
 }

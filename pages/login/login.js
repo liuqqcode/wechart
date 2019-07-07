@@ -26,6 +26,7 @@ Page({
         wx.getUserInfo({
           withCredentials: true,
           success(res) {
+            wx.setStorageSync('userInfo', res.userInfo)
             that.setData({ userInfo: res.userInfo, canIUse: false })
             console.log(that.data.userInfo)
             console.log(res)

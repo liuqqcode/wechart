@@ -1,0 +1,22 @@
+.redbagCon{
+  font-size: 30rpx;
+  text-align: center;
+  margin-top: 100rpx;
+}
+.redbagInp{
+  margin-top: 50rpx;
+}
+.redbagInp>input{
+  font-size: 40rpx;
+  text-align: center;
+  width: 30%;
+  margin-left: 35%;
+  border-bottom: 1rpx solid gainsboro;
+}
+.redbagButton{
+  margin-top: 500rpx;
+  text-align: center;
+}
+.redbagButton>button{
+  width: 30%;
+}

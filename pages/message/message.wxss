@@ -1,0 +1,23 @@
+.userList{
+  margin: 30rpx;
+}
+.header{
+  float: left;
+}
+.header>image{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+.name{
+  float: left;
+  font-size: 30rpx;
+  margin-left: 30rpx;
+  margin-top: 30rpx;
+}
+.line{
+  height: 1rpx;
+  margin-left: 20%;
+  width: 80%;
+  background: rgb(199, 199, 199);
+}

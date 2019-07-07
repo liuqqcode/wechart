@@ -21,7 +21,11 @@ Page({
     account:'',
     team:'',
     myschool:'',
-    ImageHead:''
+    ImageHead:'',
+    notLookgz:false,
+    notLookgl:false,
+    notLookgzNum:'',
+    notLookglNum:''
   },
   //收藏
   Collection:function(){
@@ -104,6 +108,12 @@ Page({
       url: '../total/total',
     })
   },
+  //红包充值
+  redbag:function(){
+    wx.navigateTo({
+      url: '../redbag/redbag',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -118,16 +128,14 @@ Page({
         }
       }
     })
-    let user = wx.getStorageSync("userType")
-    if(user){
-      wx.getUserInfo({
-        withCredentials: true,
-        success: function(res) {
-          that.setData({ userInfo: res.userInfo, canIUse: false })
-        },
+    var userType = wx.getStorageSync("userType")
+    if (userType != ""){
+      that.setData({
+        userInfo: wx.getStorageSync("userInfo"),
+        canIUse: false
       })
     }
-    switch (user) {
+    switch (userType) {
       case 1:
         that.setData({ geren: true, shangjia: false, daili: false, quyu: false });
         break;
@@ -169,6 +177,7 @@ Page({
           success(res) {
             wx.setStorageSync("avatarUrl", res.userInfo.avatarUrl)
             wx.setStorageSync("canIUse", false)
+            wx.setStorageSync('userInfo', res.userInfo)
             app.globalData.avatarUrl = res.userInfo.avatarUrl
 
             that.setData({ userInfo: res.userInfo, canIUse: false })
@@ -258,16 +267,37 @@ Page({
    */
   onShow: function () {
     let that = this
-    let user = wx.getStorageSync("userType")
-    if (user) {
-      wx.getUserInfo({
-        withCredentials: true,
-        success: function (res) {
-          console.log(res)
-          that.setData({ userInfo: res.userInfo, canIUse: false })
-        },
+    var userType = wx.getStorageSync("userType")
+    if (userType != "") {
+      that.setData({
+        userInfo:wx.getStorageSync("userInfo"),
+        canIUse:false
       })
     }
+    api._get("/api/v1/clients").then(res => {
+      if (res.data.length == wx.getStorageSync("khgl").length){
+        that.setData({
+          notLookgl:false
+        })
+      }else{
+        that.setData({
+          notLookgl:true,
+          notLookglNum: res.data.length - wx.getStorageSync("khgl").length
+        })
+      }
+    })
+    api._get("/api/v1/twitters/trace").then(res => {
+      if(res.data.length == wx.getStorageSync("khgz").length){
+        that.setData({
+          notLookgz: false
+        })
+      }else{
+        that.setData({
+          notLookgz: true,
+          notLookgzNum: res.data.length - wx.getStorageSync("khgz").length
+        })
+      }
+    })
   },
 
   /**

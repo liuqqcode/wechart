@@ -24,7 +24,10 @@
     "pages/tuanGou/tuanGou",
     "pages/login/login",
     "pages/banner/banner",
-    "pages/total/total"
+    "pages/total/total",
+    "pages/message/message",
+    "pages/messageCon/message",
+    "pages/redbag/redbag"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -46,6 +49,12 @@
         "iconPath": "images/icon/order.png",
         "pagePath": "pages/Order/Order",
         "text": "订单"
+      },
+      {
+        "selectedIconPath": "images/icon/messageA.png",
+        "iconPath": "images/icon/message.png",
+        "pagePath": "pages/message/message",
+        "text": "消息"
       },
       {
         "selectedIconPath": "images/icon/myA.png",

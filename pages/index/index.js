@@ -74,7 +74,6 @@ Page({
           title: '请求中，请稍后...',
         })
         api._get("/api/v1/schools?type_ids=" + that.data.type_ids).then(data => {
-
           that.setData({
             schoolList: data.data,
             next: data.links.next,
@@ -401,17 +400,13 @@ Page({
             item.distance = that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude)
             item.lowest_lesson_price = parseInt(item.lowest_lesson_price)
             item.lowest_lesson_price_tag = parseInt(item.lowest_lesson_price_tag)
-
           })
           that.setData({
             schoolList: that.data.schoolList
           })
         })
       } 
-
-      }
-    
-
+    }
   },
   //学校详情
   school:function(e){
@@ -488,73 +483,18 @@ Page({
       }
     })
 
-  //获取学校列表
 
-    api._get('/api/v1/schools').then(data => {
-
-      console.log(data.data)
-      that.setData({
-        schoolList: data.data,
-        next: data.links.next
-      })
-      if (data.links.next == null) {
-        that.setData({ noMore: "noMore" })
-      }
-      //获取位置信息坐标
-      wx.getLocation({
-        type: 'wgs84',
-        success: function (res) {
-          that.setData({ Mylatitude: res.latitude, Mylongitude: res.longitude })
-          // that.getBaiduLocation();
-          wx.setStorageSync('Mylatitude', res.latitude);
-          wx.setStorageSync('Mylongitude', res.longitude)
-
-          //计算距离我与学校的
-          that.data.schoolList.forEach(function (item, index) {
-            item.distance = that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude)
-            item.lowest_lesson_price = parseInt(item.lowest_lesson_price)
-            item.lowest_lesson_price_tag = parseInt(item.lowest_lesson_price_tag)
-          })
-          that.setData({
-            schoolList: that.data.schoolList
-          })
-        },
-      })
-
-    }).catch(e => {
-      console.log(e)
-    })
-    this.getSchoolList();
 
     //获取分享图
     api._get("/api/v1/platform/share-image").then(res => {
       wx.setStorageSync('images', res.data.shares.images)
     })
+
+    this.getSchoolList();
+
   },
 
-  //获取天气以及位置信息
-  // getBaiduLocation(){
-  //   let that = this
-  //   var BMap = new bmap.BMapWX({
-  //     ak: baiduak.ak
-  //   });
-  //   var success = function (data) {
-  //     var weatherData = data.currentWeather[0];
-  //     var regex1 = /.*\([^\)\(\d]*(\d+)[^\)\(\d]*\).*/;
-  //     that.setData({
-  //       city: weatherData.currentCity,
-  //       weatherDesc: weatherData.weatherDesc,
-  //       dateC: weatherData.date.replace(regex1, "$1")
-  //     });
-  //   }
-  //   var fail = function (data) {
-  //     console.log('fail!!!!')
-  //   };
-  //   BMap.weather({
-  //     fail: fail,
-  //     success: success
-  //   });
-  // },
+
   //获取学校列表
   getSchoolList:function(){
     let that = this
@@ -604,6 +544,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getpaixu();
+ },
+  getpaixu:function(){
     let that = this;
     // this.getBaiduLocation();
     // that.setData({ swiperSchool:100})
@@ -629,13 +572,57 @@ Page({
     var userType = wx.getStorageSync("userType")
     console.log(userType)
     //获取全局变量，如果是推客则显示红包
-    if (userType == 3) {
-      that.setData({ group3: 'group3' })
+    if (userType == 2 || userType == 3 || userType == 4) {
+      that.setData({
+        group3: 'group3',
+        index: 3
+
+      })
+      if (that.data.type_ids == "") {
+        api._get("/api/v1/schools?sort=packets").then(data => {
+          that.setData({
+            schoolList: data.data,
+            next: data.links.next
+          })
+          if (data.links.next == null) {
+            that.setData({ noMore: "noMore" })
+          }
+          //计算距离我与学校的
+          that.data.schoolList.forEach(function (item, index) {
+            item.distance = that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude)
+            item.lowest_lesson_price = parseInt(item.lowest_lesson_price)
+            item.lowest_lesson_price_tag = parseInt(item.lowest_lesson_price_tag)
+          })
+          that.setData({
+            schoolList: that.data.schoolList
+          })
+        })
+
+      } else {
+        api._get("/api/v1/schools?sort=packets" + "&type_ids=" + that.data.type_ids).then(data => {
+          that.setData({
+            schoolList: data.data,
+            next: data.links.next
+          })
+          if (data.links.next == null) {
+            that.setData({ noMore: "noMore" })
+          }
+          //计算距离我与学校的
+          that.data.schoolList.forEach(function (item, index) {
+            item.distance = that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude)
+            item.lowest_lesson_price = parseInt(item.lowest_lesson_price)
+            item.lowest_lesson_price_tag = parseInt(item.lowest_lesson_price_tag)
+          })
+          that.setData({
+            schoolList: that.data.schoolList
+          })
+        })
+      }
     } else {
       that.setData({ group3: 'none' })
     }
 
-    if(userType == 1){
+    if (userType == 1 || userType=="") {
       that.setData({
         array: ['学校排序', '距离排序', '好评排序'],
         objectArray: [
@@ -652,7 +639,50 @@ Page({
             name: '好评排序'
           }
         ],
+        index: 1
       })
+      if (that.data.type_ids == "") {
+        api._get("/api/v1/schools?sort=distance&lat=" + that.data.Mylatitude + "&lng=" + that.data.Mylongitude).then(data => {
+          that.setData({
+            schoolList: data.data,
+            next: data.links.next
+          })
+          if (data.links.next == null) {
+            that.setData({ noMore: "noMore" })
+          }
+          //计算距离我与学校的
+          that.data.schoolList.forEach(function (item, index) {
+            item.distance = that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude)
+            item.lowest_lesson_price = parseInt(item.lowest_lesson_price)
+            item.lowest_lesson_price_tag = parseInt(item.lowest_lesson_price_tag)
+
+          })
+          that.setData({
+            schoolList: that.data.schoolList
+          })
+        })
+      } else {
+        api._get("/api/v1/schools?sort=distance&lat=" + that.data.Mylatitude + "&lng=" + that.data.Mylongitude + "&type_ids=" + that.data.type_ids).then(data => {
+          that.setData({
+            schoolList: data.data,
+            next: data.links.next
+          })
+          if (data.links.next == null) {
+            that.setData({ noMore: "noMore" })
+          }
+          //计算距离我与学校的
+          that.data.schoolList.forEach(function (item, index) {
+            item.distance = that.getDistance(item.latitude, item.longitude, that.data.Mylatitude, that.data.Mylongitude)
+            item.lowest_lesson_price = parseInt(item.lowest_lesson_price)
+            item.lowest_lesson_price_tag = parseInt(item.lowest_lesson_price_tag)
+
+          })
+          that.setData({
+            schoolList: that.data.schoolList
+          })
+        })
+
+      }
     }
     //首页头像
     if (wx.getStorageSync('avatarUrl') != '') {
@@ -661,14 +691,13 @@ Page({
     }
 
     //更新token
-    if (wx.getStorageSync('jwtToken') != ""){
+    if (wx.getStorageSync('jwtToken') != "") {
       api._post("/api/auth/refresh").then(res => {
         wx.setStorageSync('jwtToken', res.token_type + ' ' + res.access_token)
       })
     }
 
   },
-
   /**
    * 生命周期函数--监听页面隐藏
    */
