@@ -1,0 +1,25 @@
+<view>
+  <view class='{{share}}'>
+    <view bindtap='quxiao' class='{{shareBG}}'></view>
+    <view class='{{shareCon}}'>
+      <view class='shareIcon'>
+        <view>
+          <button open-type="share"  bindtap='onShareAppMessage'>
+            <image src='/images/icon/wechart.png'></image>
+            <view>分享给好友</view>        
+          </button>
+        </view>
+        <view bindtap='share'>
+          <image src='/images/icon/wcshare.png'></image>
+          <view>生成海报</view>        
+        </view>
+      </view>
+      <view class='clear'></view>
+      <view bindtap='quxiao' class='quxiao'>取消</view>
+    </view>
+  </view>
+  <view class='{{picture}}'>
+    <image src='data:image/png;base64,{{imageUrl}}'></image>
+    <view bindtap='saveImg' class='saveImg'>保存图片</view>
+  </view>
+</view>

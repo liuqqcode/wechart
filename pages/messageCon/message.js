@@ -1,7 +1,7 @@
 var app = getApp();
 var socketOpen = false;
 var frameBuffer_Data, session, SocketTask;
-var url = 'ws://39.106.91.253:8001';
+var url = 'wss://yikeyingshi.com:8080';
 Page({
   data: {
     user_input_text: '',//用户输入文字

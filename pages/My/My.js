@@ -48,7 +48,7 @@ Page({
   //发展代理
   daili:function(){
     wx.navigateTo({
-      url: '../daili/daili',
+      url: '../dailiA/dailiA',
     })
   },
   //客户管理
@@ -135,7 +135,7 @@ Page({
         canIUse: false
       })
     }
-    switch (userType) {
+    switch (3) {
       case 1:
         that.setData({ geren: true, shangjia: false, daili: false, quyu: false });
         break;
@@ -170,6 +170,7 @@ Page({
 
   loginWechat:function(){
     var that = this
+    
     wx.login({
       success(data) {
         wx.getUserInfo({
@@ -178,8 +179,8 @@ Page({
             wx.setStorageSync("avatarUrl", res.userInfo.avatarUrl)
             wx.setStorageSync("canIUse", false)
             wx.setStorageSync('userInfo', res.userInfo)
+            wx.setStorageSync('code', data.code)
             app.globalData.avatarUrl = res.userInfo.avatarUrl
-
             that.setData({ userInfo: res.userInfo, canIUse: false })
             wx.request({
               url: 'https://yikeyingshi.com/api/auth/login/',
@@ -197,6 +198,7 @@ Page({
                 wx.setStorageSync("code", data.code)
                 console.log(loginRes.data.customer_openid)
                 wx.setStorageSync('openid', loginRes.data.customer_openid)
+                wx.setStorageSync("token", loginRes.data.access_token )
                 wx.setStorageSync("jwtToken", loginRes.data.token_type + " " + loginRes.data.access_token)
                 wx.setStorageSync("userType", loginRes.data.customer_type)
                 wx.setStorageSync("customer_id", loginRes.data.customer_id)
@@ -209,7 +211,7 @@ Page({
                 
                 // that.setData({ UserType: loginRes.data.customer_type})
                 console.log(loginRes.data.customer_type)
-                switch (loginRes.data.customer_type){
+                switch (3){
                   case 1:
                     that.setData({ geren: true, shangjia: false, daili: false, quyu: false });
                     break;

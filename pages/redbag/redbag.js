@@ -40,10 +40,25 @@ Page({
   submit:function(){
     let that = this
     api._post("/api/v1/merchants/redpackets",{
-      amount:that.data.redbag,
+      amount:Number(that.data.redbag),
       range:that.data.index
     }).then(res => {
-      
+      wx.requestPayment({
+        timeStamp: res.data.timeStamp,
+        nonceStr: res.data.nonceStr,
+        package: res.data.package,
+        signType: res.data.signType,
+        paySign: res.data.paySign,
+        trade_type:'NATIVE',
+        success(data) {
+          wx.navigateBack({
+            delta: 1,
+          })
+        },
+        fail(data){
+          console.log(data)
+        }
+      })
     })
   },
   /**

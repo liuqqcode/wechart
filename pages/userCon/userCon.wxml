@@ -18,6 +18,9 @@
       <view class='phoneNum'>{{item.phone}}</view>
       <view class='clear'></view>
       <view class='laiyuan' wx:if="{{item.source == 1 ? true : false}}">来源：代理录入</view>
+      <view class='laiyuan' wx:if="{{item.source == 2 ? true : false}}">来源：预约试听</view>
+      <view class='laiyuan' wx:if="{{item.source == 3 ? true : false}}">来源：拨打电话</view>
+      <view class='laiyuan' wx:if="{{item.source == 4 ? true : false}}">来源：直接付费</view>
       <view class='{{time == true ? "time" : "none"}}'>24小时不点拒绝，默认同意</view>
     </view>
     <view class='conRight'>

@@ -96,11 +96,19 @@ Page({
       }
     } else if (e.detail.value == 1){
       if(that.data.type_ids == ""){
+        wx.showLoading({
+          title: '请求中，请稍后',
+          mask: true,
+          success: function (res) { },
+          fail: function (res) { },
+          complete: function (res) { },
+        })
         api._get("/api/v1/schools?sort=distance&lat=" + that.data.Mylatitude + "&lng=" + that.data.Mylongitude).then(data => {
           that.setData({
             schoolList: data.data,
             next: data.links.next
           })
+          wx.hideLoading()
           if (data.links.next == null) {
             that.setData({ noMore: "noMore" })
           }        
@@ -116,11 +124,19 @@ Page({
           })
         })
       }else{
+        wx.showLoading({
+          title: '请求中，请稍后',
+          mask: true,
+          success: function (res) { },
+          fail: function (res) { },
+          complete: function (res) { },
+        })
         api._get("/api/v1/schools?sort=distance&lat=" + that.data.Mylatitude + "&lng=" + that.data.Mylongitude + "&type_ids=" + that.data.type_ids).then(data => {
           that.setData({
             schoolList: data.data,
             next: data.links.next
           })
+          wx.hideLoading()
           if (data.links.next == null) {
             that.setData({ noMore: "noMore" })
           }
@@ -138,11 +154,19 @@ Page({
       }
     } else if (e.detail.value == 2){
       if (that.data.type_ids == "") {
+        wx.showLoading({
+          title: '请求中，请稍后',
+          mask: true,
+          success: function (res) { },
+          fail: function (res) { },
+          complete: function (res) { },
+        })
         api._get("/api/v1/schools?sort=rates").then(data => {
           that.setData({
             schoolList: data.data,
             next: data.links.next
           })
+          wx.hideLoading()
           if (data.links.next == null) {
             that.setData({ noMore: "noMore" })
           }
@@ -158,11 +182,19 @@ Page({
           })
         })
       } else {
+        wx.showLoading({
+          title: '请求中，请稍后',
+          mask: true,
+          success: function (res) { },
+          fail: function (res) { },
+          complete: function (res) { },
+        })
         api._get("/api/v1/schools?sort=rates" + "&type_ids=" + that.data.type_ids).then(data => {
           that.setData({
             schoolList: data.data,
             next: data.links.next
           })
+          wx.hideLoading()
           if (data.links.next == null) {
             that.setData({ noMore: "noMore" })
           }
@@ -180,11 +212,19 @@ Page({
       }      
     } else if (e.detail.value == 3){
       if (that.data.type_ids == "") {
+        wx.showLoading({
+          title: '请求中，请稍后',
+          mask: true,
+          success: function (res) { },
+          fail: function (res) { },
+          complete: function (res) { },
+        })
         api._get("/api/v1/schools?sort=packets").then(data => {
           that.setData({
             schoolList: data.data,
             next: data.links.next
           })
+          wx.hideLoading()
           if (data.links.next == null) {
             that.setData({ noMore: "noMore" })
           }
@@ -200,11 +240,19 @@ Page({
           })
         })
       } else {
+        wx.showLoading({
+          title: '请求中，请稍后',
+          mask: true,
+          success: function (res) { },
+          fail: function (res) { },
+          complete: function (res) { },
+        })
         api._get("/api/v1/schools?sort=packets" + "&type_ids=" + that.data.type_ids).then(data => {
           that.setData({
             schoolList: data.data,
             next: data.links.next
           })
+          wx.hideLoading()
           if (data.links.next == null) {
             that.setData({ noMore: "noMore" })
           }
@@ -579,11 +627,19 @@ Page({
 
       })
       if (that.data.type_ids == "") {
+        wx.showLoading({
+          title: '请求中，请稍后',
+          mask: true,
+          success: function(res) {},
+          fail: function(res) {},
+          complete: function(res) {},
+        })
         api._get("/api/v1/schools?sort=packets").then(data => {
           that.setData({
             schoolList: data.data,
             next: data.links.next
           })
+          wx.hideLoading()
           if (data.links.next == null) {
             that.setData({ noMore: "noMore" })
           }
@@ -599,11 +655,19 @@ Page({
         })
 
       } else {
+        wx.showLoading({
+          title: '请求中，请稍后',
+          mask: true,
+          success: function (res) { },
+          fail: function (res) { },
+          complete: function (res) { },
+        })
         api._get("/api/v1/schools?sort=packets" + "&type_ids=" + that.data.type_ids).then(data => {
           that.setData({
             schoolList: data.data,
             next: data.links.next
           })
+          wx.hideLoading()
           if (data.links.next == null) {
             that.setData({ noMore: "noMore" })
           }
@@ -642,11 +706,19 @@ Page({
         index: 1
       })
       if (that.data.type_ids == "") {
+        wx.showLoading({
+          title: '请求中，请稍后',
+          mask: true,
+          success: function (res) { },
+          fail: function (res) { },
+          complete: function (res) { },
+        })
         api._get("/api/v1/schools?sort=distance&lat=" + that.data.Mylatitude + "&lng=" + that.data.Mylongitude).then(data => {
           that.setData({
             schoolList: data.data,
             next: data.links.next
           })
+          wx.hideLoading()
           if (data.links.next == null) {
             that.setData({ noMore: "noMore" })
           }
@@ -662,11 +734,19 @@ Page({
           })
         })
       } else {
+        wx.showLoading({
+          title: '请求中，请稍后',
+          mask: true,
+          success: function (res) { },
+          fail: function (res) { },
+          complete: function (res) { },
+        })
         api._get("/api/v1/schools?sort=distance&lat=" + that.data.Mylatitude + "&lng=" + that.data.Mylongitude + "&type_ids=" + that.data.type_ids).then(data => {
           that.setData({
             schoolList: data.data,
             next: data.links.next
           })
+          wx.hideLoading()
           if (data.links.next == null) {
             that.setData({ noMore: "noMore" })
           }

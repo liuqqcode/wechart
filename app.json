@@ -27,7 +27,8 @@
     "pages/total/total",
     "pages/message/message",
     "pages/messageCon/message",
-    "pages/redbag/redbag"
+    "pages/redbag/redbag",
+    "pages/dailiA/dailiA"
   ],
   "window": {
     "backgroundTextStyle": "light",

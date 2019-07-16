@@ -86,9 +86,9 @@ Page({
   handleContact(e) {
     wx.navigateTo({
       url: '/pages/messageCon/message',
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
     })
   },
 
@@ -177,6 +177,17 @@ Page({
                         url: '../yuyueSuccess/yuyueSuccess',
                       })
                     })
+                  }).catch(err => {
+                    wx.showToast({
+                      title: '获取电话号码失败了...',
+                      icon: '',
+                      image: '',
+                      duration: 1000,
+                      mask: true,
+                      success: function(res) {},
+                      fail: function(res) {},
+                      complete: function(res) {},
+                    })
                   })
                 }
               })
@@ -215,6 +226,17 @@ Page({
                       phone: res.data.phoneNumber
                     }).then(data => {
                       that.callPhone()
+                    })
+                  }).catch(err => {
+                    wx.showToast({
+                      title: '获取电话号码失败了...',
+                      icon: '',
+                      image: '',
+                      duration: 0,
+                      mask: true,
+                      success: function(res) {},
+                      fail: function(res) {},
+                      complete: function(res) {},
                     })
                   })
                 }

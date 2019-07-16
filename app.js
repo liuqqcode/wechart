@@ -1,13 +1,12 @@
 import { Token } from 'utils/token-model.js';
 var scence = 0;
+
+
 App({
   onLaunch: function () {
     // var token = new Token();
     // token.verify();
   },
-
-
-
 
   onShow: function () {
 

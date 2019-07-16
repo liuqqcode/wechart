@@ -18,6 +18,10 @@ Page({
       delta: 1,
     })
   },
+  submit: function (e) {
+
+    console.log(e.detail.formId)
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
