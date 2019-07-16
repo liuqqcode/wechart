@@ -79,7 +79,8 @@ Page({
     prurl:'',
     pjBot2:'',
     getPhoneNumberOK:false,
-    userphone:''
+    userphone:'',
+    canvasImgerweima:''
 
   },
   //打开客服
@@ -179,10 +180,10 @@ Page({
                     })
                   }).catch(err => {
                     wx.showToast({
-                      title: '获取电话号码失败了...',
-                      icon: '',
+                      title: '获取电话失败了...',
+                      icon: 'none',
                       image: '',
-                      duration: 1000,
+                      duration: 2000,
                       mask: true,
                       success: function(res) {},
                       fail: function(res) {},
@@ -251,7 +252,9 @@ Page({
 
   //分享
   shareBtn:function(){
+    let that = this
     this.setData({ shareBG: 'shareBG', shareCon: 'shareCon', page:'page'})
+
   },
 
   //隐藏
@@ -560,59 +563,103 @@ Page({
       })
 
       //保存分享海报
-      wx.downloadFile({
-        url: this.data.schoolPictureAPI + this.data.schoolBanner,
-        success(res) {
+      wx.request({
+        url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6fbd07feae4aceb7&secret=addac835c7fbea00df7acb2ff94b62e9',
+        method: 'GET',
+        dataType: 'json',
+        responseType: 'text',
+        success: function (res) {
           console.log(res)
-          wx.playVoice({
-            filePath: res.tempFilePath,
+          wx.request({
+            url: "https://api.weixin.qq.com/wxa/getwxacode?access_token=" + res.data.access_token,
+            data: {
+              'path': "pages/school/school?id=" + that.data.schoolId + " & customer_id=" + that.data.Publishercustomer_id,
+              "width": 430
+            },
+            method: 'POST',
+            dataType: 'json',
+            responseType: 'arraybuffer',
+            success: function (data) {
+
+              api._post("/api/v1/twitters/account/school-image", {
+                image: wx.arrayBufferToBase64(data.data),
+                id: that.data.schoolId
+              }).then(res => {
+
+                wx.downloadFile({
+                  url: res.path,
+                  success: function (res2) {
+                    console.log(res2.tempFilePath)
+                    that.setData({
+                      canvasImgerweima: res2.tempFilePath
+                    })
+                    wx.downloadFile({
+                      url: that.data.schoolPictureAPI + that.data.schoolBanner,
+                      success(res) {
+                        console.log(res)
+                        wx.playVoice({
+                          filePath: res.tempFilePath,
+                        })
+                        let promise1 = new Promise(function (resolve, reject) {
+                          wx.getImageInfo({
+                            src: res.tempFilePath,
+                            success: function (res) {
+                              // console.log(res)
+                              resolve(res);
+                            }
+                          })
+                        });
+                        let promise2 = new Promise(function (resolve, reject) {
+                          wx.getImageInfo({
+                            src: that.data.canvasImgerweima,
+                            success: function (res) {
+                              // console.log(res)
+                              resolve(res);
+                            }
+                          })
+                        });
+                        Promise.all([
+                          promise1, promise2
+                        ]).then(res => {
+                          // console.log(res)
+                          const ctx = wx.createCanvasContext('shareImg')
+
+                          ctx.setFillStyle("#fafafa");
+                          ctx.fillRect(0, 0, 545, 771)
+
+                          //主要就是计算好各个图文的位置
+                          ctx.drawImage(res[0].path, 0, 0, 550, 550)
+                          ctx.drawImage(res[1].path, 400, 600, 150, 150)
+
+
+                          ctx.setTextAlign('left')
+                          ctx.setFillStyle('#000')
+                          ctx.setFontSize(30)
+                          ctx.fillText(that.data.schoolName, 0, 640)
+
+                          ctx.setFillStyle("#999")
+                          ctx.setFontSize(20)
+                          ctx.fillText(that.data.location, 0, 720)
+
+                          ctx.stroke()
+                          ctx.draw()
+                        })
+                      }
+                    })
+                  },
+                  fail: function (res) { },
+                  complete: function (res) { },
+                })
+              })
+            },
+            fail: function (res) { },
+            complete: function (res) { },
           })
-          let promise1 = new Promise(function (resolve, reject) {
-            wx.getImageInfo({
-              src: res.tempFilePath,
-              success: function (res) {
-                // console.log(res)
-                resolve(res);
-              }
-            })
-          });
-          let promise2 = new Promise(function (resolve, reject) {
-            wx.getImageInfo({
-              src: '/images/image/header.png',
-              success: function (res) {
-                // console.log(res)
-                resolve(res);
-              }
-            })
-          });
-          Promise.all([
-            promise1, promise2
-          ]).then(res => {
-            // console.log(res)
-            const ctx = wx.createCanvasContext('shareImg')
-
-            ctx.setFillStyle("#fafafa");
-            ctx.fillRect(0, 0, 545, 771)
-
-            //主要就是计算好各个图文的位置
-            ctx.drawImage(res[0].path, 0, 0, 550, 550)
-            ctx.drawImage('../../' + res[1].path, 400, 600, 150, 150)
-
-
-            ctx.setTextAlign('left')
-            ctx.setFillStyle('#000')
-            ctx.setFontSize(30)
-            ctx.fillText(that.data.schoolName, 0, 640)
-
-            ctx.setFillStyle("#999")
-            ctx.setFontSize(20)
-            ctx.fillText(that.data.location, 0, 720)
-
-            ctx.stroke()
-            ctx.draw()
-          })
-        }
+        },
+        fail: function (res) { },
+        complete: function (res) { },
       })
+
     })
 
     //获取学校的评论

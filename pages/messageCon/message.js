@@ -15,6 +15,15 @@ Page({
   // 页面加载
   onLoad: function () {
     this.bottom();
+    if (!socketOpen) {
+      this.webSocket()
+    }
+    wx.onSocketMessage(function(res){
+      console.log(res)
+    })
+    wx.onSocketError(function(){
+      console.log("链接失败")
+    })
   },
   onShow: function (e) {
     if (!socketOpen) {
@@ -38,13 +47,17 @@ Page({
       socketOpen = false
     })
     SocketTask.onMessage(onMessage => {
-      console.log('监听WebSocket接受到服务器的消息事件。服务器返回的消息', JSON.parse(onMessage.data))
-      var onMessage_data = JSON.parse(onMessage.data)
+      console.log('监听WebSocket接受到服务器的消息事件。服务器返回的消息', onMessage)
+      var onMessage_data
+      try{
+        onMessage_data = JSON.parse(onMessage)
+      }catch(err){
+        onMessage_data = onMessage
+      }
       if (onMessage_data.cmd == 1) {
         that.setData({
-          link_list: text
+          link_list: onMessage_data.message.content
         })
-        console.log(text, text instanceof Array)
         // 是否为数组
         if (text instanceof Array) {
           for (var i = 0; i < text.length; i++) {
@@ -53,7 +66,7 @@ Page({
         } else {
 
         }
-        that.data.allContentList.push({ is_ai: true, text: onMessage_data.body });
+        that.data.allContentList.push({ is_ai: true, text: onMessage_data.message.content });
         that.setData({
           allContentList: that.data.allContentList
         })
@@ -67,6 +80,7 @@ Page({
       url: url,
       data: 'data',
       header: {
+        'Authorization': wx.getStorageSync('jwtToken'),
         'content-type': 'application/json'
       },
       method: 'post',
@@ -86,7 +100,13 @@ Page({
   submitTo: function (e) {
     let that = this;
     var data = {
-      body: that.data.inputValue,
+      openid: wx.getStorageSync('openid'),
+      action:'message',
+      message:{
+        type:'text',
+        content: that.data.inputValue,
+        to:'od6FJ5NFsCmpYebubzG4s3vpTQJY'
+      },
     }
 
     if (socketOpen) {
@@ -125,7 +145,7 @@ Page({
 //通过 WebSocket 连接发送数据，需要先 wx.connectSocket，并在 wx.onSocketOpen 回调之后才能发送。
 function sendSocketMessage(msg) {
   var that = this;
-  console.log('通过 WebSocket 连接发送数据', JSON.stringify(msg))
+  console.log('通过 WebSocket 连接发送数据', msg)
   SocketTask.send({
     data: JSON.stringify(msg)
   }, function (res) {

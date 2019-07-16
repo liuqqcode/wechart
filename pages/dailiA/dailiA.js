@@ -12,7 +12,8 @@ Page({
     parent_id:'',
     picture:"none",
     share:'share',
-    imageUrl:''
+    imageUrl:'',
+    url:''
   },
   quxiao:function(){
     wx.navigateBack({
@@ -76,51 +77,25 @@ Page({
   },
   savePhoto() {
     var that = this;
-    // base64src(that.data.imageUrl, res => {
-    //   console.log(res) // 返回图片地址，直接赋值到image标签即可
-    // });
 
-    var aa = wx.getFileSystemManager();
-    // console.log('that.data.scene:', that.data.scene)
-    aa.writeFile({
-      filePath: `${wx.env.USER_DATA_PATH}/test1.png`,
-      data: wx.base64ToArrayBuffer(that.data.imageUrl),
-      encoding: 'base64',
-      success: res => {
+    
+    wx.downloadFile({
+      url: that.data.url,
+      success: function (res) {
         wx.saveImageToPhotosAlbum({
-          filePath: `${wx.env.USER_DATA_PATH}/test2.png`,
-          success: function (res) {
+          filePath: res.tempFilePath,
+          success: function (data) {
             wx.showToast({
               title: '保存成功',
+              icon: 'success',
+              duration: 1500
             })
-          },
-          fail: function (err) {
-            console.log(err)
+
           }
         })
-        console.log(res)
-      }, fail: err => {
-        console.log(err)
       }
+
     })
-    
-    // wx.downloadFile({
-    //   url: 'data:image/png;base64,' + that.data.imageUrl,
-    //   success: function (res) {
-    //     wx.saveImageToPhotosAlbum({
-    //       filePath: res.tempFilePath,
-    //       success: function (data) {
-    //         wx.showToast({
-    //           title: '保存成功',
-    //           icon: 'success',
-    //           duration: 1500
-    //         })
-
-    //       }
-    //     })
-    //   }
-
-    // })
   },
   bindGetUserInfo(e) {
     if (!e.detail.userInfo) {
@@ -138,6 +113,7 @@ Page({
     that.setData({
       parent_id: wx.getStorageSync("customer_id")
     })
+
     wx.request({
       url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6fbd07feae4aceb7&secret=addac835c7fbea00df7acb2ff94b62e9',
       method: 'GET',
@@ -155,9 +131,16 @@ Page({
           dataType: 'json',
           responseType: 'arraybuffer',
           success: function(data) {
-            console.log(data.data)
             that.setData({
               imageUrl: wx.arrayBufferToBase64(data.data)
+            })
+            api._post("/api/v1/twitters/account/image",{
+              image: that.data.imageUrl
+            }).then(res => {
+              console.log(res.path)
+              that.setData({
+                url:res.path
+              })
             })
           },
           fail: function(res) {},

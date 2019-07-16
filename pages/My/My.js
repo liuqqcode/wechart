@@ -289,7 +289,7 @@ Page({
       }
     })
     api._get("/api/v1/twitters/trace").then(res => {
-      if(res.data.length == wx.getStorageSync("khgz").length){
+      if (res.data.length == wx.getStorageSync("khgz").length || res.data.length == null){
         that.setData({
           notLookgz: false
         })
