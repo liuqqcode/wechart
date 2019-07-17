@@ -135,7 +135,7 @@ Page({
         canIUse: false
       })
     }
-    switch (3) {
+    switch (userType) {
       case 1:
         that.setData({ geren: true, shangjia: false, daili: false, quyu: false });
         break;
@@ -211,7 +211,7 @@ Page({
                 
                 // that.setData({ UserType: loginRes.data.customer_type})
                 console.log(loginRes.data.customer_type)
-                switch (3){
+                switch (loginRes.data.customer_type){
                   case 1:
                     that.setData({ geren: true, shangjia: false, daili: false, quyu: false });
                     break;

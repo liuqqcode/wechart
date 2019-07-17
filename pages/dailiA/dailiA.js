@@ -77,25 +77,45 @@ Page({
   },
   savePhoto() {
     var that = this;
+    if(url){
+      wx.downloadFile({
+        url: that.data.url,
+        success: function (res) {
+          wx.saveImageToPhotosAlbum({
+            filePath: res.tempFilePath,
+            success: function (data) {
+              wx.showToast({
+                title: '保存成功',
+                icon: 'success',
+                duration: 1500
+              })
 
-    
-    wx.downloadFile({
-      url: that.data.url,
-      success: function (res) {
-        wx.saveImageToPhotosAlbum({
-          filePath: res.tempFilePath,
-          success: function (data) {
-            wx.showToast({
-              title: '保存成功',
-              icon: 'success',
-              duration: 1500
+            }
+          })
+        }
+      })
+    }else{
+      setTimeout(
+        wx.downloadFile({
+          url: that.data.url,
+          success: function (res) {
+            wx.saveImageToPhotosAlbum({
+              filePath: res.tempFilePath,
+              success: function (data) {
+                wx.showToast({
+                  title: '保存成功',
+                  icon: 'success',
+                  duration: 1500
+                })
+
+              }
             })
-
           }
-        })
-      }
+        }),3000
+      )
+    }
+    
 
-    })
   },
   bindGetUserInfo(e) {
     if (!e.detail.userInfo) {
@@ -131,6 +151,7 @@ Page({
           dataType: 'json',
           responseType: 'arraybuffer',
           success: function(data) {
+            console.log("success")
             that.setData({
               imageUrl: wx.arrayBufferToBase64(data.data)
             })
@@ -201,7 +222,7 @@ Page({
   onShareAppMessage: function () {
     let that = this
     return{
-      title: "发展代理",
+      title: "代理申请",
       path: '/pages/daili/daili?parent_id=' + that.data.parent_id ,
     }
   }

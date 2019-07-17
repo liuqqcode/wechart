@@ -6,7 +6,7 @@
     <view>联系电话：</view>
     <input value='' bindinput='contact' maxlength='11' placeholder='请输入联系电话'></input>
     <view class='clear'></view>
-    <view>姓名：</view>
+    <view>真实姓名：</view>
     <input value='' bindinput='name' placeholder='请输入姓名'></input>
     <view class='clear'></view>
   </view>

@@ -4,7 +4,7 @@
     <input placeholder='请输入姓名' bindinput='name'></input>
     <view class='clear'></view>
     <view>手机号：</view>
-    <input placeholder='请输入联系方式' maxlength='11' bindinput='tel'></input>
+    <input placeholder='请输入联系方式' maxlength='11' type='number' bindinput='tel'></input>
     <view class='clear'></view>
     <textarea placeholder='情况说明：' bindinput='conent' placeholder-class='textareaBla'></textarea>
   </view>

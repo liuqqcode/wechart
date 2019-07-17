@@ -133,7 +133,7 @@ Page({
     }).then(data => {
       wx.hideLoading()
       wx.navigateTo({
-        url: '../yuyueSuccess/yuyueSuccess',
+        url: '../yuyueSuccess/yuyueSuccess?merchantid=' + that.data.merchant,
       })
     })
   },
@@ -149,7 +149,7 @@ Page({
             phone: wx.getStorageSync("userphone")
           }).then(data => {
             wx.navigateTo({
-              url: '../yuyueSuccess/yuyueSuccess',
+              url: '../yuyueSuccess/yuyueSuccess?merchantid=' + that.data.merchant,
             })
           })
         } else {
@@ -175,7 +175,7 @@ Page({
                       phone: res.data.phoneNumber
                     }).then(data => {
                       wx.navigateTo({
-                        url: '../yuyueSuccess/yuyueSuccess',
+                        url: '../yuyueSuccess/yuyueSuccess?merchantid=' + that.data.merchant,
                       })
                     })
                   }).catch(err => {
@@ -276,7 +276,7 @@ Page({
         phone: parseInt(this.data.mobile)
       }).then(res => {
         wx.navigateTo({
-          url: '../yuyueSuccess/yuyueSuccess',
+          url: '../yuyueSuccess/yuyueSuccess?merchantid=' + that.data.merchant,
         })
       })
     }else{

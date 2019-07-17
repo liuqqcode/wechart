@@ -482,7 +482,7 @@ swiper-item:nth-child(1)>image{
 }
 .yyst>button{
   border: none;
-  background: none;
+  background: #fe980f !important;
   line-height: 3;
   color: white;
 }
@@ -526,7 +526,7 @@ button::after {
   border: none
 }
 .button-hover{
-  background: #fafafa;
+  background: #fe980f;
 }
 .shareIcon>view{
   width: 50%;
@@ -797,7 +797,7 @@ canvas{
 }
 .shareBtn{
   width: 260rpx;
-  height: 70rpx;
+  height: 60rpx;
   margin-left: -70rpx;
   margin-top: 5rpx;
 }

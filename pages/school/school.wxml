@@ -41,7 +41,6 @@
           <swiper-item class="vedioSwiperItem">
             <video 
               id='{{item}}' 
-              show-play-btn="{{false}}"
               bindfullscreenchange="screenChange" 
               data-inx='{{item}}' 
               bindtap='videoshow' 

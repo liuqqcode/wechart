@@ -15,15 +15,6 @@ Page({
   // 页面加载
   onLoad: function () {
     this.bottom();
-    if (!socketOpen) {
-      this.webSocket()
-    }
-    wx.onSocketMessage(function(res){
-      console.log(res)
-    })
-    wx.onSocketError(function(){
-      console.log("链接失败")
-    })
   },
   onShow: function (e) {
     if (!socketOpen) {

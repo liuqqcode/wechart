@@ -55,12 +55,13 @@ Page({
       content:that.data.content
     }).then(res => {
       wx.hideLoading()
-      wx.navigateTo({
+      wx.switchTab({
         url: '/pages/index/index',
         success: function(res) {},
         fail: function(res) {},
         complete: function(res) {},
       })
+
     }).catch(err => {
       wx.hideLoading()
       wx.showModal({

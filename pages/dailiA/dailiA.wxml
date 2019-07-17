@@ -11,7 +11,7 @@
         </view>
         <view bindtap='share'>
           <image src='/images/icon/wcshare.png'></image>
-          <view>生成海报</view>        
+          <view>生成二维码</view>        
         </view>
       </view>
       <view class='clear'></view>
