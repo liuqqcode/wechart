@@ -1,20 +1,84 @@
+var util = require('../../utils/util.js')
+const api = require('../../utils/api.js')
 var app = getApp();
 var socketOpen = false;
 var frameBuffer_Data, session, SocketTask;
-var url = 'wss://yikeyingshi.com:8080';
+var url = 'wss://yikeyingshi.com:1096';
 Page({
   data: {
     user_input_text: '',//用户输入文字
+    text:'',
     inputValue: '',
     returnValue: '',
     addImg: false,
     //格式示例数据，可为空
     allContentList: [],
-    num: 0
+    num: 0,
+    myheader:'',
+    yourImg:'',
+    yourOpenid:'',
+    userid:''
   },
   // 页面加载
-  onLoad: function () {
+  onLoad: function (options) {
+    let  that = this
+    console.log(options)
+    that.setData({
+      userid: options.merchant_id
+    })
+    api._get("/api/v1/platform/session/messages/" + options.id).then(res => {
+      console.log(res)
+      res.data.forEach(item => {
+        if (item.from_customer_id == that.data.userid){
+          that.data.allContentList.push({
+             is_ai: true, text: item.content, 
+             myheader: item.from_customer_avatar, 
+             yourImg: item.to_customer_avatar
+          })
+        }else{
+          that.data.allContentList.push({
+             is_my: { text: item.content } ,
+            myheader: item.to_customer_avatar,
+            yourImg: item.from_customer_avatar
+          })
+        }
+      })
+      that.setData({
+        allContentList: that.data.allContentList
+      })
+      console.log(that.data.allContentList)
+      that.bottom()
+    })
+    if (options.type == 'merchant'){
+      api._post("/api/v1/platform/sessions", {
+        user_id: options.merchant_id,
+        type: "merchant"
+      }).then(res => {
+        console.log(res)
+        that.setData({
+          yourImg: res.data.target_customer_avatar,
+          yourOpenid: res.data.id
+        })
+      })
+    }else{
+      api._post("/api/v1/platform/sessions", {
+        user_id: options.merchant_id,
+        type: "customer"
+      }).then(res => {
+        console.log(res)
+        that.setData({
+          yourImg: res.data.target_customer_avatar,
+          yourOpenid: res.data.id
+        })
+      })
+    }
+
     this.bottom();
+    var headerImg = wx.getStorageSync('avatarUrl')
+    that.setData({
+      myheader:headerImg
+    })    
+    console.log(wx.getStorageSync('customer_id'))
   },
   onShow: function (e) {
     if (!socketOpen) {
@@ -45,24 +109,34 @@ Page({
       }catch(err){
         onMessage_data = onMessage
       }
-      if (onMessage_data.cmd == 1) {
+      onMessage_data = JSON.parse(onMessage_data.data)
+      console.log(onMessage_data)
+      if (onMessage_data.data.receiver == that.data.userid){
         that.setData({
-          link_list: onMessage_data.message.content
+          yourImg: onMessage_data.data.message.sender_avatar,
+          yourOpenid: onMessage_data.data.sender
         })
-        // 是否为数组
-        if (text instanceof Array) {
-          for (var i = 0; i < text.length; i++) {
-            text[i]
-          }
-        } else {
+        if (onMessage_data.code == 1001) {
+          that.setData({
+            link_list: onMessage_data.data.message.content
+          })
+          // 是否为数组
+          // if (text instanceof Array) {
+          //   for (var i = 0; i < text.length; i++) {
+          //     text[i]
+          //   }
+          // } else {
 
+          // }
+          that.data.allContentList.push({ is_ai: true, text: onMessage_data.data.message.content });
+          that.setData({
+            allContentList: that.data.allContentList
+          })
+          console.log(that.data.allContentList)
+          that.bottom()
         }
-        that.data.allContentList.push({ is_ai: true, text: onMessage_data.message.content });
-        that.setData({
-          allContentList: that.data.allContentList
-        })
-        that.bottom()
       }
+
     })
   },
   webSocket: function () {
@@ -91,12 +165,12 @@ Page({
   submitTo: function (e) {
     let that = this;
     var data = {
-      openid: wx.getStorageSync('openid'),
+      userid: that.data.userid,
       action:'message',
+      to: that.data.yourOpenid,
       message:{
         type:'text',
-        content: that.data.inputValue,
-        to:'od6FJ5NFsCmpYebubzG4s3vpTQJY'
+        content: that.data.inputValue
       },
     }
 
@@ -108,7 +182,7 @@ Page({
         allContentList: this.data.allContentList,
         inputValue: ''
       })
-
+      console.log(this.data.allContentList)
       that.bottom()
     }
   },

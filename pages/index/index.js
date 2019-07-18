@@ -461,7 +461,7 @@ Page({
     let that = this;
     console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
-      url: '../school/school?id=' + e.currentTarget.dataset.id.id,
+      url: '../school/school?id=' + e.currentTarget.dataset.id.id + '&merchantid=' + e.currentTarget.dataset.id.merchant_id,
       success(data){
         api._post("/api/v1/views",{
           school: e.currentTarget.dataset.id.id,

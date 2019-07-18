@@ -19,7 +19,7 @@
     </view>
   </view>
   <view class='{{picture}}'>
-    <image src='data:image/png;base64,{{imageUrl}}'></image>
+    <image src='{{imageUrl}}'></image>
     <view bindtap='saveImg' class='saveImg'>保存图片</view>
   </view>
 </view>

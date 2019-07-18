@@ -63,6 +63,7 @@ page {
 .new_img {  
   width: 100rpx;  
   height: 100rpx;  
+  float: left;
   border-radius: 50%;  
 }  
   

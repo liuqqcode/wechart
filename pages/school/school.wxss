@@ -526,7 +526,8 @@ button::after {
   border: none
 }
 .button-hover{
-  background: #fe980f;
+  background: #fafafa;
+
 }
 .shareIcon>view{
   width: 50%;

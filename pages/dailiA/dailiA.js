@@ -133,44 +133,51 @@ Page({
     that.setData({
       parent_id: wx.getStorageSync("customer_id")
     })
-
-    wx.request({
-      url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6fbd07feae4aceb7&secret=addac835c7fbea00df7acb2ff94b62e9',
-      method: 'GET',
-      dataType: 'json',
-      responseType: 'text',
-      success: function(res) {
-        console.log(res)
-        wx.request({
-          url: "https://api.weixin.qq.com/wxa/getwxacode?access_token=" + res.data.access_token,
-          data: {
-            'path':"pages/daili/daili?parent_id=" + that.data.parent_id,
-            "width":430
-          },
-          method: 'POST',
-          dataType: 'json',
-          responseType: 'arraybuffer',
-          success: function(data) {
-            console.log("success")
-            that.setData({
-              imageUrl: wx.arrayBufferToBase64(data.data)
-            })
-            api._post("/api/v1/twitters/account/image",{
-              image: that.data.imageUrl
-            }).then(res => {
-              console.log(res.path)
-              that.setData({
-                url:res.path
-              })
-            })
-          },
-          fail: function(res) {},
-          complete: function(res) {},
-        })
-      },
-      fail: function(res) {},
-      complete: function(res) {},
+    api._post("/api/v1/twitters/team/invitation-code",{
+      page: 'pages/daili/daili?parent_id=' + that.data.parent_id
+    }).then(res => {
+      console.log(res.data.image)
+      that.setData({
+        imageUrl:res.data.image
+      })
     })
+    // wx.request({
+    //   url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6fbd07feae4aceb7&secret=addac835c7fbea00df7acb2ff94b62e9',
+    //   method: 'GET',
+    //   dataType: 'json',
+    //   responseType: 'text',
+    //   success: function(res) {
+    //     console.log(res)
+    //     wx.request({
+    //       url: "https://api.weixin.qq.com/wxa/getwxacode?access_token=" + res.data.access_token,
+    //       data: {
+    //         'path':"pages/daili/daili?parent_id=" + that.data.parent_id,
+    //         "width":430
+    //       },
+    //       method: 'POST',
+    //       dataType: 'json',
+    //       responseType: 'arraybuffer',
+    //       success: function(data) {
+    //         console.log("success")
+    //         that.setData({
+    //           imageUrl: wx.arrayBufferToBase64(data.data)
+    //         })
+    //         api._post("/api/v1/twitters/account/image",{
+    //           image: that.data.imageUrl
+    //         }).then(res => {
+    //           console.log(res.path)
+    //           that.setData({
+    //             url:res.path
+    //           })
+    //         })
+    //       },
+    //       fail: function(res) {},
+    //       complete: function(res) {},
+    //     })
+    //   },
+    //   fail: function(res) {},
+    //   complete: function(res) {},
+    // })
 
   },
 

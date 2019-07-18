@@ -1,9 +1,9 @@
 <view>
   <view class='userList' wx:for="{{userList}}" data-inx='{{item}}' bindtap='messageCon' wx:key="index">
     <view class='header'>
-      <image src='{{item.userheader}}'></image>
+      <image src='{{item.target_customer_avatar}}'></image>
     </view>
-    <view class='name'>{{item.username}}</view>
+    <view class='name'>{{item.target_customer_name}}</view>
     <view class='clear'></view>
     <view class='line'></view>
   </view>

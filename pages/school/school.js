@@ -80,13 +80,15 @@ Page({
     pjBot2:'',
     getPhoneNumberOK:false,
     userphone:'',
-    canvasImgerweima:''
+    canvasImgerweima:'',
+    merchant_id:''
 
   },
   //打开客服
   handleContact(e) {
+    let that = this
     wx.navigateTo({
-      url: '/pages/messageCon/message',
+      url: '/pages/messageCon/message?merchant_id=' + that.data.merchant_id + '&type=merchant',
       success: function (res) { },
       fail: function (res) { },
       complete: function (res) { },
@@ -507,9 +509,12 @@ Page({
     }else{
       that.setData({ kehuBtn:false})
     }
-
+console.log(options)
     //获取学校id
-    that.setData({ schoolId : options.id})
+    that.setData({ 
+      schoolId : options.id,
+      merchant_id: options.merchantid
+    })
 
     //获取学校详情信息
     api._get('/api/v1/schools/' + options.id).then( data => {
@@ -528,7 +533,7 @@ Page({
         videos: data.data.videos, 
       })
       
-      console.log(data.data.name)
+      console.log(data)
     if (data.data.teachers != null){
       that.setData({
         teachNum: data.data.teachers.length, 
