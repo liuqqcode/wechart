@@ -20,38 +20,145 @@ Page({
       delta: 1,
     })
   },
-  share:function(){
+  bgcolor:function(){
     let that = this;
     that.setData({
-      share:"none",
-      picture:"picture"
+      picture:'none',
+      share:'share'
     })
+  },
+  share:function(){
+    let that = this;
+    wx.showLoading({
+      title: '生成中，请稍后...',
+      mask: true,
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+    api._post("/api/v1/twitters/team/invitation-code", {
+      page: 'pages/daili/daili?parent_id=' + that.data.parent_id
+    }).then(res => {
+      console.log(res.data.image)
+      that.setData({
+        share: "none",
+        picture: "picture",
+        imageUrl: res.data.image
+      })
+      wx.hideLoading()
+    })
+
   },
   saveImg() {
     let that = this;
     wx.getSetting({
-      success: function (res) {
-        //不存在相册授权
+      success(res) {
         if (!res.authSetting['scope.writePhotosAlbum']) {
           wx.authorize({
             scope: 'scope.writePhotosAlbum',
-            success: function () {
-              that.savePhoto();
-              that.setData({
-                isPic: false
-              })
-            },
-            fail: function (err) {
-              that.setData({
-                isPic: true
+            success() {
+              wx.downloadFile({
+                url: that.data.imageUrl,
+                success: function (res) {
+                  console.log(res);
+                  //图片保存到本地
+                  wx.saveImageToPhotosAlbum({
+                    filePath: res.tempFilePath,
+                    success: function (data) {
+                      wx.showToast({
+                        title: '保存成功',
+                        icon: 'success',
+                        duration: 2000
+                      })
+                    },
+                    fail: function (err) {
+                      console.log(err);
+                      if (err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
+                        console.log("当初用户拒绝，再次发起授权")
+                        wx.openSetting({
+                          success(settingdata) {
+                            console.log(settingdata)
+                            if (settingdata.authSetting['scope.writePhotosAlbum']) {
+                              console.log('获取权限成功，给出再次点击图片保存到相册的提示。')
+                            } else {
+                              console.log('获取权限失败，给出不给权限就无法正常使用的提示')
+                            }
+                          }
+                        })
+                      }
+                    },
+                    complete(res) {
+                      console.log(res);
+                    }
+                  })
+                }
               })
             }
           })
-        } else {
-          that.savePhoto();
+        }else{
+          wx.downloadFile({
+            url: that.data.imageUrl,
+            success: function (res) {
+              console.log(res);
+              //图片保存到本地
+              wx.saveImageToPhotosAlbum({
+                filePath: res.tempFilePath,
+                success: function (data) {
+                  wx.showToast({
+                    title: '保存成功',
+                    icon: 'success',
+                    duration: 2000
+                  })
+                },
+                fail: function (err) {
+                  console.log(err);
+                  if (err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
+                    console.log("当初用户拒绝，再次发起授权")
+                    wx.openSetting({
+                      success(settingdata) {
+                        console.log(settingdata)
+                        if (settingdata.authSetting['scope.writePhotosAlbum']) {
+                          console.log('获取权限成功，给出再次点击图片保存到相册的提示。')
+                        } else {
+                          console.log('获取权限失败，给出不给权限就无法正常使用的提示')
+                        }
+                      }
+                    })
+                  }
+                },
+                complete(res) {
+                  console.log(res);
+                }
+              })
+            }
+          })
         }
       }
     })
+
+    // wx.getSetting({
+    //   success: function (res) {
+    //     //不存在相册授权
+    //     if (!res.authSetting['scope.writePhotosAlbum']) {
+    //       wx.authorize({
+    //         scope: 'scope.writePhotosAlbum',
+    //         success: function () {
+    //           that.savePhoto();
+    //           that.setData({
+    //             isPic: false
+    //           })
+    //         },
+    //         fail: function (err) {
+    //           that.setData({
+    //             isPic: true
+    //           })
+    //         }
+    //       })
+    //     } else {
+    //       that.savePhoto();
+    //     }
+    //   }
+    // })
 
 
   },
@@ -77,9 +184,9 @@ Page({
   },
   savePhoto() {
     var that = this;
-    if(url){
+
       wx.downloadFile({
-        url: that.data.url,
+        url: that.data.imageUrl,
         success: function (res) {
           wx.saveImageToPhotosAlbum({
             filePath: res.tempFilePath,
@@ -92,30 +199,10 @@ Page({
 
             }
           })
+        },fail(err){
+          console.log(err)
         }
       })
-    }else{
-      setTimeout(
-        wx.downloadFile({
-          url: that.data.url,
-          success: function (res) {
-            wx.saveImageToPhotosAlbum({
-              filePath: res.tempFilePath,
-              success: function (data) {
-                wx.showToast({
-                  title: '保存成功',
-                  icon: 'success',
-                  duration: 1500
-                })
-
-              }
-            })
-          }
-        }),3000
-      )
-    }
-    
-
   },
   bindGetUserInfo(e) {
     if (!e.detail.userInfo) {
@@ -133,50 +220,13 @@ Page({
     that.setData({
       parent_id: wx.getStorageSync("customer_id")
     })
-    api._post("/api/v1/twitters/team/invitation-code",{
-      page: 'pages/daili/daili?parent_id=' + that.data.parent_id
-    }).then(res => {
-      console.log(res.data.image)
-      that.setData({
-        imageUrl:res.data.image
-      })
-    })
-    // wx.request({
-    //   url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6fbd07feae4aceb7&secret=addac835c7fbea00df7acb2ff94b62e9',
-    //   method: 'GET',
-    //   dataType: 'json',
-    //   responseType: 'text',
-    //   success: function(res) {
-    //     console.log(res)
-    //     wx.request({
-    //       url: "https://api.weixin.qq.com/wxa/getwxacode?access_token=" + res.data.access_token,
-    //       data: {
-    //         'path':"pages/daili/daili?parent_id=" + that.data.parent_id,
-    //         "width":430
-    //       },
-    //       method: 'POST',
-    //       dataType: 'json',
-    //       responseType: 'arraybuffer',
-    //       success: function(data) {
-    //         console.log("success")
-    //         that.setData({
-    //           imageUrl: wx.arrayBufferToBase64(data.data)
-    //         })
-    //         api._post("/api/v1/twitters/account/image",{
-    //           image: that.data.imageUrl
-    //         }).then(res => {
-    //           console.log(res.path)
-    //           that.setData({
-    //             url:res.path
-    //           })
-    //         })
-    //       },
-    //       fail: function(res) {},
-    //       complete: function(res) {},
-    //     })
-    //   },
-    //   fail: function(res) {},
-    //   complete: function(res) {},
+    // api._post("/api/v1/twitters/team/invitation-code",{
+    //   page: 'pages/daili/daili?parent_id=' + that.data.parent_id
+    // }).then(res => {
+    //   console.log(res.data.image)
+    //   that.setData({
+    //     imageUrl:res.data.image
+    //   })
     // })
 
   },

@@ -3,7 +3,7 @@ const api = require('../../utils/api.js')
 var app = getApp();
 var socketOpen = false;
 var frameBuffer_Data, session, SocketTask;
-var url = 'wss://yikeyingshi.com:1096';
+var url = 'wss://snap.yikeyingshi.com';
 Page({
   data: {
     user_input_text: '',//用户输入文字
@@ -17,27 +17,34 @@ Page({
     myheader:'',
     yourImg:'',
     yourOpenid:'',
-    userid:''
+    userid:'',
+    myuserid:'',
+    session:''
   },
   // 页面加载
   onLoad: function (options) {
     let  that = this
     console.log(options)
     that.setData({
-      userid: options.merchant_id
+      userid: options.merchant_id,
+      session:options.id
     })
+
+    //获取历史消息
     api._get("/api/v1/platform/session/messages/" + options.id).then(res => {
       console.log(res)
+      res.data = res.data.reverse()
       res.data.forEach(item => {
         if (item.from_customer_id == that.data.userid){
           that.data.allContentList.push({
-             is_ai: true, text: item.content, 
+             is_ai: true, 
+             text: item.content, 
              myheader: item.from_customer_avatar, 
              yourImg: item.to_customer_avatar
           })
         }else{
           that.data.allContentList.push({
-             is_my: { text: item.content } ,
+            is_my: { text: item.content } ,
             myheader: item.to_customer_avatar,
             yourImg: item.from_customer_avatar
           })
@@ -49,6 +56,7 @@ Page({
       console.log(that.data.allContentList)
       that.bottom()
     })
+    //如果是从学校详情，咨询，点进来的为商户
     if (options.type == 'merchant'){
       api._post("/api/v1/platform/sessions", {
         user_id: options.merchant_id,
@@ -57,7 +65,7 @@ Page({
         console.log(res)
         that.setData({
           yourImg: res.data.target_customer_avatar,
-          yourOpenid: res.data.id
+          yourOpenid: res.data.target_customer_id
         })
       })
     }else{
@@ -68,7 +76,7 @@ Page({
         console.log(res)
         that.setData({
           yourImg: res.data.target_customer_avatar,
-          yourOpenid: res.data.id
+          yourOpenid: res.data.target_customer_id
         })
       })
     }
@@ -77,7 +85,7 @@ Page({
     var headerImg = wx.getStorageSync('avatarUrl')
     that.setData({
       myheader:headerImg
-    })    
+    })
     console.log(wx.getStorageSync('customer_id'))
   },
   onShow: function (e) {
@@ -91,6 +99,11 @@ Page({
     SocketTask.onOpen(res => {
       socketOpen = true;
       console.log('监听 WebSocket 连接打开事件。', res)
+      let msg = {
+        action: "login",
+        userid: wx.getStorageSync('customer_id')
+      }
+      sendSocketMessage(msg)
     })
     SocketTask.onClose(onClose => {
       console.log('监听 WebSocket 连接关闭事件。', onClose)
@@ -111,31 +124,23 @@ Page({
       }
       onMessage_data = JSON.parse(onMessage_data.data)
       console.log(onMessage_data)
-      if (onMessage_data.data.receiver == that.data.userid){
-        that.setData({
-          yourImg: onMessage_data.data.message.sender_avatar,
-          yourOpenid: onMessage_data.data.sender
-        })
-        if (onMessage_data.code == 1001) {
-          that.setData({
-            link_list: onMessage_data.data.message.content
-          })
-          // 是否为数组
-          // if (text instanceof Array) {
-          //   for (var i = 0; i < text.length; i++) {
-          //     text[i]
-          //   }
-          // } else {
 
-          // }
-          that.data.allContentList.push({ is_ai: true, text: onMessage_data.data.message.content });
-          that.setData({
-            allContentList: that.data.allContentList
-          })
-          console.log(that.data.allContentList)
-          that.bottom()
-        }
+      that.setData({
+        yourImg: onMessage_data.data.sender_avatar,
+        // yourOpenid: onMessage_data.data.sender
+      })
+      if (onMessage_data.code == 1001) {
+        that.setData({
+          link_list: onMessage_data.data.message.content
+        })
+        that.data.allContentList.push({ is_ai: true, text: onMessage_data.data.message.content });
+        that.setData({
+          allContentList: that.data.allContentList
+        })
+        console.log(that.data.allContentList)
+        that.bottom()
       }
+      
 
     })
   },
@@ -165,12 +170,12 @@ Page({
   submitTo: function (e) {
     let that = this;
     var data = {
-      userid: that.data.userid,
+      session: that.data.session,
       action:'message',
       to: that.data.yourOpenid,
       message:{
         type:'text',
-        content: that.data.inputValue
+        content: that.data.inputValue.replace(/^\s+|\s+$/g, "")
       },
     }
 

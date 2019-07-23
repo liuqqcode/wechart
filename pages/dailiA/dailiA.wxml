@@ -1,4 +1,5 @@
 <view>
+<view class='bgcolor' bindtap='bgcolor'></view>
   <view class='{{share}}'>
     <view bindtap='quxiao' class='{{shareBG}}'></view>
     <view class='{{shareCon}}'>

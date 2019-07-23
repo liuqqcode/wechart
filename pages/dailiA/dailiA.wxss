@@ -1,5 +1,4 @@
 page{
-  background: #999;
 }
 .group1>image{
   width: 100%;
@@ -843,4 +842,10 @@ canvas{
   height: 70rpx;
   border-radius: 15rpx;
   color: white;
+}
+.bgcolor{
+  background: #999;
+  position: fixed;
+  height: 100%;
+  width: 100%;
 }

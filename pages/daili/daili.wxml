@@ -10,3 +10,13 @@
   </view>
   <button class='submit' bindtap='submit'>确定</button>
 </view>
+<view class='{{cont}}'>
+
+
+</view>
+
+  <view class='{{content}}'>
+    <view>请登陆</view>
+    <button           open-type="getUserInfo"
+          bindgetuserinfo="loginfun" type='primary' size='mini'>登陆</button>
+  </view>

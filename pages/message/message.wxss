@@ -21,3 +21,10 @@
   width: 80%;
   background: rgb(199, 199, 199);
 }
+.new{
+  color:red;
+  float:right;
+  font-size:30rpx;
+  margin-top:30rpx;
+
+}

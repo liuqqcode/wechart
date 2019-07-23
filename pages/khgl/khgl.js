@@ -23,7 +23,8 @@ Page({
     var headerImg = wx.getStorageSync('avatarUrl')
     that.setData({ avatarUrl: headerImg})
     api._get("/api/v1/clients").then(res => {
-      that.setData({ agentData:res.data})
+      that.setData({ agentData: res.data.reverse()})
+      
       wx.setStorageSync('khgl', res.data)
     })
 

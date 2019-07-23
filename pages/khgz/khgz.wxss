@@ -58,15 +58,19 @@ page{
   text-align: center;
 }
 .message{
-  width: 50rpx !important;
-  height: 50rpx !important;
-  text-align: center;
-  margin-top: 30rpx;
+  width:50rpx !important;
+  height:50rpx;
+  text-align:center;
+  margin-top:30rpx;
+  margin-left:-70rpx;
+
 }
 .send{
   text-align: center;
 }
 .sendMes{
+  margin-top:30rpx;
+  position:absolute;
 }
 .header{
   border-radius: 50%;

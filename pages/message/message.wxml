@@ -4,8 +4,8 @@
       <image src='{{item.target_customer_avatar}}'></image>
     </view>
     <view class='name'>{{item.target_customer_name}}</view>
+    <view wx:if="{{item.newmessage == '1'}}" class='new'>new</view>
     <view class='clear'></view>
     <view class='line'></view>
   </view>
-
 </view>

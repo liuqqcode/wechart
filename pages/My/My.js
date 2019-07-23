@@ -119,7 +119,7 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
-    that.loginWechat();
+    // that.loginWechat();
     wx.getSetting({
       success(res) {
         if (res.authSetting['scope.userInfo']) {
@@ -144,6 +144,7 @@ Page({
         break;
       case 3:
         api._get("/api/v1/twitters/account").then(res => {
+          console.log(res)
           that.setData({
             account: res.data
           })
@@ -170,85 +171,93 @@ Page({
 
   loginWechat:function(){
     var that = this
-    
-    wx.login({
-      success(data) {
-        wx.getUserInfo({
-          withCredentials: true,
-          success(res) {
-            wx.setStorageSync("avatarUrl", res.userInfo.avatarUrl)
-            wx.setStorageSync("canIUse", false)
-            wx.setStorageSync('userInfo', res.userInfo)
-            wx.setStorageSync('code', data.code)
-            app.globalData.avatarUrl = res.userInfo.avatarUrl
-            that.setData({ userInfo: res.userInfo, canIUse: false })
-            wx.request({
-              url: 'https://yikeyingshi.com/api/auth/login/',
-              method: 'POST',
-              header: { 'content-type': 'application/json' },
-              data: {
-                encryptedData: encodeURI(res.encryptedData),
-                iv: encodeURI(res.iv),
-                code: encodeURI(data.code)
-              },
-              
-              success(loginRes) {
-                wx.setStorageSync("encryptedData", res.encryptedData)
-                wx.setStorageSync("iv", res.iv)
-                wx.setStorageSync("code", data.code)
-                console.log(loginRes.data.customer_openid)
-                wx.setStorageSync('openid', loginRes.data.customer_openid)
-                wx.setStorageSync("token", loginRes.data.access_token )
-                wx.setStorageSync("jwtToken", loginRes.data.token_type + " " + loginRes.data.access_token)
-                wx.setStorageSync("userType", loginRes.data.customer_type)
-                wx.setStorageSync("customer_id", loginRes.data.customer_id)
+    wx.checkSession({
+　　　　success: function (res) {
+　　　　　　console.log("处于登录态");
+　　　　},
+　　　　fail: function (res) {
+　　　　　　console.log("需要重新登录");
+            wx.login({
+              success(data) {
+                wx.getUserInfo({
+                  withCredentials: true,
+                  success(res) {
+                    wx.setStorageSync("avatarUrl", res.userInfo.avatarUrl)
+                    wx.setStorageSync("canIUse", false)
+                    wx.setStorageSync('userInfo', res.userInfo)
+                    wx.setStorageSync('code', data.code)
+                    app.globalData.avatarUrl = res.userInfo.avatarUrl
+                    that.setData({ userInfo: res.userInfo, canIUse: false })
+                    wx.request({
+                      url: 'https://yikeyingshi.com/api/auth/login/',
+                      method: 'POST',
+                      header: { 'content-type': 'application/json' },
+                      data: {
+                        encryptedData: encodeURI(res.encryptedData),
+                        iv: encodeURI(res.iv),
+                        code: encodeURI(data.code)
+                      },
 
-                //设施全局变量token
-                app.globalData.token = loginRes.data.token_type + " " + loginRes.data.access_token;
-                //设置全局变量用户类型[1:普通用户; 2:商户; 3:推客; 4:区域代理]
-                app.globalData.UserType = loginRes.data.customer_type
-                app.globalData.customer_id = loginRes.data.customer_id
-                
-                // that.setData({ UserType: loginRes.data.customer_type})
-                console.log(loginRes.data.customer_type)
-                switch (loginRes.data.customer_type){
-                  case 1:
-                    that.setData({ geren: true, shangjia: false, daili: false, quyu: false });
-                    break;
-                  case 2:
-                    that.setData({ geren: false, shangjia: true, daili: false, quyu: false });
-                    break;
-                  case 3:
-                    api._get("/api/v1/twitters/account").then(res => {
-                      that.setData({
-                        account: res.data
-                      })
+                      success(loginRes) {
+                        wx.setStorageSync("encryptedData", res.encryptedData)
+                        wx.setStorageSync("iv", res.iv)
+                        wx.setStorageSync("code", data.code)
+                        console.log(loginRes.data.customer_openid)
+                        wx.setStorageSync('openid', loginRes.data.customer_openid)
+                        wx.setStorageSync("token", loginRes.data.access_token)
+                        wx.setStorageSync("jwtToken", loginRes.data.token_type + " " + loginRes.data.access_token)
+                        wx.setStorageSync("userType", loginRes.data.customer_type)
+                        wx.setStorageSync("customer_id", loginRes.data.customer_id)
+
+                        //设施全局变量token
+                        app.globalData.token = loginRes.data.token_type + " " + loginRes.data.access_token;
+                        //设置全局变量用户类型[1:普通用户; 2:商户; 3:推客; 4:区域代理]
+                        app.globalData.UserType = loginRes.data.customer_type
+                        app.globalData.customer_id = loginRes.data.customer_id
+
+                        // that.setData({ UserType: loginRes.data.customer_type})
+                        console.log(loginRes.data.customer_type)
+                        switch (loginRes.data.customer_type) {
+                          case 1:
+                            that.setData({ geren: true, shangjia: false, daili: false, quyu: false });
+                            break;
+                          case 2:
+                            that.setData({ geren: false, shangjia: true, daili: false, quyu: false });
+                            break;
+                          case 3:
+                            api._get("/api/v1/twitters/account").then(res => {
+                              that.setData({
+                                account: res.data
+                              })
+                            })
+                            api._get("/api/v1/twitters/team").then(res => {
+                              that.setData({
+                                team: res.data
+                              })
+                            })
+                            that.setData({ geren: false, shangjia: false, daili: true, quyu: false });
+                            break;
+                          case 4:
+                            that.setData({ geren: false, shangjia: false, daili: false, quyu: true });
+                            api._get("/api/v1/agents/schools").then(res => {
+                              console.log(res.data.schools)
+                              that.setData({
+                                myschool: res.data.schools,
+                                ImageHead: util.schoolPicture
+                              })
+                            })
+                            break;
+                        }
+                      }
                     })
-                    api._get("/api/v1/twitters/team").then(res => {
-                      that.setData({
-                        team: res.data
-                      })
-                    })
-                    that.setData({ geren: false, shangjia: false, daili: true, quyu: false });
-                    break;
-                  case 4:
-                    that.setData({ geren: false, shangjia: false, daili: false, quyu: true });
-                    api._get("/api/v1/agents/schools").then(res => {
-                      console.log(res.data.schools)
-                      that.setData({
-                        myschool:res.data.schools,
-                        ImageHead: util.schoolPicture
-                      })
-                    })
-                    break;
-                }
+                  }
+                })
+
               }
             })
-          }
-        })
+      　　　　}
+    　　})
 
-      }
-    })
   },
 
   //点击授权登录按钮

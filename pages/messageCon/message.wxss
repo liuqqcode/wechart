@@ -163,7 +163,7 @@ page {
   height: 20rpx;  
 }  
 .history {  
-  height: 80%;  
+  height: 88%;  
   padding: 20rpx  20rpx  20rpx  20rpx;
   font-size: 14px;  
   line-height: 50rpx;  

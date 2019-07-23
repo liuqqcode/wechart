@@ -21,12 +21,13 @@ Page({
       wx.setStorageSync('khgz', res.data)
 
       that.setData({
-        content:res.data.fans,
-        name:res.data.fans[0].name
+        content:res.data.fans
       })
     })
   },
-
+  sendMessage:function(e){
+    console.log(e)
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

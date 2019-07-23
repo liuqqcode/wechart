@@ -2,6 +2,7 @@ page{
   background: #f2f2f2; 
 }
 .info{
+  position: absolute;
   margin: 20rpx 30rpx;
 }
 .inputCon{
@@ -44,4 +45,37 @@ textarea{
   background: #f2c720;
   color: white;
   font-weight: 600;
+}
+.cont{
+  text-align: center;
+  z-index: 2;
+  background: gray;
+  opacity: 0.7;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.content{
+  position:absolute;
+  top:300rpx;
+  width:350rpx;
+  left:200rpx;
+  height:500rpx;
+  background:rgb(43, 43, 43);
+  opacity:1;
+  border-radius:30rpx;
+  color:white;
+  text-align: center;
+  z-index: 3;
+
+}
+.content>view{
+  margin-top: 200rpx;
+}
+.content>button{
+  margin-top: 100rpx;
+  width: 200rpx;
+}
+.none{
+  display: none;
 }
