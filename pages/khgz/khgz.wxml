@@ -3,23 +3,23 @@
     <view class='content' wx:for="{{content}}" wx:key="index">
       <image class='header' src='{{item.avatar_url}}'></image>
       <view class='contentCon'>
-        <view wx:for="{{item.views}}" wx:key="index">
-          <view>{{item.name}}查看了</view>
-          <view>{{item.school_name}}</view>
+        <view wx:for="{{item.orders}}" wx:for-item="cell" wx:key="index">
+          <view>{{item.nickname}}购买了</view>
+          <view>{{cell.product_name}}</view>
           <view>1次</view>
           <view class='clear'></view>
         </view>
         <view class='line'></view>
-        <view wx:for="{{item.buys}}" wx:key="index">
-          <view>{{item.name}}购买了</view>
-          <view>{{item.product_name}}</view>
+        <view wx:for="{{item.views}}" wx:for-item="cell" wx:key="index">
+          <view>{{item.nickname}}查看了</view>
+          <view>{{cell.product_name}}</view>
           <view>1份</view>
           <view class='clear'></view>
         </view>
       </view>
       <view class='clear'></view>
       
-      <view class='send' bindtap='sendMessage'>
+      <view class='send' bindtap='sendMessage' data-inx='{{item.customer_id}}'>
         <image class='message' src='/images/icon/purMess.png'></image>
         <text class='sendMes'>发消息</text>
       </view>

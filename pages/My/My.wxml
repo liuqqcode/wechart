@@ -79,7 +79,7 @@
         <view class='teamIcon'>
           <image src='/images/icon/team.png'></image>
           <view>我的团队人数</view>
-          <view>{{account.shared}}</view>
+          <view>{{team.length}}</view>
         </view>
         <view class='teamMoney'>
           <view>{{account.today_amount}}</view>

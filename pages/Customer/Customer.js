@@ -73,30 +73,55 @@ Page({
     that.data.arr.forEach(item => {
       arr2 = arr2 + " " + item
     })
-    api._post("/api/v1/clients", {
-      school_id: this.data.Biography.id,
-      school_name: this.data.Biography.schoolName,
-      merchant_id: this.data.Biography.merchant,
-      phone: this.data.phone,
-      name: this.data.name,
-      // paid_amount:this.data.money,
-      remark:arr2
-    }).then(res => {
+    if(that.data.name == ''){
       wx.showToast({
-        title: '提交成功',
+        title: '姓名不能为空',
         icon: 'none',
         image: '',
         duration: 3000,
         mask: true,
-        success: function(res) {
-          wx.navigateBack({
-            delta: 1,
-          })
-        },
+        success: function(res) {},
         fail: function(res) {},
         complete: function(res) {},
       })
-    })
+    }else if(that.data.phone == ''){
+      wx.showToast({
+        title: '电话不能为空',
+        icon: 'none',
+        image: '',
+        duration: 3000,
+        mask: true,
+        success: function(res) {},
+        fail: function(res) {},
+        complete: function(res) {},
+      })
+    }else{
+      api._post("/api/v1/clients", {
+        school_id: this.data.Biography.id,
+        school_name: this.data.Biography.schoolName,
+        merchant_id: this.data.Biography.merchant,
+        phone: this.data.phone,
+        name: this.data.name,
+        // paid_amount:this.data.money,
+        remark: arr2
+      }).then(res => {
+        wx.showToast({
+          title: '提交成功',
+          icon: 'none',
+          image: '',
+          duration: 3000,
+          mask: true,
+          success: function (res) {
+            wx.navigateBack({
+              delta: 1,
+            })
+          },
+          fail: function (res) { },
+          complete: function (res) { },
+        })
+      })
+    }
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

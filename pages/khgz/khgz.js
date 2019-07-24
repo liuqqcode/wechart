@@ -17,16 +17,22 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-    api._get("/api/v1/twitters/trace").then(res => {
-      wx.setStorageSync('khgz', res.data)
-
+    api._get("/api/v1/twitters/trace1").then(res => {
+      wx.setStorageSync('khgz', res.data.customers)
+      console.log(res.data.customers)
       that.setData({
-        content:res.data.fans
+        content: res.data.customers
       })
     })
   },
   sendMessage:function(e){
-    console.log(e)
+    console.log(e.currentTarget.dataset.inx)
+    wx.navigateTo({
+      url: '/pages/messageCon/message?merchant_id=' + e.currentTarget.dataset.inx + '&id=' + e.currentTarget.dataset.inx.id,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

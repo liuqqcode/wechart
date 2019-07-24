@@ -57,12 +57,12 @@
   line-height: 1.2;
 }
 .vedioSwiper{
-  height: 200rpx;
+  height: 230rpx;
 }
 video{
   border-radius: 20rpx;
   height: 90%;
-  width: 90%;
+  width: 95%;
   margin: 20rpx 0;
 }
 .vedioSwiperItem:nth-child(1)>video{

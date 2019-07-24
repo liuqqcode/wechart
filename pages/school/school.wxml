@@ -218,7 +218,7 @@
       </button>
     </view>
     <view  class='yyst'>
-      <button data-yu='1' open-type="{{getPhoneNumberOK? '' : 'getPhoneNumber'}}" bindgetphonenumber="{{getPhoneNumberOK? '' : 'getPhoneNumber'}}" bindtap="{{getPhoneNumberOK? 'getPhoneNumberYY' : ''}}">预约试听</button>
+      <button data-yu='1' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" >预约试听</button>
     </view>
     <!-- <view wx:if="{{buttonBon}}" class='buttonBon'></view> -->
 
