@@ -150,11 +150,10 @@ Page({
           })
         })
         api._get("/api/v1/twitters/team").then(res => {
-          res.data.teamLength = res.data.length + 1
+
           that.setData({
             team: res.data
           })
-          console.log(that.data.team)
         })
         that.setData({ geren: false, shangjia: false, daili: true, quyu: false });
         break;

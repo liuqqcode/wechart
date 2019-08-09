@@ -3,8 +3,8 @@
     <view class='header'>
       <image src='{{item.target_customer_avatar}}'></image>
     </view>
-    <view class='name'>{{item.target_customer_name}}</view>
-    <view wx:if="{{item.newmessage == '1'}}" class='new'>new</view>
+    <view class='name'>{{item.target_customer_name}}{{item.newmess}}</view>
+    <view wx:if="{{item.newmess == 1}}" class='new'>new</view>
     <view class='clear'></view>
     <view class='line'></view>
   </view>

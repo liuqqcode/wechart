@@ -40,24 +40,34 @@ Page({
    */
   onLoad: function (options) {
     let that = this
+    
     api._get("/api/v1/platform/sessions").then(res => {
-      console.log(res)
-      for(var i = 0 ; i < res.data.length ; i++){
-        wx.getStorageSync('newmessage').forEach(item1 => {
-          console.log(item1)
-          if (res.data[i].id == item1) {
-            res.data[i].newmessage = '1'
+
+      console.log(res.data)
+      that.setData({
+        userList: res.data
+      })
+      for(var i = 0 ; i < that.data.userList.length ; i++){
+        wx.getStorageSync('newmessage').forEach(item => {
+          if(that.data.userList[i].id == item){
+            that.data.userList[i].newmess = 1
           }else{
-            res.data[i].newmessage = '2'
+            that.data.userList[i].newmess = 2
           }
-          that.setData({
-            userList: res.data
-          })
         })
       }
-      console.log(res.data)
-
+      that.setData({
+        userList:that.data.userList
+      })
+      wx.setStorageSync('newmessage', '')
+      wx.removeTabBarBadge({
+        index: 2,
+        success: function(res) {},
+        fail: function(res) {},
+        complete: function(res) {},
+      })
       console.log(that.data.userList)
+      
     })
     if (!socketOpen) {
       this.webSocket()

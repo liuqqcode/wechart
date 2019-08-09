@@ -37,7 +37,7 @@ const http = ({ url = '', param = {}, ...other } = {}) => {
             success: function(res) {
               if(res.confirm){
                 wx.switchTab({
-                  url: 'pages/My/My',
+                  url: '/pages/My/My',
                   success: function(res) {},
                   fail: function(res) {},
                   complete: function(res) {},

@@ -12,6 +12,17 @@ App({
 
   onShow: function () {
     let newmessage = []
+    console.log(wx.getStorageSync('newmessage'))
+    if (wx.getStorageSync('newmessage')) {
+      wx.setTabBarBadge({
+        index: 2,
+        text: 'new',
+        success: function (res) { },
+        fail: function (res) { },
+        complete: function (res) { },
+      })
+    }
+    
     SocketTask = wx.connectSocket({
       url: url,
       data: 'data',
@@ -81,7 +92,7 @@ App({
 
   },
   onLoad:function(){
-    
+
   },
   onReady: function () {
   },
